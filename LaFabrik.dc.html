@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/colors.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/typography.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/shape.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/motion.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/styles.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/_ds_bundle.js"></script>
+<script src="i18n.js"></script>
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-link-hover)}
+</style>
+</helmet>
+
+<div style="background:var(--surface-page);min-width:1280px">
+
+  <header style="position:sticky;top:0;z-index:30;background:rgba(247,245,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-default)">
+    <div ref="{{ headRef }}" style="max-width:1312px;margin:0 auto;padding:0 64px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:height 160ms cubic-bezier(.2,.6,.2,1)">
+      <a href="Accueil.dc.html" style="display:flex;align-items:center">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+      </a>
+      <nav style="display:flex;gap:40px;align-items:center">
+        <a href="Fonctionnalites.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Fonctionnalités</a>
+        <a href="Tarifs.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Tarifs</a>
+        <a href="Clients.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Ils utilisent Kopilot</a>
+        <a href="Equipe.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Équipe</a>
+        <a href="LaFabrik.dc.html" style="font:500 15px/1 var(--font-sans);color:var(--text-strong);padding:8px 0;border-bottom:1px solid var(--accent-signal)">La Fabrik</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:24px">
+        <div onClick="{{ toggleLang }}" data-i18n-skip="1" title="Switch language" style="display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--border-default);border-radius:6px;cursor:pointer;background:transparent" style-hover="border-color:var(--text-strong)">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="languages" size="{{ iLang }}" color="var(--text-strong)" hint-size="16px,16px"></x-import>
+          <span data-lang-label="1" style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;color:var(--text-strong)">EN</span>
+        </div>
+        <a href="#" style="font:500 15px/1 var(--font-sans);color:var(--text-strong)" style-hover="color:var(--accent-signal)">Se connecter</a>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" size="sm" variant="primary" onClick="{{ openDemo }}" hint-size="180px,40px">Réserver une démo</x-import>
+      </div>
+    </div>
+    <div ref="{{ barRef }}" style="height:2px;background:var(--accent-signal);width:0;margin-top:-1px"></div>
+  </header>
+
+  <section class="kp-dark" style="background:var(--navy-900)">
+    <div style="max-width:1312px;margin:0 auto;padding:80px 64px 0;display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:16px">
+          <span style="font:600 44px/1 var(--font-sans);letter-spacing:-.012em;color:#fff">La Fabrik</span>
+          <span style="width:6px;height:6px;background:var(--accent-signal);border-radius:50%;margin-bottom:8px"></span>
+          <span class="kp-label" style="color:rgba(255,255,255,.55)">par Kopilot</span>
+        </div>
+        <h1 class="kp-display-l" style="color:#fff;max-width:760px">La bibliothèque des réseaux d’entreprises.</h1>
+        <p class="kp-body-lg" style="color:rgba(255,255,255,.78);max-width:640px">Des articles pour aider les bureaux à trancher leurs questions concrètes et structurer leurs pratiques.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-bottom:8px">
+        <p class="kp-label" style="color:rgba(255,255,255,.55)">Écrit pour</p>
+        <p class="kp-body" style="color:rgba(255,255,255,.78)">Les présidents, les bureaux et les animateurs de réseaux. Pas de jargon logiciel.</p>
+      </div>
+    </div>
+    <sc-if value="{{ showFabrikNav }}" hint-placeholder-val="{{ true }}">
+      <div style="max-width:1312px;margin:0 auto;padding:48px 64px 0">
+        <div style="display:inline-flex;gap:6px;padding:6px;border:1px solid var(--white-a12);border-radius:11px;background:rgba(255,255,255,.06)">
+          <a href="LaFabrik.dc.html" style="display:flex;align-items:center;gap:8px;padding:11px 20px;border-radius:8px;background:var(--accent-signal);font:600 14px/1 var(--font-sans);color:#fff">Accueil</a>
+          <a href="FabrikAPropos.dc.html" style="display:flex;align-items:center;gap:8px;padding:11px 20px;border-radius:8px;font:500 14px/1 var(--font-sans);color:rgba(255,255,255,.72)" style-hover="background:var(--white-a12);color:#fff">À propos</a>
+          <a href="FabrikArticles.dc.html" style="display:flex;align-items:center;gap:8px;padding:11px 20px;border-radius:8px;font:500 14px/1 var(--font-sans);color:rgba(255,255,255,.72)" style-hover="background:var(--white-a12);color:#fff">Articles</a>
+        </div>
+      </div>
+    </sc-if>
+    <div style="height:80px"></div>
+  </section>
+
+  <section style="max-width:1312px;margin:0 auto;padding:96px 64px 0">
+    <div style="display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:24px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="120px,16px">Articles</x-import>
+        <h2 class="kp-h1">Conseils et analyses pour votre réseau.</h2>
+      </div>
+      <div style="display:flex;gap:12px">
+        <div onClick="{{ pickAll }}" style="border:1px solid var(--border-default);border-radius:4px;padding:8px 16px;cursor:pointer;position:relative" style-hover="border-color:var(--text-strong)">
+          <sc-if value="{{ isAll }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:-1px;border:1px solid var(--accent-signal);border-radius:4px"></span></sc-if>
+          <span class="kp-label" style="color:var(--text-strong)">Tous</span>
+        </div>
+        <div onClick="{{ pickAnimation }}" style="border:1px solid var(--border-default);border-radius:4px;padding:8px 16px;cursor:pointer;position:relative" style-hover="border-color:var(--text-strong)">
+          <sc-if value="{{ isAnimation }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:-1px;border:1px solid var(--accent-signal);border-radius:4px"></span></sc-if>
+          <span class="kp-label" style="color:var(--text-strong)">Animation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ featuredVisible }}" hint-placeholder-val="{{ true }}">
+    <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:48px 64px 0">
+      <a href="https://www.kopilot.club/blog/Valoriser-les-membres-d’un-club-d’entreprises-:-renforcer-l’engagement-et-developper-le-reseau" style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center;border:1px solid var(--border-default);border-radius:12px;background:var(--surface-raised);padding:32px" style-hover="border-color:var(--text-strong)">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.PhotoFrame" src="assets/photos/networking-cocktail.png" alt="Membres d’un réseau en conversation" ratio="16 / 10" radius="8px" hint-size="100%,360px"></x-import>
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;gap:16px;align-items:center">
+            <span class="kp-label" style="color:var(--accent-signal)">À la une — Animation</span>
+            <span style="width:1px;height:12px;background:var(--border-strong)"></span>
+            <span class="kp-label">Article complet</span>
+          </div>
+          <h3 class="kp-h1" style="color:var(--text-strong)">Valoriser les membres d’un réseau d’entreprises : renforcer l’engagement et développer le réseau</h3>
+          <p class="kp-body">Comment mettre en lumière ce que font vos membres, et pourquoi cette visibilité fait revenir les adhérents l’année suivante.</p>
+          <div style="display:flex;align-items:center;gap:8px;font:500 16px/1 var(--font-sans);color:var(--accent-signal)">
+            <span>Lire l’article</span>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ iconSm }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+          </div>
+        </div>
+      </a>
+    </section>
+  </sc-if>
+
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:32px 64px 0">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px">
+      <sc-for list="{{ posts }}" as="post" hint-placeholder-count="2">
+        <a href="{{ post.url }}" style="display:flex;flex-direction:column;gap:24px;border:1px solid var(--border-default);border-radius:12px;background:var(--surface-raised);padding:32px" style-hover="border-color:var(--text-strong)">
+          <div style="display:flex;gap:16px;align-items:center">
+            <span class="kp-label" style="color:var(--accent-signal)">{{ post.category }}</span>
+            <span style="width:1px;height:12px;background:var(--border-strong)"></span>
+            <span class="kp-label">{{ post.index }}</span>
+          </div>
+          <h3 class="kp-h2" style="color:var(--text-strong)">{{ post.title }}</h3>
+          <p class="kp-body">{{ post.excerpt }}</p>
+          <div style="display:flex;align-items:center;gap:8px;font:500 16px/1 var(--font-sans);color:var(--accent-signal);margin-top:auto">
+            <span>Lire l’article</span>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ iconSm }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="border:1px dashed var(--border-strong);border-radius:12px;padding:48px;display:flex;flex-direction:column;gap:12px">
+        <p class="kp-h3">Aucun article dans cette catégorie pour l’instant.</p>
+        <p class="kp-body">Les prochains articles arrivent au fil des retours de réseaux.</p>
+      </div>
+    </sc-if>
+    <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-default);margin-top:48px;padding-top:24px">
+      <p class="kp-small" style="color:var(--text-muted)">{{ countLabel }} sur cette page, neuf en tout.</p>
+      <a href="FabrikArticles.dc.html" style="display:flex;align-items:center;gap:8px;font:500 16px/1 var(--font-sans);color:var(--accent-signal)" style-hover="gap:14px">
+        <span>Voir tous les articles</span>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ iconSm }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+      </a>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:128px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center;border:1px solid var(--border-default);border-radius:12px;padding:48px;background:var(--surface-raised)">
+      <x-import component-from-global-scope="KopilotDesignSystem_80784c.PhotoFrame" src="assets/photos/detail-badges.png" alt="Dossier de réseau imprimé" ratio="1 / 1" radius="8px" hint-size="100%,320px"></x-import>
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="160px,16px">À propos</x-import>
+        <h2 class="kp-h1">À propos de La Fabrik.</h2>
+        <p class="kp-body-lg">La Fabrik rassemble ce que nous apprenons au contact des réseaux : ce qui fonctionne, ce qui coince, et comment d’autres bureaux s’y sont pris.</p>
+        <a href="FabrikAPropos.dc.html" style="display:flex;align-items:center;gap:8px;font:500 16px/1 var(--font-sans);color:var(--accent-signal);width:fit-content" style-hover="gap:14px">
+          <span>C’est quoi La Fabrik ?</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ iconSm }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="kp-dark" style="background:var(--navy-900);margin-top:128px">
+    <div style="max-width:1312px;margin:0 auto;padding:96px 64px;display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2 class="kp-h1" style="color:#fff">Un réseau bien tenu se voit de l’extérieur.</h2>
+        <p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Trente minutes pour voir comment Kopilot s’installe dans votre année.</p>
+      </div>
+      <div style="display:flex;justify-content:flex-end">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" size="lg" onClick="{{ openDemo }}" hint-size="220px,56px">Réserver une démo</x-import>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border-default);background:var(--surface-page)">
+    <div style="max-width:1312px;margin:0 auto;padding:64px;display:flex;justify-content:space-between;align-items:flex-start;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:320px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+        <p class="kp-small">L’écosystème des réseaux d’entreprises : plateforme, accompagnement, réseau.</p>
+        <a href="https://www.linkedin.com/company/kopilot-club" target="_blank" rel="noopener" aria-label="Kopilot sur LinkedIn" style="display:flex;width:fit-content;margin-top:6px;color:var(--text-strong)" style-hover="color:var(--accent-signal)">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+      <div style="display:flex;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Produit</p>
+          <a href="Fonctionnalites.dc.html" class="kp-small">Fonctionnalités</a>
+          <a href="Tarifs.dc.html" class="kp-small">Tarifs</a>
+          <a href="Clients.dc.html" class="kp-small">Ils utilisent Kopilot</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">La Fabrik</p>
+          <a href="LaFabrik.dc.html" class="kp-small">Accueil</a>
+          <a href="FabrikArticles.dc.html" class="kp-small">Articles</a>
+          <a href="FabrikAPropos.dc.html" class="kp-small">À propos</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;text-align:right">
+        <p class="kp-small" style="color:var(--text-muted)">© 2026 Kopilot</p>
+        <a href="MentionsLegales.dc.html" class="kp-small" style="color:var(--text-muted)">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(15,36,56,.6);z-index:50;display:flex;align-items:center;justify-content:center;padding:64px">
+      <div onClick="{{ stop }}" style="background:var(--surface-raised);border-radius:12px;padding:48px;width:560px;display:flex;flex-direction:column;gap:32px;box-shadow:0 16px 40px rgba(15,36,56,.1)">
+        <sc-if value="{{ formStage }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <p class="kp-label">Démonstration</p>
+              <h3 class="kp-h2">Réservez votre démonstration.</h3>
+              <p class="kp-body">Trente minutes, en visio, sur le fonctionnement de votre réseau.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Prénom et nom" placeholder="Camille Rousset" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Email" placeholder="camille@club.fr" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Nom du réseau" placeholder="Réseau des entrepreneurs" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Téléphone" placeholder="06 12 34 56 78" hint-size="100%,64px"></x-import>
+            </div>
+            <div style="border-top:1px solid var(--border-default);padding-top:24px;display:flex;justify-content:flex-end">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" onClick="{{ submitForm }}" hint-size="180px,40px">Envoyer la demande</x-import>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sentStage }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <p class="kp-label">Demande enregistrée</p>
+            <h3 class="kp-h2">Votre demande est bien enregistrée.</h3>
+            <p class="kp-body">Un membre de l’équipe prépare la démonstration sur la base du fonctionnement de votre réseau.</p>
+            <div style="display:flex">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" onClick="{{ closeModal }}" hint-size="120px,40px">Fermer</x-import>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFabrikNav&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;showFeatured&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+const POSTS = [
+  {
+    title: 'Newsletter réseau d\u2019entreprises : structurer ses \u00e9changes et renforcer l\u2019engagement',
+    category: 'Animation',
+    excerpt: 'Rythme, contenus et destinataires : comment une newsletter de réseau cesse d\u2019\u00eatre une corv\u00e9e mensuelle.',
+    url: 'https://www.kopilot.club/blog/newsletter-club-dentreprises'
+  },
+  {
+    title: 'Communication LinkedIn d\u2019un réseau d\u2019entreprises : structurer sa pr\u00e9sence et d\u00e9velopper son r\u00e9seau',
+    category: 'Animation',
+    excerpt: 'Contenus, engagement et strat\u00e9gie pour d\u00e9velopper le r\u00e9seau d\u2019entrepreneurs de votre réseau.',
+    url: 'https://www.kopilot.club/blog/Communication-LinkedIn-d\'un-club-d\'entreprises-:-structurer-sa-presence-et-developper-son-reseau'
+  }
+];
+
+const FEATURED_CATEGORY = 'Animation';
+
+class Component extends DCLogic {
+  state = { modal: false, sent: false, filter: 'Tous' };
+
+  componentDidMount() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      const els = Array.from(document.querySelectorAll('[data-reveal]'));
+      els.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px)';
+        el.style.transition = 'opacity 200ms cubic-bezier(.2,.6,.2,1), transform 200ms cubic-bezier(.2,.6,.2,1)';
+      });
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this.io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px' });
+      els.forEach(el => this.io.observe(el));
+    }
+    this.onScroll = () => {
+      const d = document.documentElement;
+      const max = Math.max(1, d.scrollHeight - d.clientHeight);
+      if (this.bar) this.bar.style.width = ((d.scrollTop / max) * 100).toFixed(2) + '%';
+      if (this.head) this.head.style.height = d.scrollTop > 8 ? '64px' : '80px';
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.io) this.io.disconnect();
+  }
+
+  renderVals() {
+    const f = this.state.filter;
+    const featured = this.props.showFeatured ?? true;
+    const featuredShown = featured && (f === 'Tous' || f === FEATURED_CATEGORY);
+    const list = (f === 'Tous' ? POSTS : POSTS.filter(p => p.category === f))
+      .map((p, i) => Object.assign({}, p, { index: 'Article ' + String(i + (featuredShown ? 2 : 1)).padStart(2, '0') }));
+    const shown = list.length + (featuredShown ? 1 : 0);
+    return {
+      logoHeight: 26,
+      iLang: 16,
+      toggleLang: () => { if (window.KopilotI18n) window.KopilotI18n.toggle(); },
+      iconSm: 18,
+      posts: list,
+      countLabel: shown + (shown > 1 ? ' articles' : ' article'),
+      showFabrikNav: this.props.showFabrikNav ?? true,
+      featuredVisible: featuredShown,
+      isEmpty: shown === 0,
+      isAll: f === 'Tous',
+      isAnimation: f === 'Animation',
+      pickAll: () => this.setState({ filter: 'Tous' }),
+      pickAnimation: () => this.setState({ filter: 'Animation' }),
+      barRef: el => { this.bar = el; },
+      headRef: el => { this.head = el; },
+      modalOpen: !!this.state.modal,
+      formStage: !!this.state.modal && !this.state.sent,
+      sentStage: !!this.state.modal && !!this.state.sent,
+      openDemo: () => this.setState({ modal: true, sent: false }),
+      submitForm: () => this.setState({ sent: true }),
+      closeModal: () => this.setState({ modal: false, sent: false }),
+      stop: e => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>

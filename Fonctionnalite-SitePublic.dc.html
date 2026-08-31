@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/colors.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/typography.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/shape.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/motion.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/styles.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/_ds_bundle.js"></script>
+<script src="i18n.js"></script>
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-link-hover)}
+</style>
+</helmet>
+
+<div style="background:var(--surface-page);min-width:1280px">
+
+  <header style="position:sticky;top:0;z-index:30;background:rgba(247,245,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-default)">
+    <div ref="{{ headRef }}" style="max-width:1312px;margin:0 auto;padding:0 64px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:height 160ms cubic-bezier(.2,.6,.2,1)">
+      <a href="Accueil.dc.html" style="display:flex;align-items:center">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+      </a>
+      <nav style="display:flex;gap:40px;align-items:center">
+        <a href="Fonctionnalites.dc.html" style="font:500 15px/1 var(--font-sans);color:var(--text-strong);padding:8px 0;border-bottom:1px solid var(--accent-signal)">Fonctionnalités</a>
+        <a href="Tarifs.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Tarifs</a>
+        <a href="Clients.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Ils utilisent Kopilot</a>
+        <a href="Equipe.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Équipe</a>
+        <a href="LaFabrik.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">La Fabrik</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:24px">
+        <div onClick="{{ toggleLang }}" data-i18n-skip="1" title="Switch language" style="display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--border-default);border-radius:6px;cursor:pointer;background:transparent" style-hover="border-color:var(--text-strong)">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="languages" size="{{ iLang }}" color="var(--text-strong)" hint-size="16px,16px"></x-import>
+          <span data-lang-label="1" style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;color:var(--text-strong)">EN</span>
+        </div>
+        <a href="#" style="font:500 15px/1 var(--font-sans);color:var(--text-strong)" style-hover="color:var(--accent-signal)">Se connecter</a>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" size="sm" variant="primary" onClick="{{ openDemo }}" hint-size="180px,40px">Réserver une démo</x-import>
+      </div>
+    </div>
+    <div ref="{{ barRef }}" style="height:2px;background:var(--accent-signal);width:0;margin-top:-1px"></div>
+  </header>
+
+  <section style="max-width:1312px;margin:0 auto;padding:64px 64px 0">
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="Fonctionnalites.dc.html" class="kp-label" style="color:var(--text-muted)" style-hover="color:var(--accent-signal)">Fonctionnalités</a>
+      <span class="kp-label" style="color:var(--border-strong)">/</span>
+      <span class="kp-label" style="color:var(--text-strong)">Site public</span>
+    </div>
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:end;padding-top:40px">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="180px,16px">Module Site public</x-import>
+        <h1 class="kp-display-l">Le site du réseau, <span class="kp-accent">tenu par son bureau.</span></h1>
+      </div>
+      <p class="kp-body-lg" style="max-width:420px">Un site vitrine qui se compose section par section dans le cockpit, se remplit avec les données déjà saisies, et reste à jour sans prestataire à rappeler.</p>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:56px;padding-top:32px;border-top:1px solid var(--border-default);flex-wrap:wrap">
+      <a href="#pages" data-rail="pages" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">01 — Pages et sections</a>
+      <a href="#bibliotheque" data-rail="bibliotheque" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">02 — Bibliothèque</a>
+      <a href="#personnaliser" data-rail="personnaliser" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">03 — Personnaliser</a>
+      <a href="#miseenpage" data-rail="miseenpage" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">04 — Mise en page</a>
+      <a href="#formulaires" data-rail="formulaires" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">05 — Formulaires</a>
+      <a href="#legal" data-rail="legal" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">06 — Mentions légales</a>
+      <a href="#seo" data-rail="seo" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">07 — Référencement</a>
+      <a href="#reglages" data-rail="reglages" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">08 — Réglages</a>
+    </div>
+  </section>
+
+  <section id="pages" style="max-width:1312px;margin:0 auto;padding:96px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">01</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="180px,16px">Pages et sections</x-import>
+        </div>
+        <h2 class="kp-h1">Des pages, des sections, un ordre que vous décidez.</h2>
+        <p class="kp-body-lg">Le site est une liste de pages, chaque page une pile de sections. On glisse pour réordonner, on masque une section le temps de la retravailler, on supprime celles qui ne servent plus.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--border-default);padding-top:20px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">La page d’accueil est repérée : elle ne peut pas être supprimée par erreur.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">L’accroche principale reste verrouillée en tête de page — c’est l’en-tête, pas une section ordinaire.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Une section masquée reste dans la page, invisible pour les visiteurs.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Les liens de la barre de menu se déduisent des pages publiées.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+        <div style="height:40px;background:#F7F8FA;border-bottom:1px solid #E4E7EC;display:flex;align-items:center;gap:8px;padding:0 16px">
+          <span style="width:9px;height:9px;border-radius:50%;background:#E4E7EC;display:block"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#E4E7EC;display:block"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#E4E7EC;display:block"></span>
+          <span style="font:500 11.5px/1 var(--font-sans);color:#98A2B3;margin-left:12px">Cockpit — Communication › Site public</span>
+          <span style="margin-left:auto;padding:3px 9px;border-radius:20px;background:#E7F5EF;font:600 10.5px/1 var(--font-sans);color:#12805C">En ligne</span>
+        </div>
+        <div data-compose="1" style="padding:22px 24px 24px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:20px;border-bottom:1px solid #E4E7EC">
+            <span style="padding:0 0 10px;border-bottom:2px solid var(--accent-signal);font:600 12.5px/1 var(--font-sans);color:var(--accent-signal)">Pages</span>
+            <span style="padding:0 0 10px;font:500 12.5px/1 var(--font-sans);color:#667085">Mise en page</span>
+            <span style="padding:0 0 10px;font:500 12.5px/1 var(--font-sans);color:#667085">Mentions légales</span>
+            <span style="padding:0 0 10px;font:500 12.5px/1 var(--font-sans);color:#667085">Formulaires</span>
+            <span style="padding:0 0 10px;font:500 12.5px/1 var(--font-sans);color:#667085">Référencement</span>
+            <span style="padding:0 0 10px;font:500 12.5px/1 var(--font-sans);color:#667085">Réglages</span>
+          </div>
+
+          <div style="border:1px solid #F0E4D4;border-radius:10px;overflow:hidden">
+            <div style="background:#FDF6EE;padding:12px 14px;display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="layout-list" size="{{ i16 }}" color="var(--accent-signal)" hint-size="16px,16px"></x-import>
+              <span style="font:700 13px/1 var(--font-sans);color:#101828">Pages du site</span>
+              <span style="width:20px;height:20px;border-radius:50%;background:var(--accent-signal);display:flex;align-items:center;justify-content:center;font:700 10.5px/1 var(--font-sans);color:#fff">3</span>
+              <span style="margin-left:auto;padding:6px 11px;border:1px solid #E4E7EC;border-radius:6px;background:#fff;font:600 11px/1 var(--font-sans);color:#344054">+ Ajouter</span>
+            </div>
+            <div style="display:flex;flex-direction:column;background:#fff">
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F4F5F7;background:#FEFAF4">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="house" size="{{ i14 }}" color="var(--accent-signal)" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:500 12.5px/1 var(--font-sans);color:#101828">Accueil</span>
+                <span style="padding:3px 9px;border-radius:20px;background:#FDECEC;font:600 10.5px/1 var(--font-sans);color:#B42318">Accueil</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F4F5F7">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="grip-vertical" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:500 12.5px/1 var(--font-sans);color:#101828">Nous rejoindre</span>
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="pencil" size="{{ i14 }}" color="#98A2B3" hint-size="14px,14px"></x-import>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="grip-vertical" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:500 12.5px/1 var(--font-sans);color:#101828">Nos membres</span>
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="pencil" size="{{ i14 }}" color="#98A2B3" hint-size="14px,14px"></x-import>
+              </div>
+            </div>
+          </div>
+
+          <div style="border:1px solid #F0E4D4;border-radius:10px;overflow:hidden">
+            <div style="background:#FDF6EE;padding:12px 14px;display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="layout-grid" size="{{ i16 }}" color="var(--accent-signal)" hint-size="16px,16px"></x-import>
+              <span style="font:700 13px/1 var(--font-sans);color:#101828">Sections de la page</span>
+              <span style="padding:3px 8px;border-radius:20px;background:var(--accent-signal);font:700 10.5px/1 var(--font-sans);color:#fff">16</span>
+              <span style="margin-left:auto;padding:6px 11px;border:1px solid #E4E7EC;border-radius:6px;background:#fff;font:600 11px/1 var(--font-sans);color:#344054">+ Ajouter</span>
+            </div>
+            <div style="display:flex;flex-direction:column;background:#fff">
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F4F5F7">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="lock" size="{{ i13 }}" color="#C6CBD4" hint-size="13px,13px"></x-import>
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="flag" size="{{ i14 }}" color="var(--accent-signal)" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:500 12.5px/1 var(--font-sans);color:#101828">Accroche principale</span>
+                <span style="padding:3px 9px;border-radius:20px;background:#F1F3F6;font:600 10.5px/1 var(--font-sans);color:#667085">En-tête de page</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F4F5F7">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="grip-vertical" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:500 12.5px/1 var(--font-sans);color:#101828">Qui sommes-nous</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F4F5F7">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="grip-vertical" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:500 12.5px/1 var(--font-sans);color:#101828">Chiffres clés</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F4F5F7">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="grip-vertical" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:500 12.5px/1 var(--font-sans);color:#101828">Missions</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F4F5F7">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="grip-vertical" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:400 12.5px/1 var(--font-sans);color:#98A2B3">Notre histoire</span>
+                <span style="padding:3px 9px;border-radius:20px;background:#F1F3F6;font:600 10.5px/1 var(--font-sans);color:#98A2B3">Masquée</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="grip-vertical" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+                <span style="flex:1;font:500 12.5px/1 var(--font-sans);color:#101828">Focus prochain événement</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="border:1px solid #E4E7EC;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <span style="font:700 12.5px/1 var(--font-sans);color:#101828">7 sections sur 39 sont publiées</span>
+              <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Bibliothèque · 6 catégories</span>
+            </div>
+            <span style="height:5px;border-radius:3px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:5px;width:18%;background:var(--accent-signal)"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bibliotheque" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:28px">
+      <div style="display:flex;align-items:baseline;gap:20px">
+        <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">02</span>
+        <h2 class="kp-h1">La bibliothèque</h2>
+      </div>
+      <p class="kp-body-lg">Trente-neuf sections déjà écrites pour des réseaux d’entreprises. Vous choisissez, vous prévisualisez, vous ajustez le contenu, puis vous ajoutez.</p>
+    </div>
+
+    <div data-compose="1" style="margin-top:40px;background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 16px 40px rgba(15,36,56,.09);overflow:hidden">
+      <div style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EDEFF3">
+        <div style="display:flex;align-items:center;gap:14px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="layout-grid" size="{{ i20 }}" color="var(--accent-signal)" hint-size="20px,20px"></x-import>
+          <span style="display:flex;flex-direction:column;gap:4px">
+            <span style="font:700 17px/1 var(--font-sans);color:#101828">Bibliothèque de sections</span>
+            <span style="font:400 11.5px/1 var(--font-sans);color:#98A2B3">Choisissez une section, prévisualisez-la, puis ajustez son contenu avant de l’ajouter.</span>
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="display:flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--accent-signal);border-radius:20px;background:#FDF6EE">
+            <span style="width:18px;height:18px;border-radius:50%;background:var(--accent-signal);display:flex;align-items:center;justify-content:center;font:700 10px/1 var(--font-sans);color:#fff">1</span>
+            <span style="font:600 12px/1 var(--font-sans);color:#101828">Choisir une section</span>
+          </span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+          <span style="display:flex;align-items:center;gap:8px;padding:8px 14px">
+            <span style="width:18px;height:18px;border-radius:50%;background:#F1F3F6;display:flex;align-items:center;justify-content:center;font:700 10px/1 var(--font-sans);color:#98A2B3">2</span>
+            <span style="font:500 12px/1 var(--font-sans);color:#98A2B3">Personnaliser</span>
+          </span>
+        </div>
+      </div>
+
+      <div style="background:#FDF6EE;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+        <span style="display:flex;flex-direction:column;gap:4px">
+          <span style="font:700 15px/1 var(--font-sans);color:#101828">Qui sommes-nous ?</span>
+          <span style="display:flex;align-items:center;gap:10px">
+            <span style="font:400 11.5px/1 var(--font-sans);color:#98A2B3">Courte présentation du réseau</span>
+            <span style="padding:3px 9px;border:1px solid #F0C99A;border-radius:20px;font:600 10.5px/1 var(--font-sans);color:var(--accent-signal)">Déjà utilisé</span>
+          </span>
+        </span>
+        <span style="display:flex;align-items:center;gap:12px">
+          <span style="display:flex;align-items:center;gap:24px;padding:9px 14px;border:1px solid #E4E7EC;border-radius:8px;background:#fff">
+            <span style="font:500 12px/1 var(--font-sans);color:#101828">Validé</span>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i14 }}" color="#98A2B3" hint-size="14px,14px"></x-import>
+          </span>
+          <span style="display:flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid #E4E7EC;border-radius:8px;background:#fff">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="sliders-horizontal" size="{{ i14 }}" color="#344054" hint-size="14px,14px"></x-import>
+            <span style="font:600 12px/1 var(--font-sans);color:#344054">Personnaliser</span>
+          </span>
+          <span style="padding:10px 16px;border-radius:8px;background:var(--accent-signal);font:600 12px/1 var(--font-sans);color:#fff">+ Ajouter</span>
+        </span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:340px 1fr">
+        <div style="border-right:1px solid #EDEFF3;padding:20px;display:flex;flex-direction:column;gap:14px">
+          <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-signal)">En-tête de la page</span>
+          <div style="border:1px solid #EDEFF3;border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="flag" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+              <span style="font:700 13px/1 var(--font-sans);color:#101828">Accroche principale</span>
+              <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Propre à cette page</span>
+            </span>
+            <span style="font:600 11.5px/1 var(--font-sans);color:var(--accent-signal)">Configurer</span>
+          </div>
+          <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-signal);margin-top:6px">Sections de contenu</span>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#F0C99A">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="book-open" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Présentation</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Identité, missions et chiffres clés</span>
+              </span>
+              <span style="width:24px;height:24px;border-radius:50%;background:#F1F3F6;display:flex;align-items:center;justify-content:center;font:600 11px/1 var(--font-sans);color:#667085">7</span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#F0C99A">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="users" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Communauté</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Membres, entreprises et networking</span>
+              </span>
+              <span style="width:24px;height:24px;border-radius:50%;background:#F1F3F6;display:flex;align-items:center;justify-content:center;font:600 11px/1 var(--font-sans);color:#667085">9</span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#F0C99A">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="calendar-days" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Agenda &amp; actualités</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Événements et vie du réseau</span>
+              </span>
+              <span style="width:24px;height:24px;border-radius:50%;background:#F1F3F6;display:flex;align-items:center;justify-content:center;font:600 11px/1 var(--font-sans);color:#667085">8</span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#F0C99A">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="handshake" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Adhérer &amp; contact</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Recrutement, tarifs et contact</span>
+              </span>
+              <span style="width:24px;height:24px;border-radius:50%;background:#F1F3F6;display:flex;align-items:center;justify-content:center;font:600 11px/1 var(--font-sans);color:#667085">8</span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#F0C99A">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="image" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Médias &amp; ressources</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Photos, vidéos et documents</span>
+              </span>
+              <span style="width:24px;height:24px;border-radius:50%;background:#F1F3F6;display:flex;align-items:center;justify-content:center;font:600 11px/1 var(--font-sans);color:#667085">4</span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#F0C99A">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="square" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Blocs personnalisés</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Contenus libres et intégrations</span>
+              </span>
+              <span style="width:24px;height:24px;border-radius:50%;background:#F1F3F6;display:flex;align-items:center;justify-content:center;font:600 11px/1 var(--font-sans);color:#667085">3</span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:20px;display:flex;flex-direction:column;gap:14px;background:#FAFBFC">
+          <div style="background:#fff;border:1px solid #EDEFF3;border-radius:10px;overflow:hidden">
+            <div style="background:#F7F8FA;border-bottom:1px solid #EDEFF3;padding:11px 16px;display:flex;align-items:center;justify-content:space-between">
+              <span style="display:flex;align-items:center;gap:8px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="eye" size="{{ i14 }}" color="#667085" hint-size="14px,14px"></x-import>
+                <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:#667085">Aperçu</span>
+              </span>
+              <span style="display:flex;align-items:center;gap:14px">
+                <span style="font:500 11.5px/1 var(--font-sans);color:#667085">Pleine largeur</span>
+                <span style="display:flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid #E4E7EC;border-radius:6px;background:#fff">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="monitor" size="{{ i13 }}" color="#101828" hint-size="13px,13px"></x-import>
+                  <span style="font:600 11.5px/1 var(--font-sans);color:#101828">Bureau</span>
+                </span>
+                <span style="display:flex;align-items:center;gap:7px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="tablet" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import>
+                  <span style="font:500 11.5px/1 var(--font-sans);color:#667085">Tablette</span>
+                </span>
+                <span style="display:flex;align-items:center;gap:7px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="smartphone" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import>
+                  <span style="font:500 11.5px/1 var(--font-sans);color:#667085">Mobile</span>
+                </span>
+              </span>
+            </div>
+            <div style="padding:24px;background:#fff">
+              <div style="border:1px dashed #F0C99A;border-radius:8px;padding:28px;display:flex;flex-direction:column;gap:18px">
+                <span style="font:700 11px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--accent-signal)">Le réseau en quelques mots</span>
+                <span style="display:flex;align-items:center;gap:14px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="users" size="{{ i26 }}" color="var(--accent-signal)" hint-size="26px,26px"></x-import>
+                  <span style="font:700 30px/1.05 var(--font-sans);letter-spacing:-.02em;color:#101828">Qui sommes-nous ?</span>
+                </span>
+                <span style="font:400 14px/1.6 var(--font-sans);color:#475467;max-width:560px">52 entreprises du territoire, de l’artisan au groupe régional. Depuis 1998, le réseau fait se rencontrer des dirigeants qui, sans lui, ne se croiseraient jamais.</span>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;padding-top:4px">
+                  <div style="border:1px solid #F5E3CE;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
+                    <span style="display:flex;align-items:center;justify-content:space-between">
+                      <span style="width:32px;height:32px;border-radius:8px;background:#FDF6EE;display:flex;align-items:center;justify-content:center">
+                        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="calendar-days" size="{{ i16 }}" color="var(--accent-signal)" hint-size="16px,16px"></x-import>
+                      </span>
+                      <span style="font:700 22px/1 var(--font-sans);color:#F0B27A;font-variant-numeric:tabular-nums">1998</span>
+                    </span>
+                    <span style="font:700 14px/1.3 var(--font-sans);color:#101828">Un réseau installé</span>
+                    <span style="font:400 12px/1.5 var(--font-sans);color:#667085">Vingt-huit ans d’existence sur le même territoire.</span>
+                  </div>
+                  <div style="border:1px solid #F5E3CE;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
+                    <span style="display:flex;align-items:center;justify-content:space-between">
+                      <span style="width:32px;height:32px;border-radius:8px;background:#FDF6EE;display:flex;align-items:center;justify-content:center">
+                        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="building-2" size="{{ i16 }}" color="var(--accent-signal)" hint-size="16px,16px"></x-import>
+                      </span>
+                      <span style="font:700 22px/1 var(--font-sans);color:#F0B27A;font-variant-numeric:tabular-nums">52</span>
+                    </span>
+                    <span style="font:700 14px/1.3 var(--font-sans);color:#101828">Des entreprises de toutes tailles</span>
+                    <span style="font:400 12px/1.5 var(--font-sans);color:#667085">De l’artisan au groupe régional : c’est la diversité qui fait la valeur du réseau.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="personnaliser" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div data-compose="1" style="background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+        <div style="background:#EEF2FB;padding:16px 24px;display:flex;align-items:center;gap:16px">
+          <span style="padding:8px 14px;border:1px solid #D5DDF0;border-radius:8px;background:#fff;font:600 12px/1 var(--font-sans);color:#344054">‹ Retour</span>
+          <span style="display:flex;flex-direction:column;gap:4px">
+            <span style="font:700 15px/1 var(--font-sans);color:#101828">Accroche principale</span>
+            <span style="display:flex;align-items:center;gap:10px">
+              <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Bannière d’en-tête (logo, titre, CTA)</span>
+              <span style="padding:3px 9px;border:1px solid #B9C8EA;border-radius:20px;font:600 10.5px/1 var(--font-sans);color:#2C4C9B">Déjà utilisé</span>
+            </span>
+          </span>
+          <span style="margin-left:auto;display:flex;align-items:center;gap:10px">
+            <span style="width:18px;height:18px;border-radius:50%;background:#2C4C9B;display:flex;align-items:center;justify-content:center;font:700 10px/1 var(--font-sans);color:#fff">2</span>
+            <span style="font:600 12px/1 var(--font-sans);color:#2C4C9B">Personnaliser</span>
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:300px 1fr">
+          <div style="border-right:1px solid #EDEFF3;padding:18px;display:flex;flex-direction:column;gap:10px">
+            <div style="border:1px solid #D5DDF0;background:#F7F9FE;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="database" size="{{ i18 }}" color="#2C4C9B" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+                <span style="display:flex;align-items:center;gap:8px">
+                  <span style="font:700 13px/1 var(--font-sans);color:#101828">Données</span>
+                  <span style="padding:3px 8px;border-radius:20px;background:#E4EAF8;font:600 10px/1 var(--font-sans);color:#2C4C9B">Contenu libre</span>
+                </span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Contenu saisi directement ici.</span>
+              </span>
+            </div>
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#B9C8EA">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="pencil" size="{{ i18 }}" color="#2C4C9B" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Titre</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Emphase, titre et sous-titre</span>
+              </span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#B9C8EA">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="palette" size="{{ i18 }}" color="#2C4C9B" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Style</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Apparence et mise en page</span>
+              </span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+            <div style="border:1px solid #EDEFF3;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:12px" style-hover="border-color:#B9C8EA">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="sliders-horizontal" size="{{ i18 }}" color="#2C4C9B" hint-size="18px,18px"></x-import>
+              <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Options</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Boutons d’action et pastilles</span>
+              </span>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i14 }}" color="#C6CBD4" hint-size="14px,14px"></x-import>
+            </div>
+            <div style="display:flex;gap:10px;padding-top:8px;margin-top:auto">
+              <span style="flex:1;padding:11px;border:1px solid #E4E7EC;border-radius:8px;text-align:center;font:600 12px/1 var(--font-sans);color:#344054">Annuler</span>
+              <span style="flex:1;padding:11px;border-radius:8px;background:#2C4C9B;text-align:center;font:600 12px/1 var(--font-sans);color:#fff">Enregistrer</span>
+            </div>
+          </div>
+          <div style="padding:20px;background:#FAFBFC;display:flex;flex-direction:column;gap:12px">
+            <div style="background:#fff;border:1px solid #EDEFF3;border-radius:10px;overflow:hidden">
+              <div style="background:#F7F8FA;border-bottom:1px solid #EDEFF3;padding:11px 16px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:#667085">Aperçu</span>
+                <span style="display:flex;align-items:center;gap:14px">
+                  <span style="font:500 11.5px/1 var(--font-sans);color:#667085">Pleine largeur</span>
+                  <span style="padding:6px 11px;border:1px solid #E4E7EC;border-radius:6px;background:#fff;font:600 11.5px/1 var(--font-sans);color:#101828">Bureau</span>
+                  <span style="font:500 11.5px/1 var(--font-sans);color:#667085">Tablette</span>
+                  <span style="font:500 11.5px/1 var(--font-sans);color:#667085">Mobile</span>
+                </span>
+              </div>
+              <div style="padding:32px;display:flex;flex-direction:column;align-items:center;gap:20px;border:1px dashed #B9C8EA;margin:16px;border-radius:8px">
+                <span style="width:110px;height:110px;border-radius:50%;border:1px solid #D5DDF0;display:flex;align-items:center;justify-content:center;background:#fff">
+                  <span style="font:700 12px/1.4 var(--font-sans);color:#98A2B3;text-align:center">Logo<br>du réseau</span>
+                </span>
+                <span style="font:700 34px/1.05 var(--font-sans);letter-spacing:-.02em;color:#3B62C6;text-align:center">Club Horizon Entreprises</span>
+                <span style="font:400 14px/1.6 var(--font-sans);color:#475467;text-align:center;max-width:520px">Créé en 1998, le Club Horizon Entreprises rassemble une cinquantaine d’entreprises du territoire…</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">03</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="180px,16px">Personnaliser</x-import>
+        </div>
+        <h2 class="kp-h1">Quatre réglages, jamais une page blanche.</h2>
+        <p class="kp-body-lg">Chaque section s’ouvre avec un texte déjà rédigé, tiré de ce qu’écrivent les réseaux d’entreprises. Vous gardez, vous réécrivez, vous branchez sur vos données. L’aperçu suit à chaque frappe.</p>
+        <div style="display:flex;flex-direction:column;border-top:1px solid var(--border-default)">
+          <div style="display:flex;gap:20px;padding:16px 0;border-bottom:1px solid var(--border-default)">
+            <span class="kp-label" style="width:96px;flex:none;color:var(--text-strong)">Données</span>
+            <span class="kp-small">Contenu libre saisi ici, ou repris automatiquement d’un module du réseau.</span>
+          </div>
+          <div style="display:flex;gap:20px;padding:16px 0;border-bottom:1px solid var(--border-default)">
+            <span class="kp-label" style="width:96px;flex:none;color:var(--text-strong)">Titre</span>
+            <span class="kp-small">Emphase, titre et sous-titre de la section.</span>
+          </div>
+          <div style="display:flex;gap:20px;padding:16px 0;border-bottom:1px solid var(--border-default)">
+            <span class="kp-label" style="width:96px;flex:none;color:var(--text-strong)">Style</span>
+            <span class="kp-small">Apparence et mise en page, dans les couleurs du réseau.</span>
+          </div>
+          <div style="display:flex;gap:20px;padding:16px 0;border-bottom:1px solid var(--border-default)">
+            <span class="kp-label" style="width:96px;flex:none;color:var(--text-strong)">Options</span>
+            <span class="kp-small">Boutons d’action et pastilles affichés dans la section.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="miseenpage" class="kp-dark" style="background:var(--navy-900);margin-top:112px">
+    <div style="max-width:1312px;margin:0 auto;padding:96px 64px;display:flex;flex-direction:column;gap:56px">
+      <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:end">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:rgba(255,255,255,.24);font-variant-numeric:tabular-nums">04</span>
+          <h2 class="kp-h1" style="color:#fff">Mise en page</h2>
+        </div>
+        <p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Trois éléments réglés une fois et présents sur toutes les pages : le bandeau de notification, la barre de menu, le pied de page.</p>
+      </div>
+
+      <div data-compose="1" style="display:grid;grid-template-columns:7fr 5fr;gap:32px;align-items:start">
+        <div style="background:#fff;border-radius:12px;overflow:hidden">
+          <div style="background:#FDF6EE;padding:16px 20px;display:flex;align-items:center;gap:14px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="megaphone" size="{{ i20 }}" color="var(--accent-signal)" hint-size="20px,20px"></x-import>
+            <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+              <span style="font:700 14px/1 var(--font-sans);color:#101828">Bandeau de notification</span>
+              <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Message court affiché au-dessus de la barre de menu, sur toutes les pages.</span>
+            </span>
+            <span style="width:40px;height:22px;border-radius:20px;background:var(--accent-signal);display:flex;align-items:center;justify-content:flex-end;padding:0 3px;box-sizing:border-box;flex:none">
+              <span style="width:16px;height:16px;border-radius:50%;background:#fff;display:block"></span>
+            </span>
+          </div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between">
+                <span style="font:700 12.5px/1 var(--font-sans);color:#101828">Message</span>
+                <span style="font:400 11px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums">58/120</span>
+              </span>
+              <span style="border:1px solid #E4E7EC;border-radius:8px;padding:12px 14px;font:400 12.5px/1 var(--font-sans);color:#101828;display:block">Assemblée générale le 12 septembre — inscriptions ouvertes</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:#98A2B3">Style</span>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                <span style="border:1px solid #E4E7EC;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:5px">
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <span style="width:14px;height:14px;border-radius:50%;border:1.5px solid #C6CBD4;display:block;box-sizing:border-box"></span>
+                    <span style="font:700 12px/1 var(--font-sans);color:#101828">Light</span>
+                  </span>
+                  <span style="font:400 11px/1.4 var(--font-sans);color:#98A2B3">Fond clair, texte foncé.</span>
+                </span>
+                <span style="border:1px solid var(--accent-signal);background:#FDF6EE;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:5px">
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <span style="width:14px;height:14px;border-radius:50%;border:4px solid var(--accent-signal);display:block;box-sizing:border-box"></span>
+                    <span style="font:700 12px/1 var(--font-sans);color:#101828">Medium</span>
+                  </span>
+                  <span style="font:400 11px/1.4 var(--font-sans);color:#667085">Fond accent n°2.</span>
+                </span>
+                <span style="border:1px solid #E4E7EC;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:5px">
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <span style="width:14px;height:14px;border-radius:50%;border:1.5px solid #C6CBD4;display:block;box-sizing:border-box"></span>
+                    <span style="font:700 12px/1 var(--font-sans);color:#101828">Dark</span>
+                  </span>
+                  <span style="font:400 11px/1.4 var(--font-sans);color:#98A2B3">Fond sombre, texte clair.</span>
+                </span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:#98A2B3">Affichage</span>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                <span style="border:1px solid var(--accent-signal);background:#FDF6EE;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:5px">
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <span style="width:14px;height:14px;border-radius:50%;border:4px solid var(--accent-signal);display:block;box-sizing:border-box"></span>
+                    <span style="font:700 12px/1 var(--font-sans);color:#101828">Fixe</span>
+                  </span>
+                  <span style="font:400 11px/1.4 var(--font-sans);color:#667085">Le message reste immobile.</span>
+                </span>
+                <span style="border:1px solid #E4E7EC;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:5px">
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <span style="width:14px;height:14px;border-radius:50%;border:1.5px solid #C6CBD4;display:block;box-sizing:border-box"></span>
+                    <span style="font:700 12px/1 var(--font-sans);color:#101828">Défilant</span>
+                  </span>
+                  <span style="font:400 11px/1.4 var(--font-sans);color:#98A2B3">Le message défile en continu.</span>
+                </span>
+                <span style="border:1px solid #E4E7EC;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:5px">
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <span style="width:14px;height:14px;border-radius:50%;border:1.5px solid #C6CBD4;display:block;box-sizing:border-box"></span>
+                    <span style="font:700 12px/1 var(--font-sans);color:#101828">Clignotant</span>
+                  </span>
+                  <span style="font:400 11px/1.4 var(--font-sans);color:#98A2B3">Le message apparaît et disparaît.</span>
+                </span>
+              </div>
+            </div>
+            <div style="border-top:1px solid #EDEFF3;padding-top:16px;display:flex;flex-direction:column;gap:10px">
+              <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:#667085">Aperçu</span>
+              <span style="border:1px dashed #F0A0A0;border-radius:8px;padding:12px;display:block">
+                <span style="background:#FDF3E7;border-radius:6px;padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:16px">
+                  <span style="font:600 12.5px/1 var(--font-sans);color:#101828">Assemblée générale le 12 septembre — inscriptions ouvertes</span>
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="x" size="{{ i14 }}" color="#98A2B3" hint-size="14px,14px"></x-import>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="border:1px solid var(--white-a12);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box">
+            <span style="display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="layout-panel-top" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal)">Barre de menu</span>
+            </span>
+            <span style="font:400 13.5px/1.6 var(--font-sans);color:rgba(255,255,255,.78)">Logo, nom du réseau, liens issus des pages publiées et bouton d’action. Ajoutez une page, le lien apparaît.</span>
+          </div>
+          <div style="border:1px solid var(--white-a12);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box">
+            <span style="display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="panel-bottom" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal)">Pied de page</span>
+            </span>
+            <span style="font:400 13.5px/1.6 var(--font-sans);color:rgba(255,255,255,.78)">Coordonnées du réseau, réseaux sociaux, liens légaux et accès au choix de cookies.</span>
+          </div>
+          <div style="border:1px solid var(--white-a12);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box">
+            <span style="display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="megaphone" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal)">À quoi ça sert</span>
+            </span>
+            <span style="font:400 13.5px/1.6 var(--font-sans);color:rgba(255,255,255,.78)">Une assemblée générale, une soirée, une campagne d’adhésion : le bandeau se pose en deux minutes et s’éteint aussi vite.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formulaires" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">05</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="180px,16px">Formulaires</x-import>
+        </div>
+        <h2 class="kp-h1">Une demande arrive : elle atterrit dans vos contacts.</h2>
+        <p class="kp-body-lg">Deux formulaires, activables séparément. Les demandes non traitées remontent en haut de la liste et se gèrent dans Contacts externes, pas dans une boîte mail partagée où elles se perdent.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--border-default);padding-top:20px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Le formulaire de contact s’ouvre depuis trois endroits : la barre de menu, le bandeau d’accueil, la section Contact.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Le formulaire de pré-adhésion se place dans une page dédiée, quand le réseau recrute.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Chaque demande porte son origine : le réseau sait ce que le site lui rapporte.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-compose="1" style="background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);padding:24px;display:flex;flex-direction:column;gap:18px">
+        <div style="border:1px solid #F0E4D4;border-radius:10px;overflow:hidden">
+          <div style="background:#FDF6EE;padding:14px 16px;display:flex;align-items:center;gap:12px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="inbox" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <span style="display:flex;flex-direction:column;gap:3px">
+              <span style="font:700 13.5px/1 var(--font-sans);color:#101828">Formulaires activés sur le site</span>
+              <span style="font:400 11px/1 var(--font-sans);color:#667085">Ces tableaux servent à vérifier ce que le site collecte.</span>
+            </span>
+          </div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:16px;align-items:start">
+              <span style="display:flex;flex-direction:column;gap:8px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Formulaire de contact</span>
+                <span style="width:fit-content;padding:4px 10px;border:1px solid #A6DFC4;border-radius:20px;background:#E7F5EF;font:600 10.5px/1 var(--font-sans);color:#12805C">✓ Activé</span>
+                <span style="font:400 11.5px/1.4 var(--font-sans);color:#98A2B3">Trois accès possibles depuis le site.</span>
+              </span>
+              <span style="display:flex;flex-direction:column;gap:9px">
+                <span style="display:flex;align-items:center;gap:9px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i13 }}" color="#12805C" hint-size="13px,13px"></x-import>
+                  <span style="flex:1;font:400 11.5px/1 var(--font-sans);color:#344054">Bouton « Nous contacter » — barre de menu</span>
+                  <span style="font:600 10.5px/1 var(--font-sans);color:#98A2B3">Utilisé</span>
+                </span>
+                <span style="display:flex;align-items:center;gap:9px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i13 }}" color="#12805C" hint-size="13px,13px"></x-import>
+                  <span style="flex:1;font:400 11.5px/1 var(--font-sans);color:#344054">Bouton du bandeau d’accueil</span>
+                  <span style="font:600 10.5px/1 var(--font-sans);color:#98A2B3">Utilisé</span>
+                </span>
+                <span style="display:flex;align-items:center;gap:9px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i13 }}" color="#12805C" hint-size="13px,13px"></x-import>
+                  <span style="flex:1;font:400 11.5px/1 var(--font-sans);color:#344054">Section « Contact » de la page</span>
+                  <span style="font:600 10.5px/1 var(--font-sans);color:#98A2B3">Accueil</span>
+                </span>
+              </span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:16px;align-items:start;border-top:1px solid #F1F3F6;padding-top:16px">
+              <span style="display:flex;flex-direction:column;gap:8px">
+                <span style="font:700 13px/1 var(--font-sans);color:#101828">Formulaire de pré-adhésion</span>
+                <span style="width:fit-content;padding:4px 10px;border:1px dashed #C6CBD4;border-radius:20px;font:600 10.5px/1 var(--font-sans);color:#98A2B3">Non activé</span>
+                <span style="font:400 11.5px/1.4 var(--font-sans);color:#98A2B3">Accessible via une section dédiée à placer dans une page.</span>
+              </span>
+              <span style="display:flex;align-items:center;gap:9px">
+                <span style="width:13px;height:13px;border-radius:50%;border:1.5px dashed #C6CBD4;display:block;box-sizing:border-box;flex:none"></span>
+                <span style="flex:1;font:400 11.5px/1 var(--font-sans);color:#98A2B3">Section « Nous rejoindre » à placer</span>
+                <span style="font:600 10.5px/1 var(--font-sans);color:#98A2B3">Non utilisé</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div style="border:1px solid #F0E4D4;border-radius:10px;overflow:hidden">
+          <div style="background:#FDF6EE;padding:14px 16px;display:flex;align-items:center;gap:12px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="mail" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+              <span style="font:700 13.5px/1 var(--font-sans);color:#101828">Formulaire de contact</span>
+              <span style="font:400 11px/1 var(--font-sans);color:#667085">Demandes envoyées depuis la section Contact du site.</span>
+            </span>
+            <span style="padding:5px 11px;border-radius:20px;background:#FDECD9;font:700 11px/1 var(--font-sans);color:#B54708;flex:none">2 à traiter</span>
+          </div>
+          <div style="background:#fff">
+            <div style="display:grid;grid-template-columns:1.1fr 1.2fr 1.4fr .8fr;gap:12px;padding:10px 16px;background:#FAFBFC;border-bottom:1px solid #EDEFF3">
+              <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Nom</span>
+              <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Contact</span>
+              <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Message</span>
+              <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Soumis le</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 1.2fr 1.4fr .8fr;gap:12px;padding:14px 16px;border-bottom:1px solid #F4F5F7;align-items:start">
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 12px/1.2 var(--font-sans);color:#101828">Mathilde Dautry</span><span style="font:400 10.5px/1.3 var(--font-sans);color:#98A2B3">Dautry Logistique · Dirigeante</span></span>
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:400 11px/1.3 var(--font-sans);color:#344054">m.dautry@exemple.fr</span><span style="font:400 11px/1.3 var(--font-sans);color:#98A2B3">06 60 00 00 00</span></span>
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 11.5px/1.3 var(--font-sans);color:#101828">Demande d’information</span><span style="font:400 10.5px/1.4 var(--font-sans);color:#98A2B3">Bonjour, pouvez-vous me préciser les conditions d’adhésion…</span></span>
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:400 11px/1.3 var(--font-sans);color:#344054">14 oct.</span><span style="font:400 10.5px/1.3 var(--font-sans);color:#98A2B3">Site web</span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 1.2fr 1.4fr .8fr;gap:12px;padding:14px 16px;align-items:start">
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 12px/1.2 var(--font-sans);color:#101828">Karim Bellot</span><span style="font:400 10.5px/1.3 var(--font-sans);color:#98A2B3">Bellot Énergie · Gérant</span></span>
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:400 11px/1.3 var(--font-sans);color:#344054">k.bellot@exemple.fr</span><span style="font:400 11px/1.3 var(--font-sans);color:#98A2B3">07 12 00 00 00</span></span>
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 11.5px/1.3 var(--font-sans);color:#101828">Partenariat événement</span><span style="font:400 10.5px/1.4 var(--font-sans);color:#98A2B3">Nous serions intéressés pour sponsoriser la soirée de rentrée…</span></span>
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:400 11px/1.3 var(--font-sans);color:#344054">13 oct.</span><span style="font:400 10.5px/1.3 var(--font-sans);color:#98A2B3">Site web</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="legal" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div data-compose="1" style="background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+        <div style="background:#FDF6EE;padding:16px 20px;display:flex;align-items:center;gap:14px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="cookie" size="{{ i20 }}" color="var(--accent-signal)" hint-size="20px,20px"></x-import>
+          <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+            <span style="font:700 14px/1 var(--font-sans);color:#101828">Consentement aux cookies</span>
+            <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Obligatoire dès qu’un outil de mesure est branché.</span>
+          </span>
+          <span style="width:40px;height:22px;border-radius:20px;background:var(--accent-signal);display:flex;align-items:center;justify-content:flex-end;padding:0 3px;box-sizing:border-box;flex:none">
+            <span style="width:16px;height:16px;border-radius:50%;background:#fff;display:block"></span>
+          </span>
+        </div>
+        <div style="padding:20px;display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:#667085">Ce que voit le visiteur</span>
+            <div style="border:1px dashed #F0A0A0;border-radius:10px;padding:18px;display:flex;align-items:center;gap:20px">
+              <span style="flex:1;display:flex;flex-direction:column;gap:8px">
+                <span style="font:700 13.5px/1.3 var(--font-sans);color:#101828">Ce site utilise des cookies de mesure d’audience</span>
+                <span style="font:400 12px/1.5 var(--font-sans);color:#667085">Ils nous aident à comprendre la fréquentation du site. Aucun cookie publicitaire, aucun partage commercial.</span>
+              </span>
+              <span style="display:flex;gap:10px;flex:none">
+                <span style="padding:10px 18px;border:1px solid #E4E7EC;border-radius:8px;font:600 12px/1 var(--font-sans);color:#344054">Refuser</span>
+                <span style="padding:10px 18px;border-radius:8px;background:var(--accent-signal);font:600 12px/1 var(--font-sans);color:#fff">Accepter</span>
+              </span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="display:flex;gap:10px;align-items:flex-start">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i14 }}" color="var(--accent-signal)" hint-size="14px,14px"></x-import>
+              <span style="font:400 12px/1.5 var(--font-sans);color:#667085"><span style="font-weight:700;color:#101828">Aucun dépôt avant choix.</span> Les cookies de mesure ne sont posés qu’après acceptation ; le site fonctionne à l’identique en cas de refus.</span>
+            </span>
+            <span style="display:flex;gap:10px;align-items:flex-start">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i14 }}" color="var(--accent-signal)" hint-size="14px,14px"></x-import>
+              <span style="font:400 12px/1.5 var(--font-sans);color:#667085"><span style="font-weight:700;color:#101828">Cookies de fonctionnement exclus.</span> Ceux nécessaires à l’affichage du site ne demandent pas de consentement.</span>
+            </span>
+            <span style="display:flex;gap:10px;align-items:flex-start">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i14 }}" color="var(--accent-signal)" hint-size="14px,14px"></x-import>
+              <span style="font:400 12px/1.5 var(--font-sans);color:#667085"><span style="font-weight:700;color:#101828">Choix conservé 6 mois,</span> puis le bandeau réapparaît. Le visiteur peut en changer à tout moment depuis le pied de page.</span>
+            </span>
+            <span style="display:flex;gap:10px;align-items:flex-start">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i14 }}" color="var(--accent-signal)" hint-size="14px,14px"></x-import>
+              <span style="font:400 12px/1.5 var(--font-sans);color:#667085"><span style="font-weight:700;color:#101828">Refus au même niveau que l’acceptation.</span> Les deux boutons sont visibles d’emblée, sans étape supplémentaire.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">06</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="180px,16px">Mentions légales</x-import>
+        </div>
+        <h2 class="kp-h1">La conformité, écrite d’avance.</h2>
+        <p class="kp-body-lg">Aucun bureau n’a envie de rédiger des mentions légales. Quatre pages sont générées à partir de la fiche du réseau et restent modifiables.</p>
+        <div style="display:flex;flex-direction:column;border-top:1px solid var(--border-default)">
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border-default)">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="scale" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <span class="kp-body" style="color:var(--text-strong)">Mentions légales</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border-default)">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="shield-check" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <span class="kp-body" style="color:var(--text-strong)">Politique de confidentialité</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border-default)">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="cookie" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <span class="kp-body" style="color:var(--text-strong)">Gestion des cookies</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border-default)">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="megaphone" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <span class="kp-body" style="color:var(--text-strong)">Bandeau de consentement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seo" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:28px">
+      <div style="display:flex;align-items:baseline;gap:20px">
+        <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">07</span>
+        <h2 class="kp-h1">Référencement</h2>
+      </div>
+      <p class="kp-body-lg">Les informations du réseau sont saisies une seule fois dans les paramètres. Elles alimentent les données structurées du site, les mentions légales, et la fiche que lisent les assistants.</p>
+    </div>
+
+    <div data-compose="1" style="display:grid;grid-template-columns:7fr 5fr;gap:32px;padding-top:40px;align-items:start">
+      <div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;overflow:hidden">
+        <div style="background:#FDF6EE;padding:16px 20px;display:flex;align-items:center;gap:14px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="building-2" size="{{ i20 }}" color="var(--accent-signal)" hint-size="20px,20px"></x-import>
+          <span style="display:flex;flex-direction:column;gap:4px">
+            <span style="font:700 14px/1 var(--font-sans);color:#101828">Fiche du réseau</span>
+            <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Les informations que les moteurs lisent sur le site.</span>
+          </span>
+        </div>
+        <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px">
+          <span style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Nom</span><span style="padding:2px 7px;border-radius:20px;background:#F1F3F6;font:600 9.5px/1 var(--font-sans);color:#667085">Général</span></span>
+            <span style="font:500 13px/1 var(--font-sans);color:#101828">Club Horizon Entreprises</span>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Description courte</span><span style="padding:2px 7px;border-radius:20px;background:#F1F3F6;font:600 9.5px/1 var(--font-sans);color:#667085">Général</span></span>
+            <span style="font:500 13px/1 var(--font-sans);color:#101828">Réseau d’entreprises du Mans…</span>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Email</span><span style="padding:2px 7px;border-radius:20px;background:#F1F3F6;font:600 9.5px/1 var(--font-sans);color:#667085">Général</span></span>
+            <span style="font:500 13px/1 var(--font-sans);color:#101828">contact@club-horizon.fr</span>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Téléphone</span><span style="padding:2px 7px;border-radius:20px;background:#F1F3F6;font:600 9.5px/1 var(--font-sans);color:#667085">Général</span></span>
+            <span style="font:500 13px/1 var(--font-sans);color:#101828">02 43 00 00 00</span>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Adresse du siège</span><span style="padding:2px 7px;border-radius:20px;background:#FDF6EE;font:600 9.5px/1 var(--font-sans);color:#B54708">Informations légales</span></span>
+            <span style="font:500 13px/1 var(--font-sans);color:#101828">14 rue Bellevue, 72000 Le Mans</span>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Forme juridique</span><span style="padding:2px 7px;border-radius:20px;background:#FDF6EE;font:600 9.5px/1 var(--font-sans);color:#B54708">Informations légales</span></span>
+            <span style="font:500 13px/1 var(--font-sans);color:#101828">Association loi 1901</span>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">SIREN</span><span style="padding:2px 7px;border-radius:20px;background:#FDF6EE;font:600 9.5px/1 var(--font-sans);color:#B54708">Informations légales</span></span>
+            <span style="font:500 13px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">392 063 467</span>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Code APE</span><span style="padding:2px 7px;border-radius:20px;background:#FDF6EE;font:600 9.5px/1 var(--font-sans);color:#B54708">Informations légales</span></span>
+            <span style="font:500 13px/1 var(--font-sans);color:#101828">9411Z</span>
+          </span>
+        </div>
+        <div style="border-top:1px solid #EDEFF3;padding:16px 20px">
+          <span style="font:400 11.5px/1.6 var(--font-sans);color:#667085">Saisies une seule fois dans Paramètres du réseau, elles alimentent les données structurées du site, les mentions légales et la fiche de synthèse pour les assistants.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="border:1px solid var(--border-default);border-radius:12px;padding:22px;background:var(--surface-raised);display:flex;flex-direction:column;gap:10px;box-sizing:border-box" style-hover="border-color:var(--text-strong)">
+          <span style="display:flex;align-items:center;gap:10px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="map-pin" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <h3 class="kp-h3">Présence locale</h3>
+          </span>
+          <p class="kp-small">Une recherche sur un réseau se fait avec un lieu. Ce qui fait sortir le réseau, c’est la concordance exacte entre son site et sa fiche Google Business : nom, adresse et téléphone identiques au caractère près.</p>
+        </div>
+        <div style="border:1px solid var(--border-default);border-radius:12px;padding:22px;background:var(--surface-raised);display:flex;flex-direction:column;gap:10px;box-sizing:border-box" style-hover="border-color:var(--text-strong)">
+          <span style="display:flex;align-items:center;gap:10px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="search" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <h3 class="kp-h3">Indexation et robots</h3>
+          </span>
+          <p class="kp-small">Ce que les moteurs sont autorisés à parcourir, page par page.</p>
+        </div>
+        <div style="border:1px solid var(--border-default);border-radius:12px;padding:22px;background:var(--surface-raised);display:flex;flex-direction:column;gap:10px;box-sizing:border-box" style-hover="border-color:var(--text-strong)">
+          <span style="display:flex;align-items:center;gap:10px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="sparkles" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+            <h3 class="kp-h3">Moteurs de réponse (IA)</h3>
+          </span>
+          <p class="kp-small">Une fiche de synthèse lisible par les assistants, pour qu’ils citent le réseau correctement quand on leur demande les réseaux d’entreprises du territoire.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reglages" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div data-compose="1" style="background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+        <div style="background:#FDF6EE;padding:16px 20px;display:flex;align-items:center;gap:14px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="globe" size="{{ i20 }}" color="var(--accent-signal)" hint-size="20px,20px"></x-import>
+          <span style="display:flex;flex-direction:column;gap:4px">
+            <span style="font:700 14px/1 var(--font-sans);color:#101828">Site du réseau</span>
+            <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Le réseau utilise-t-il le site vitrine propulsé par Kopilot, ou son propre site ?</span>
+          </span>
+        </div>
+        <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px;border-bottom:1px solid #EDEFF3">
+          <span style="border:1px solid var(--accent-signal);background:#FDF6EE;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px">
+            <span style="display:flex;align-items:center;gap:10px">
+              <span style="width:15px;height:15px;border-radius:50%;border:4.5px solid var(--accent-signal);display:block;box-sizing:border-box"></span>
+              <span style="font:700 13px/1 var(--font-sans);color:var(--accent-signal)">Site propulsé par Kopilot</span>
+            </span>
+            <span style="font:400 11.5px/1.5 var(--font-sans);color:#667085">Le site vitrine est édité dans le cockpit et alimenté par les modules du réseau.</span>
+          </span>
+          <span style="border:1px solid #E4E7EC;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px">
+            <span style="display:flex;align-items:center;gap:10px">
+              <span style="width:15px;height:15px;border-radius:50%;border:1.5px solid #C6CBD4;display:block;box-sizing:border-box"></span>
+              <span style="font:700 13px/1 var(--font-sans);color:#101828">Site externe</span>
+            </span>
+            <span style="font:400 11.5px/1.5 var(--font-sans);color:#98A2B3">Le réseau garde son propre site. Kopilot renvoie simplement vers son adresse.</span>
+          </span>
+        </div>
+        <div style="padding:20px;display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:700 12.5px/1 var(--font-sans);color:#101828">Adresse par défaut</span>
+            <span style="display:flex;align-items:center;gap:12px">
+              <span style="font:600 13px/1 var(--font-mono, monospace);color:var(--accent-signal)">https://club-horizon.kopilot.club</span>
+              <span style="display:flex;align-items:center;gap:7px;padding:7px 12px;border:1px solid #E4E7EC;border-radius:6px;font:600 11px/1 var(--font-sans);color:#344054">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="copy" size="{{ i13 }}" color="#667085" hint-size="13px,13px"></x-import>
+                <span>Copier</span>
+              </span>
+            </span>
+            <span style="font:400 11.5px/1.6 var(--font-sans);color:#667085">Fournie par Kopilot à la création du réseau, elle sert aussi à l’application membres et aux liens d’invitation. Elle reste active en permanence.</span>
+          </div>
+          <div style="border-top:1px dashed #E4E7EC;padding-top:18px;display:flex;flex-direction:column;gap:10px">
+            <span style="display:flex;align-items:center;gap:12px">
+              <span style="font:700 12.5px/1 var(--font-sans);color:#101828">Domaine personnalisé</span>
+              <span style="display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:#FEF6E0;font:600 10.5px/1 var(--font-sans);color:#B54708">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="clock" size="{{ i12 }}" color="#B54708" hint-size="12px,12px"></x-import>
+                <span>En attente de vérification</span>
+              </span>
+            </span>
+            <span style="font:400 11.5px/1.6 var(--font-sans);color:#667085">Si le réseau possède son propre nom de domaine, il peut le faire pointer vers ce site. L’adresse Kopilot continue de fonctionner et redirige vers lui.</span>
+            <span style="display:flex;gap:12px;align-items:center">
+              <span style="flex:1;border:1px solid #E4E7EC;border-radius:8px;padding:11px 14px;font:500 12.5px/1 var(--font-mono, monospace);color:#101828">club-horizon.fr</span>
+              <span style="padding:11px 16px;border:1px solid #E4E7EC;border-radius:8px;font:600 12px/1 var(--font-sans);color:#344054">Effacer</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">08</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="180px,16px">Réglages</x-import>
+        </div>
+        <h2 class="kp-h1">Une adresse dès le premier jour.</h2>
+        <p class="kp-body-lg">Le réseau reçoit son adresse Kopilot à la création, sans attendre. S’il possède déjà un nom de domaine, il le branche dessus quand il veut — et si le réseau préfère garder son site actuel, Kopilot renvoie simplement vers lui.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--border-default);padding-top:20px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">L’adresse Kopilot sert aussi à l’application membres et aux liens d’invitation.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Publication : le site reste hors ligne tant que le bureau ne l’a pas ouvert.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Mesure d’audience : à brancher, et le bandeau de consentement s’active avec.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="border:1px solid var(--border-default);border-radius:14px;background:var(--surface-raised);padding:40px;display:grid;grid-template-columns:6fr 6fr;gap:48px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="200px,16px">Présentation du réseau</x-import>
+        <h2 class="kp-h2">Le texte du réseau, écrit une fois pour quatre supports.</h2>
+        <p class="kp-body">Treize rubriques — qui sommes-nous, missions, valeurs, histoire, offre, preuves — rédigées dans un seul endroit. Chaque rubrique validée devient un bloc de contenu, repris par le site public, l’application, le dossier d’adhésion et les documents du réseau. Une correction ici est corrigée partout.</p>
+      </div>
+      <div data-compose="1" style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:baseline;gap:14px">
+          <span style="font:600 44px/1 var(--font-sans);letter-spacing:-.02em;color:var(--text-strong);font-variant-numeric:tabular-nums">8</span>
+          <span class="kp-body">rubriques sur 13 validées</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--border-default);padding-top:14px">
+          <div style="display:flex;align-items:center;gap:14px">
+            <span class="kp-label" style="width:80px;flex:none;color:var(--text-strong)">Identité</span>
+            <span style="flex:1;height:4px;border-radius:2px;background:var(--border-default);display:block;overflow:hidden"><span style="display:block;height:4px;width:75%;background:var(--accent-signal)"></span></span>
+            <span class="kp-small" style="font-variant-numeric:tabular-nums">3/4</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span class="kp-label" style="width:80px;flex:none;color:var(--text-strong)">Offre</span>
+            <span style="flex:1;height:4px;border-radius:2px;background:var(--border-default);display:block;overflow:hidden"><span style="display:block;height:4px;width:66%;background:var(--accent-signal)"></span></span>
+            <span class="kp-small" style="font-variant-numeric:tabular-nums">2/3</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span class="kp-label" style="width:80px;flex:none;color:var(--text-strong)">Preuves</span>
+            <span style="flex:1;height:4px;border-radius:2px;background:var(--border-default);display:block;overflow:hidden"><span style="display:block;height:4px;width:33%;background:var(--accent-signal)"></span></span>
+            <span class="kp-small" style="font-variant-numeric:tabular-nums">1/3</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span class="kp-label" style="width:80px;flex:none;color:var(--text-strong)">Actions</span>
+            <span style="flex:1;height:4px;border-radius:2px;background:var(--border-default);display:block;overflow:hidden"><span style="display:block;height:4px;width:66%;background:var(--accent-signal)"></span></span>
+            <span class="kp-small" style="font-variant-numeric:tabular-nums">2/3</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;border-top:1px solid var(--border-default);padding-top:14px;flex-wrap:wrap">
+          <span style="padding:6px 12px;border:1px solid var(--border-default);border-radius:20px;font:500 11.5px/1 var(--font-sans);color:var(--text-body)">Site public</span>
+          <span style="padding:6px 12px;border:1px solid var(--border-default);border-radius:20px;font:500 11.5px/1 var(--font-sans);color:var(--text-body)">Application</span>
+          <span style="padding:6px 12px;border:1px solid var(--border-default);border-radius:20px;font:500 11.5px/1 var(--font-sans);color:var(--text-body)">Adhésion</span>
+          <span style="padding:6px 12px;border:1px solid var(--border-default);border-radius:20px;font:500 11.5px/1 var(--font-sans);color:var(--text-body)">Documents</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kp-dark" style="background:var(--navy-900);margin-top:112px">
+    <div style="max-width:1312px;margin:0 auto;padding:96px 64px;display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2 class="kp-h1" style="color:#fff">Voyons ce que donnerait le site de votre réseau.</h2>
+        <p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Trente minutes en visio. Nous partons de vos pages actuelles et de vos données réelles.</p>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:16px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" href="Fonctionnalites.dc.html" hint-size="200px,56px">Toutes les fonctionnalités</x-import>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" size="lg" onClick="{{ openDemo }}" hint-size="200px,56px">Réserver une démo</x-import>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border-default);background:var(--surface-page)">
+    <div style="max-width:1312px;margin:0 auto;padding:64px;display:flex;justify-content:space-between;align-items:flex-start;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:320px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+        <p class="kp-small">L’écosystème des réseaux d’entreprises : plateforme, accompagnement, réseau.</p>
+        <a href="https://www.linkedin.com/company/kopilot-club" target="_blank" rel="noopener" aria-label="Kopilot sur LinkedIn" style="display:flex;width:fit-content;margin-top:6px;color:var(--text-strong)" style-hover="color:var(--accent-signal)">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+      <div style="display:flex;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Produit</p>
+          <a href="Fonctionnalites.dc.html" class="kp-small">Fonctionnalités</a>
+          <a href="Fonctionnalite-Adhesions.dc.html" class="kp-small">Gestion des adhésions</a>
+          <a href="Fonctionnalite-Application.dc.html" class="kp-small">Application membres</a>
+          <a href="Fonctionnalite-SitePublic.dc.html" class="kp-small">Site public</a>
+          <a href="Tarifs.dc.html" class="kp-small">Tarifs</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Kopilot</p>
+          <a href="Clients.dc.html" class="kp-small">Ils utilisent Kopilot</a>
+          <a href="Equipe.dc.html" class="kp-small">Équipe</a>
+          <a href="LaFabrik.dc.html" class="kp-small">La Fabrik</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;text-align:right">
+        <p class="kp-small" style="color:var(--text-muted)">© 2026 Kopilot</p>
+        <a href="MentionsLegales.dc.html" class="kp-small" style="color:var(--text-muted)">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(15,36,56,.6);z-index:50;display:flex;align-items:center;justify-content:center;padding:64px">
+      <div onClick="{{ stop }}" style="background:var(--surface-raised);border-radius:12px;padding:48px;width:560px;display:flex;flex-direction:column;gap:32px;box-shadow:0 16px 40px rgba(15,36,56,.1)">
+        <sc-if value="{{ formStage }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <p class="kp-label">Démonstration</p>
+              <h3 class="kp-h2">Réservez votre démonstration.</h3>
+              <p class="kp-body">Trente minutes, en visio, sur le fonctionnement de votre réseau.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Prénom et nom" placeholder="Camille Rousset" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Email" placeholder="camille@club.fr" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Nom du réseau" placeholder="Réseau des entrepreneurs" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Téléphone" placeholder="06 12 34 56 78" hint-size="100%,64px"></x-import>
+            </div>
+            <div style="border-top:1px solid var(--border-default);padding-top:24px;display:flex;justify-content:flex-end">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" onClick="{{ submitForm }}" hint-size="180px,40px">Envoyer la demande</x-import>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sentStage }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <p class="kp-label">Demande enregistrée</p>
+            <h3 class="kp-h2">Votre demande est bien enregistrée.</h3>
+            <p class="kp-body">Un membre de l’équipe prépare la démonstration sur la base du fonctionnement de votre réseau.</p>
+            <div style="display:flex">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" onClick="{{ closeModal }}" hint-size="120px,40px">Fermer</x-import>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { modal: false, sent: false };
+
+  componentDidMount() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      Array.from(document.querySelectorAll('[data-compose] > *')).forEach(el => {
+        const idx = Array.prototype.indexOf.call(el.parentElement.children, el);
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(14px)';
+        el.style.transition = 'opacity 460ms cubic-bezier(.2,.6,.2,1) ' + (idx * 110) + 'ms, transform 460ms cubic-bezier(.2,.6,.2,1) ' + (idx * 110) + 'ms';
+      });
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          Array.from(e.target.children).forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; });
+          this.io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
+      document.querySelectorAll('[data-compose]').forEach(el => this.io.observe(el));
+    }
+
+    const ids = ['pages', 'bibliotheque', 'personnaliser', 'miseenpage', 'formulaires', 'legal', 'seo', 'reglages'];
+    this.onScroll = () => {
+      const d = document.documentElement;
+      const max = Math.max(1, d.scrollHeight - d.clientHeight);
+      if (this.bar) this.bar.style.width = ((d.scrollTop / max) * 100).toFixed(2) + '%';
+      if (this.head) this.head.style.height = d.scrollTop > 8 ? '64px' : '80px';
+      let active = null;
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.4) active = id;
+      });
+      document.querySelectorAll('[data-rail]').forEach(a => {
+        const on = a.getAttribute('data-rail') === active;
+        a.style.borderColor = on ? 'var(--accent-signal)' : 'var(--border-default)';
+        a.style.color = on ? 'var(--accent-signal)' : 'var(--text-body)';
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.io) this.io.disconnect();
+  }
+
+  renderVals() {
+    return {
+      logoHeight: 26,
+      iLang: 16,
+      toggleLang: () => { if (window.KopilotI18n) window.KopilotI18n.toggle(); },
+      i12: 12, i13: 13, i14: 14, i16: 16, i18: 18, i20: 20, i26: 26,
+      barRef: el => { this.bar = el; },
+      headRef: el => { this.head = el; },
+      modalOpen: !!this.state.modal,
+      formStage: !!this.state.modal && !this.state.sent,
+      sentStage: !!this.state.modal && !!this.state.sent,
+      openDemo: () => this.setState({ modal: true, sent: false }),
+      submitForm: () => this.setState({ sent: true }),
+      closeModal: () => this.setState({ modal: false, sent: false }),
+      stop: e => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/colors.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/typography.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/shape.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/motion.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/styles.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/_ds_bundle.js"></script>
+<script src="i18n.js"></script>
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-link-hover)}
+  @keyframes kpRailA{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  @keyframes kpRailB{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+  .kp-rail-a{animation:kpRailA 44s linear infinite}
+  .kp-rail-b{animation:kpRailB 52s linear infinite}
+  .kp-rail:hover .kp-rail-a,.kp-rail:hover .kp-rail-b{animation-play-state:paused}
+  .kp-chip{transition:border-color 180ms ease,transform 180ms ease,box-shadow 180ms ease}
+  .kp-chip:hover{border-color:var(--text-strong);transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,36,56,.10)}
+  @media (prefers-reduced-motion: reduce){.kp-rail-a,.kp-rail-b{animation:none}}
+</style>
+</helmet>
+
+<div style="background:var(--surface-page);min-width:1280px">
+
+  <header style="position:sticky;top:0;z-index:30;background:rgba(247,245,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-default)">
+    <div ref="{{ headRef }}" style="max-width:1312px;margin:0 auto;padding:0 64px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:height 160ms cubic-bezier(.2,.6,.2,1)">
+      <a href="Accueil.dc.html" style="display:flex;align-items:center">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+      </a>
+      <nav style="display:flex;gap:40px;align-items:center">
+        <a href="Fonctionnalites.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Fonctionnalités</a>
+        <a href="Tarifs.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Tarifs</a>
+        <a href="Clients.dc.html" style="font:500 15px/1 var(--font-sans);color:var(--text-strong);padding:8px 0;border-bottom:1px solid var(--accent-signal)">Ils utilisent Kopilot</a>
+        <a href="Equipe.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Équipe</a>
+        <a href="LaFabrik.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">La Fabrik</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:24px">
+        <div onClick="{{ toggleLang }}" data-i18n-skip="1" title="Switch language" style="display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--border-default);border-radius:6px;cursor:pointer;background:transparent" style-hover="border-color:var(--text-strong)">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="languages" size="{{ iLang }}" color="var(--text-strong)" hint-size="16px,16px"></x-import>
+          <span data-lang-label="1" style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;color:var(--text-strong)">EN</span>
+        </div>
+        <a href="#" style="font:500 15px/1 var(--font-sans);color:var(--text-strong)" style-hover="color:var(--accent-signal)">Se connecter</a>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" size="sm" variant="primary" onClick="{{ openDemo }}" hint-size="180px,40px">Réserver une démo</x-import>
+      </div>
+    </div>
+    <div ref="{{ barRef }}" style="height:2px;background:var(--accent-signal);width:0;margin-top:-1px"></div>
+  </header>
+
+  <section style="max-width:1312px;margin:0 auto;padding:96px 64px 64px">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="180px,16px">Ils utilisent Kopilot</x-import>
+        <h1 class="kp-display-l">Ils ont choisi Kopilot. <span class="kp-accent">Voici ce qu’ils en disent.</span></h1>
+      </div>
+      <p class="kp-body-lg" style="max-width:420px">Des réseaux de toutes tailles nous ont fait confiance pour structurer leur gestion. Ils racontent ce qui a changé pour leur bureau.</p>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:0 64px">
+    <div style="border-top:1px solid var(--border-default);padding-top:32px;display:flex;flex-direction:column;gap:14px">
+        <div class="kp-rail" style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)">
+          <div class="kp-rail-a" style="display:flex;gap:14px;width:max-content">
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/bas-chantenay.png" alt="CEBC — Entreprises Bas-Chantenay" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">CEBC — Entreprises Bas-Chantenay</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Nantes</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/reso.png" alt="RESO Orvault" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">RESO Orvault</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Orvault</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/le-mans-ouest-entreprises.png" alt="Le Mans Ouest Entreprises" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Le Mans Ouest Entreprises</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Le Mans</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-business-sarthe.png" alt="Club Business Sarthe" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Club Business Sarthe</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Sarthe</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/c2es.png" alt="C2ES" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">C2ES</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Estuaire et Sillon</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/cina.png" alt="CINA" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">CINA</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Nantes</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-07.png" alt="SO Le Mans" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">SO Le Mans</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Le Mans</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/brezeo.png" alt="Brézéo" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Brézéo</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Cœur de Bretagne</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/bas-chantenay.png" alt="CEBC — Entreprises Bas-Chantenay" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">CEBC — Entreprises Bas-Chantenay</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Nantes</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/reso.png" alt="RESO Orvault" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">RESO Orvault</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Orvault</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/le-mans-ouest-entreprises.png" alt="Le Mans Ouest Entreprises" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Le Mans Ouest Entreprises</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Le Mans</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-business-sarthe.png" alt="Club Business Sarthe" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Club Business Sarthe</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Sarthe</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/c2es.png" alt="C2ES" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">C2ES</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Estuaire et Sillon</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/cina.png" alt="CINA" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">CINA</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Nantes</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-07.png" alt="SO Le Mans" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">SO Le Mans</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Le Mans</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/brezeo.png" alt="Brézéo" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Brézéo</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Cœur de Bretagne</span>
+                </span>
+              </span>
+          </div>
+        </div>
+        <div class="kp-rail" style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)">
+          <div class="kp-rail-b" style="display:flex;gap:14px;width:max-content">
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-09.png" alt="Club des Partenaires" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Club des Partenaires</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/zac-grand-large.png" alt="Destination Grand Large" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Destination Grand Large</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Saint-Nazaire</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-kairos.png" alt="Club Kairos" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Club Kairos</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/ressource-industrie.png" alt="Ressource Industrie" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Ressource Industrie</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/wtc-rennes-bretagne.png" alt="WTC Rennes Bretagne" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">WTC Rennes Bretagne</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Rennes</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-pro-vals-de-saintonge.png" alt="Club Pro des Vals de Saintonge" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Club Pro des Vals de Saintonge</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Vals de Saintonge</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/v2.png" alt="Villes au Carré" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Villes au Carré</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-09.png" alt="Club des Partenaires" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Club des Partenaires</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/zac-grand-large.png" alt="Destination Grand Large" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Destination Grand Large</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Saint-Nazaire</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-kairos.png" alt="Club Kairos" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Club Kairos</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/ressource-industrie.png" alt="Ressource Industrie" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Ressource Industrie</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/wtc-rennes-bretagne.png" alt="WTC Rennes Bretagne" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">WTC Rennes Bretagne</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Rennes</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/club-pro-vals-de-saintonge.png" alt="Club Pro des Vals de Saintonge" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Club Pro des Vals de Saintonge</span>
+                  <span style="font:400 11.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">Vals de Saintonge</span>
+                </span>
+              </span>
+              <span class="kp-chip" style="flex:none;display:flex;align-items:center;gap:14px;height:72px;padding:0 22px 0 14px;border:1px solid var(--border-default);border-radius:10px;background:#fff;box-sizing:border-box">
+                <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img src="assets/logos/v2.png" alt="Villes au Carré" style="max-width:100%;max-height:100%;object-fit:contain;display:block" />
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:600 13.5px/1.15 var(--font-sans);color:var(--text-strong);white-space:nowrap">Villes au Carré</span>
+                </span>
+              </span>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:96px 64px 0">
+    <x-import component-from-global-scope="KopilotDesignSystem_80784c.PhotoFrame" src="assets/photos/territoire-economique.png" alt="Quartier économique d’une ville française" ratio="21 / 9" hint-size="100%,420px"></x-import>
+  </section>
+
+  <!-- Bloc « Quatre réseaux en détail » retiré provisoirement (contenus clubs non validés) -->
+
+  <section class="kp-dark" data-reveal="1" style="background:var(--navy-900);margin-top:128px" onMouseEnter="{{ tmPause }}" onMouseLeave="{{ tmResume }}">
+    <div style="max-width:1312px;margin:0 auto;padding:72px 64px">
+      <div onClick="{{ tmNext }}" data-tm-zone="1" style="display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:stretch;cursor:pointer;transition:transform 260ms cubic-bezier(.16,.84,.24,1)" style-hover="transform:translateY(-2px)">
+
+        <div data-tm-frame="1" style="position:relative;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid var(--white-a12);transition:border-color 260ms ease">
+          <span data-tm-hero="0" style="position:absolute;inset:0;background-size:cover;background-position:center top;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1);display:block"></span>
+          <span data-tm-hero="1" style="position:absolute;inset:0;background-size:cover;background-position:center top;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1);display:block"></span>
+          <span data-tm-hero="2" style="position:absolute;inset:0;background-size:cover;background-position:center top;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1);display:block"></span>
+          <span data-tm-hero="3" style="position:absolute;inset:0;background-size:cover;background-position:center top;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1);display:block"></span>
+          <span data-tm-empty="1" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:56px;box-sizing:border-box;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1)">
+            <span style="width:100%;aspect-ratio:1;background:#fff;border-radius:12px;background-image:url(assets/logos/wtc-rennes-bretagne.png);background-size:72%;background-position:center;background-repeat:no-repeat;display:block"></span>
+          </span>
+          <span data-tm-scrim="1" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(8,24,39,.72), transparent 55%);display:block;transition:opacity 480ms cubic-bezier(.16,.84,.24,1)"></span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:32px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" tone="strong" hint-size="180px,16px">Ce qu’ils en disent</x-import>
+            <span data-tm-count style="font:600 11.5px/1 var(--font-sans);color:rgba(255,255,255,.4);font-variant-numeric:tabular-nums">01 / 04</span>
+          </div>
+
+          <div style="position:relative;height:246px;flex:none">
+            <div data-tm-panel="0" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;opacity:0;pointer-events:none">
+              <p style="font:400 26px/1.42 var(--font-serif, Georgia, serif);color:#fff;letter-spacing:-.01em;margin:0">« L’installation de Kopilot a grandement aidé à développer cette animation. »</p>
+              <p style="font:400 14px/1.6 var(--font-sans);color:rgba(255,255,255,.6);margin:0;max-width:620px">« C’est d’abord un enjeu de développement, pour pérenniser le réseau. J’espère que demain on pourra accueillir de nouveaux membres grâce à Kopilot. »</p>
+              <span style="display:flex;align-items:center;gap:10px;padding-top:2px">
+                <span style="width:18px;height:1px;background:var(--accent-signal);display:block"></span>
+                <span style="font:600 12.5px/1.3 var(--font-sans);color:#fff">Philippe Claessen</span>
+                <span style="font:600 10.5px/1.3 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.45)">CPEMN</span>
+              </span>
+            </div>
+            <div data-tm-panel="1" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;opacity:0;pointer-events:none">
+              <p style="font:400 26px/1.42 var(--font-serif, Georgia, serif);color:#fff;letter-spacing:-.01em;margin:0">« Quand c’est sur l’appli, les gens font l’effort de regarder. »</p>
+              <p style="font:400 14px/1.6 var(--font-sans);color:rgba(255,255,255,.6);margin:0;max-width:620px">« Ça fait un mois que nous sommes sur Kopilot et c’est déjà devenu un outil indispensable pour animer le réseau. Nos membres avaient l’habitude d’une application. »</p>
+              <span style="display:flex;align-items:center;gap:10px;padding-top:2px">
+                <span style="width:18px;height:1px;background:var(--accent-signal);display:block"></span>
+                <span style="font:600 12.5px/1.3 var(--font-sans);color:#fff">Virginie de Miniac</span>
+                <span style="font:600 10.5px/1.3 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.45)">CINA</span>
+              </span>
+            </div>
+            <div data-tm-panel="2" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;opacity:0;pointer-events:none">
+              <p style="font:400 26px/1.42 var(--font-serif, Georgia, serif);color:#fff;letter-spacing:-.01em;margin:0">« On est passé à Kopilot pour la gestion des adhésions, et la migration est positive sur ce point. »</p>
+              <p style="font:400 14px/1.6 var(--font-sans);color:rgba(255,255,255,.6);margin:0;max-width:620px">« Après dix ans sur un autre outil, ce qui pourrait être amélioré, ce sont les passerelles entre l’outil et les réseaux sociaux. »</p>
+              <span style="display:flex;align-items:center;gap:10px;padding-top:2px">
+                <span style="width:18px;height:1px;background:var(--accent-signal);display:block"></span>
+                <span style="font:600 12.5px/1.3 var(--font-sans);color:#fff">Jean-Pierre Fabre</span>
+                <span style="font:600 10.5px/1.3 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.45)">Club Business Sarthe</span>
+              </span>
+            </div>
+            <div data-tm-panel="3" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;opacity:0;pointer-events:none">
+              <p style="font:400 26px/1.42 var(--font-serif, Georgia, serif);color:#fff;letter-spacing:-.01em;margin:0">« On faisait tout par mail. C’est le côté automatisé que nous recherchions. »</p>
+              <p style="font:400 14px/1.6 var(--font-sans);color:rgba(255,255,255,.6);margin:0;max-width:620px">« Trente événements par an, quatre-vingts membres : nous avions réellement besoin d’un annuaire en ligne des entreprises et des membres. »</p>
+              <span style="display:flex;align-items:center;gap:10px;padding-top:2px">
+                <span style="width:18px;height:1px;background:var(--accent-signal);display:block"></span>
+                <span style="font:600 12.5px/1.3 var(--font-sans);color:#fff">Johanna</span>
+                <span style="font:600 10.5px/1.3 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.45)">WTC Rennes Bretagne</span>
+              </span>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:20px;border-top:1px solid var(--white-a12);padding-top:20px">
+            <span style="flex:1;height:2px;background:rgba(255,255,255,.12);display:block;border-radius:1px;overflow:hidden"><span data-tm-fill="x" style="display:block;height:2px;width:0;background:var(--accent-signal)"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kp-dark" style="background:var(--navy-900);margin-top:0;border-top:1px solid var(--white-a12)">
+    <div style="max-width:1312px;margin:0 auto;padding:96px 64px;display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2 class="kp-h1" style="color:#fff">Le prochain réseau, c’est peut-être le vôtre.</h2>
+        <p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Nous préparons la démonstration sur son fonctionnement réel : effectif, événements, cotisations.</p>
+      </div>
+      <div style="display:flex;justify-content:flex-end">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" size="lg" onClick="{{ openDemo }}" hint-size="220px,56px">Réserver une démo</x-import>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border-default);background:var(--surface-page)">
+    <div style="max-width:1312px;margin:0 auto;padding:64px;display:flex;justify-content:space-between;align-items:flex-start;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:320px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+        <p class="kp-small">L’écosystème des réseaux d’entreprises : plateforme, accompagnement, réseau.</p>
+        <a href="https://www.linkedin.com/company/kopilot-club" target="_blank" rel="noopener" aria-label="Kopilot sur LinkedIn" style="display:flex;width:fit-content;margin-top:6px;color:var(--text-strong)" style-hover="color:var(--accent-signal)">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+      <div style="display:flex;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Produit</p>
+          <a href="Fonctionnalites.dc.html" class="kp-small">Fonctionnalités</a>
+          <a href="Tarifs.dc.html" class="kp-small">Tarifs</a>
+          <a href="Clients.dc.html" class="kp-small">Ils utilisent Kopilot</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Kopilot</p>
+          <a href="Equipe.dc.html" class="kp-small">Équipe</a>
+          <a href="LaFabrik.dc.html" class="kp-small">La Fabrik</a>
+          <a href="FabrikArticles.dc.html" class="kp-small">Articles</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;text-align:right">
+        <p class="kp-small" style="color:var(--text-muted)">© 2026 Kopilot</p>
+        <a href="MentionsLegales.dc.html" class="kp-small" style="color:var(--text-muted)">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(15,36,56,.6);z-index:50;display:flex;align-items:center;justify-content:center;padding:64px">
+      <div onClick="{{ stop }}" style="background:var(--surface-raised);border-radius:12px;padding:48px;width:560px;display:flex;flex-direction:column;gap:32px;box-shadow:0 16px 40px rgba(15,36,56,.1)">
+        <sc-if value="{{ formStage }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <p class="kp-label">Démonstration</p>
+              <h3 class="kp-h2">Réservez votre démonstration.</h3>
+              <p class="kp-body">Trente minutes, en visio, sur le fonctionnement de votre réseau.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Prénom et nom" placeholder="Camille Rousset" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Email" placeholder="camille@club.fr" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Nom du réseau" placeholder="Réseau des entrepreneurs" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Téléphone" placeholder="06 12 34 56 78" hint-size="100%,64px"></x-import>
+            </div>
+            <div style="border-top:1px solid var(--border-default);padding-top:24px;display:flex;justify-content:flex-end">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" onClick="{{ submitForm }}" hint-size="180px,40px">Envoyer la demande</x-import>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sentStage }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <p class="kp-label">Demande enregistrée</p>
+            <h3 class="kp-h2">Votre demande est bien enregistrée.</h3>
+            <p class="kp-body">Un membre de l’équipe prépare la démonstration sur la base du fonctionnement de votre réseau.</p>
+            <div style="display:flex">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" onClick="{{ closeModal }}" hint-size="120px,40px">Fermer</x-import>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const FEATURED = [
+  {
+    logo: 'assets/logos/club-business-sarthe.png',
+    name: 'Club Business Sarthe',
+    desc: 'Emplacement — deux à trois phrases sur le réseau : son objet, son fonctionnement, ce qui le caractérise sur son territoire.',
+    full: 'Réseau d\u2019entreprises du département de la Sarthe.',
+    place: 'Sarthe (72)',
+    size: 'Effectif à confirmer',
+    since: 'Année à confirmer',
+    modules: 'À confirmer',
+    before: 'Emplacement — ce qui prenait du temps au bureau avant Kopilot, en une phrase validée par le réseau.',
+    after: 'Emplacement — ce que la plateforme a changé concrètement, en une phrase validée par le réseau.',
+  },
+  {
+    logo: 'assets/logos/club-09.png',
+    name: 'CPEMN',
+    desc: 'Emplacement — deux à trois phrases sur le réseau : son objet, son fonctionnement, ce qui le caractérise sur son territoire.',
+    full: 'Club des Partenaires de l\u2019Est de la Métropole Nantaise.',
+    place: 'Loire-Atlantique (44)',
+    size: 'Effectif à confirmer',
+    since: 'Année à confirmer',
+    modules: 'À confirmer',
+    before: 'Emplacement — ce qui prenait du temps au bureau avant Kopilot, en une phrase validée par le réseau.',
+    after: 'Emplacement — ce que la plateforme a changé concrètement, en une phrase validée par le réseau.',
+  },
+  {
+    logo: 'assets/logos/cina.png',
+    name: 'CINA',
+    desc: 'Emplacement — deux à trois phrases sur le réseau : son objet, son fonctionnement, ce qui le caractérise sur son territoire.',
+    full: 'Club Immobilier Nantes Atlantique.',
+    place: 'Nantes (44)',
+    size: 'Effectif à confirmer',
+    since: 'Année à confirmer',
+    modules: 'À confirmer',
+    before: 'Emplacement — ce qui prenait du temps au bureau avant Kopilot, en une phrase validée par le réseau.',
+    after: 'Emplacement — ce que la plateforme a changé concrètement, en une phrase validée par le réseau.',
+  },
+  {
+    logo: 'assets/logos/wtc-rennes-bretagne.png',
+    name: 'WTC Rennes Bretagne',
+    desc: 'Emplacement — deux à trois phrases sur le réseau : son objet, son fonctionnement, ce qui le caractérise sur son territoire.',
+    full: 'World Trade Center Rennes Bretagne.',
+    place: 'Rennes (35)',
+    size: 'Effectif à confirmer',
+    since: 'Année à confirmer',
+    modules: 'À confirmer',
+    before: 'Emplacement — ce qui prenait du temps au bureau avant Kopilot, en une phrase validée par le réseau.',
+    after: 'Emplacement — ce que la plateforme a changé concrètement, en une phrase validée par le réseau.',
+  }
+];
+
+class Component extends DCLogic {
+  state = { club: 0, tm: 0, modal: false, sent: false };
+
+  componentDidUpdate() { this.paintTiles(); this.paintTestimonials(); }
+
+  componentDidMount() {
+    this.tmReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.paintTestimonials();
+    this.bindTestimonialHover();
+    this.tmStart();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      const els = Array.from(document.querySelectorAll('[data-reveal]'));
+      els.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px)';
+        el.style.transition = 'opacity 200ms cubic-bezier(.2,.6,.2,1), transform 200ms cubic-bezier(.2,.6,.2,1)';
+      });
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this.io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px' });
+      els.forEach(el => this.io.observe(el));
+    }
+    this.onScroll = () => {
+      const d = document.documentElement;
+      const max = Math.max(1, d.scrollHeight - d.clientHeight);
+      if (this.bar) this.bar.style.width = ((d.scrollTop / max) * 100).toFixed(2) + '%';
+      if (this.head) this.head.style.height = d.scrollTop > 8 ? '64px' : '80px';
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.tmTimer);
+    clearTimeout(this.tmTimer);
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.io) this.io.disconnect();
+  }
+
+  bindTestimonialHover() {
+    const zone = document.querySelector('[data-tm-zone]');
+    if (!zone || zone.dataset.bound) return;
+    zone.dataset.bound = '1';
+    const frame = zone.querySelector('[data-tm-frame]');
+    const track = zone.querySelector('[data-tm-fill]');
+    const bar = track && track.parentElement;
+    zone.addEventListener('mouseenter', () => {
+      if (frame) frame.style.borderColor = 'rgba(255,255,255,.34)';
+      if (bar) { bar.style.transition = 'height 220ms ease, background 220ms ease'; bar.style.height = '3px'; bar.style.background = 'rgba(255,255,255,.22)'; }
+      if (track) track.style.height = '3px';
+    });
+    zone.addEventListener('mouseleave', () => {
+      if (frame) frame.style.borderColor = 'var(--white-a12)';
+      if (bar) { bar.style.height = '2px'; bar.style.background = 'rgba(255,255,255,.12)'; }
+      if (track) track.style.height = '2px';
+    });
+  }
+
+  paintTestimonials() {
+    const a = this.state.tm || 0;
+    const PHOTOS = ['assets/temoins/philippe.png', 'assets/temoins/virginie.png', 'assets/temoins/jean-pierre.png', ''];
+    document.querySelectorAll('[data-tm-panel]').forEach(el => {
+      const i = Number(el.getAttribute('data-tm-panel'));
+      const on = i === a;
+      const away = i > a ? 1 : -1;
+      el.style.transition = on
+        ? 'opacity 400ms cubic-bezier(.16,.84,.24,1) 70ms, transform 560ms cubic-bezier(.16,.84,.24,1)'
+        : 'opacity 220ms cubic-bezier(.4,0,1,1), transform 460ms cubic-bezier(.16,.84,.24,1)';
+      el.style.opacity = on ? '1' : '0';
+      el.style.transform = on ? 'translateY(0)' : 'translateY(' + (away * 20) + 'px)';
+      el.style.pointerEvents = on ? 'auto' : 'none';
+    });
+    document.querySelectorAll('[data-tm-hero]').forEach(el => {
+      const i = Number(el.getAttribute('data-tm-hero'));
+      if (PHOTOS[i] && !el.style.backgroundImage) el.style.backgroundImage = 'url(' + PHOTOS[i] + ')';
+      el.style.opacity = i === a && PHOTOS[i] ? '1' : '0';
+    });
+    const empty = document.querySelector('[data-tm-empty]');
+    if (empty) empty.style.opacity = PHOTOS[a] ? '0' : '1';
+    const scrim = document.querySelector('[data-tm-scrim]');
+    if (scrim) scrim.style.opacity = PHOTOS[a] ? '1' : '0';
+    const c = document.querySelector('[data-tm-count]');
+    if (c) c.textContent = '0' + (a + 1) + ' / 04';
+    const fill = document.querySelector('[data-tm-fill]');
+    if (fill) {
+      fill.style.transition = 'none';
+      fill.style.width = '0';
+      void fill.offsetWidth;
+      if (!this.tmPaused && !this.tmReduce) {
+        fill.style.transition = 'width 7000ms linear';
+        fill.style.width = '100%';
+      }
+    }
+  }
+
+  tmStart() {
+    clearInterval(this.tmTimer);
+    clearTimeout(this.tmTimer);
+    if (this.tmReduce) return;
+    this.tmTimer = setInterval(() => {
+      if (this.tmPaused) return;
+      this.setState(st => ({ tm: ((st.tm || 0) + 1) % 4 }));
+    }, 7000);
+  }
+
+  paintTiles() {
+    const fi = this.state.club || 0;
+    document.querySelectorAll('[data-club-tile]').forEach(el => {
+      const on = Number(el.getAttribute('data-club-tile')) === fi;
+      el.style.borderColor = on ? 'var(--accent-signal)' : 'var(--border-default)';
+      el.style.background = on ? 'var(--surface-raised)' : 'transparent';
+    });
+    document.querySelectorAll('[data-club-rule]').forEach(el => {
+      el.style.background = Number(el.getAttribute('data-club-rule')) === fi ? 'var(--accent-signal)' : 'transparent';
+    });
+    document.querySelectorAll('[data-club-logo]').forEach(el => {
+      const k = el.getAttribute('data-club-logo');
+      const src = k === 'sel' ? FEATURED[fi].logo : FEATURED[Number(k)].logo;
+      el.style.backgroundImage = 'url(' + src + ')';
+    });
+  }
+
+  renderVals() {
+    const fi = this.state.club || 0;
+    const cards = FEATURED.map((c, i) => Object.assign({}, c, {
+      pick: () => this.setState({ club: i })
+    }));
+    return {
+      t0: { pick: () => { this.tmPrev = this.state.tm; this.setState({ tm: 0 }); this.tmStart(); } },
+      t1: { pick: () => { this.tmPrev = this.state.tm; this.setState({ tm: 1 }); this.tmStart(); } },
+      t2: { pick: () => { this.tmPrev = this.state.tm; this.setState({ tm: 2 }); this.tmStart(); } },
+      t3: { pick: () => { this.tmPrev = this.state.tm; this.setState({ tm: 3 }); this.tmStart(); } },
+      tmPause: () => {
+        this.tmHover = true;
+        if (this.tmPaused) return;
+        this.tmPaused = true;
+        clearInterval(this.tmTimer);
+        this.tmLeft = 7000;
+        const el = document.querySelector('[data-tm-fill]');
+        if (el) {
+          const track = el.parentElement.getBoundingClientRect().width || 1;
+          const w = el.getBoundingClientRect().width;
+          this.tmLeft = Math.max(300, 7000 * (1 - w / track));
+          el.style.transition = 'none';
+          el.style.width = w + 'px';
+        }
+      },
+      tmNext: () => {
+        this.setState(st => ({ tm: ((st.tm || 0) + 1) % 4 }));
+        if (this.tmHover) { this.tmPaused = true; this.tmLeft = 7000; clearInterval(this.tmTimer); clearTimeout(this.tmTimer); return; }
+        this.tmPaused = false;
+        this.tmStart();
+      },
+      tmResume: () => {
+        this.tmHover = false;
+        if (!this.tmPaused) return;
+        this.tmPaused = false;
+        const left = this.tmLeft || 7000;
+        const el = document.querySelector('[data-tm-fill]');
+        if (el) { el.style.transition = 'width ' + left + 'ms linear'; el.style.width = '100%'; }
+        clearInterval(this.tmTimer);
+        if (this.tmReduce) return;
+        this.tmTimer = setTimeout(() => {
+          this.setState(st => ({ tm: ((st.tm || 0) + 1) % 4 }));
+          this.tmStart();
+        }, left);
+      },
+      c0: cards[0], c1: cards[1], c2: cards[2], c3: cards[3],
+      sel: FEATURED[fi],
+      logoHeight: 26,
+      iLang: 16,
+      toggleLang: () => { if (window.KopilotI18n) window.KopilotI18n.toggle(); },
+      iconSm: 18,
+      barRef: el => { this.bar = el; },
+      headRef: el => { this.head = el; },
+      modalOpen: !!this.state.modal,
+      formStage: !!this.state.modal && !this.state.sent,
+      sentStage: !!this.state.modal && !!this.state.sent,
+      openDemo: () => this.setState({ modal: true, sent: false }),
+      submitForm: () => this.setState({ sent: true }),
+      closeModal: () => this.setState({ modal: false, sent: false }),
+      stop: e => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>

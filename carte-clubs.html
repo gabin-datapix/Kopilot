@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Implantations Kopilot</title>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+  html,body{margin:0;background:#0F2438;overflow:hidden}
+  svg{display:block;width:100%;height:100vh}
+</style>
+</head>
+<body>
+<svg id="map" viewBox="0 0 520 520" preserveAspectRatio="xMidYMid meet"></svg>
+<script>
+// Placeholder positions: real club coordinates come from the platform.
+const CLUBS = [
+  [2.3522, 48.8566], [4.8357, 45.7640], [-0.5792, 44.8378], [-1.5536, 47.2184],
+  [3.0573, 50.6292], [5.3698, 43.2965], [1.4442, 43.6047], [7.7521, 48.5734],
+  [-1.6778, 48.1173], [3.8767, 43.6108], [7.2620, 43.7102], [5.7245, 45.1885],
+  [4.0317, 49.2583], [1.0993, 49.4432], [3.0870, 45.7772]
+];
+const W = 520, H = 520;
+const svg = d3.select('#map');
+const projection = d3.geoConicConformal().parallels([44, 49]).rotate([-3, 0]);
+d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(topology => {
+  const countries = topojson.feature(topology, topology.objects.countries).features;
+  const neighbours = countries.filter(f => ['Spain','Italy','Germany','Belgium','Switzerland','Netherlands','Luxembourg','United Kingdom','Andorra'].includes(f.properties.name));
+  const france = countries.find(f => f.properties.name === 'France');
+  // Metropolitan France only: keep the polygon ring that contains Paris.
+  const metro = { type:'Feature', properties:{}, geometry:{ type:'Polygon',
+    coordinates: france.geometry.coordinates.find(poly => d3.geoContains({type:'Polygon',coordinates:poly}, [2.35,48.86])) } };
+  projection.fitExtent([[40, 40], [W - 40, H - 40]], metro);
+  const path = d3.geoPath(projection);
+  svg.append('g').selectAll('path').data(neighbours).join('path')
+    .attr('d', path).attr('fill', 'rgba(255,255,255,.04)').attr('stroke', 'rgba(255,255,255,.10)').attr('stroke-width', 1);
+  svg.append('path').datum(metro).attr('d', path)
+    .attr('fill', 'rgba(255,255,255,.07)').attr('stroke', 'rgba(255,255,255,.28)').attr('stroke-width', 1);
+  svg.append('g').selectAll('circle').data(CLUBS.map(c => projection(c))).join('circle')
+    .attr('cx', d => d[0]).attr('cy', d => d[1]).attr('r', 4.5).attr('fill', '#FF9905');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/colors.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/typography.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/shape.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/motion.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/styles.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/_ds_bundle.js"></script>
+<script src="i18n.js"></script>
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-link-hover)}
+</style>
+</helmet>
+
+<div style="background:var(--surface-page);min-width:1280px">
+
+  <header style="position:sticky;top:0;z-index:30;background:rgba(247,245,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-default)">
+    <div ref="{{ headRef }}" style="max-width:1312px;margin:0 auto;padding:0 64px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:height 160ms cubic-bezier(.2,.6,.2,1)">
+      <a href="Accueil.dc.html" style="display:flex;align-items:center">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+      </a>
+      <nav style="display:flex;gap:40px;align-items:center">
+        <a href="Fonctionnalites.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Fonctionnalités</a>
+        <a href="Tarifs.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Tarifs</a>
+        <a href="Clients.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Ils utilisent Kopilot</a>
+        <a href="Equipe.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Équipe</a>
+        <a href="LaFabrik.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">La Fabrik</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:24px">
+        <a href="#" style="font:500 15px/1 var(--font-sans);color:var(--text-strong)" style-hover="color:var(--accent-signal)">Se connecter</a>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" size="sm" variant="primary" href="Accueil.dc.html" hint-size="180px,40px">Réserver une démo</x-import>
+      </div>
+    </div>
+    <div ref="{{ barRef }}" style="height:2px;background:var(--accent-signal);width:0;margin-top:-1px"></div>
+  </header>
+
+  <section style="max-width:1312px;margin:0 auto;padding:64px 64px 0">
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="Accueil.dc.html" class="kp-label" style="color:var(--text-muted)" style-hover="color:var(--accent-signal)">Accueil</a>
+      <span class="kp-label" style="color:var(--border-strong)">/</span>
+      <span class="kp-label" style="color:var(--text-strong)">Informations légales</span>
+    </div>
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:end;padding-top:40px;border-bottom:1px solid var(--border-strong);padding-bottom:40px">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="200px,16px">Informations légales</x-import>
+        <h1 class="kp-display-l">Mentions légales et <span class="kp-accent">confidentialité.</span></h1>
+      </div>
+      <p class="kp-body-lg" style="max-width:420px">Qui édite ce site, qui l’héberge, quelles données nous collectons et ce que vous pouvez exiger à leur sujet.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1312px;margin:0 auto;padding:56px 64px 0">
+    <div style="display:grid;grid-template-columns:4fr 8fr;gap:64px;align-items:start">
+
+      <div style="position:sticky;top:120px;display:flex;flex-direction:column;gap:4px">
+        <a href="#editeur" data-rail="editeur" style="display:flex;gap:14px;padding:12px 16px;border-radius:8px;color:var(--text-body)" style-hover="background:var(--surface-raised);color:var(--text-strong)">
+          <span class="kp-label" style="color:var(--text-muted);font-variant-numeric:tabular-nums">01</span>
+          <span style="font:500 14px/1.3 var(--font-sans)">Éditeur du site</span>
+        </a>
+        <a href="#hebergeur" data-rail="hebergeur" style="display:flex;gap:14px;padding:12px 16px;border-radius:8px;color:var(--text-body)" style-hover="background:var(--surface-raised);color:var(--text-strong)">
+          <span class="kp-label" style="color:var(--text-muted);font-variant-numeric:tabular-nums">02</span>
+          <span style="font:500 14px/1.3 var(--font-sans)">Hébergement</span>
+        </a>
+        <a href="#propriete" data-rail="propriete" style="display:flex;gap:14px;padding:12px 16px;border-radius:8px;color:var(--text-body)" style-hover="background:var(--surface-raised);color:var(--text-strong)">
+          <span class="kp-label" style="color:var(--text-muted);font-variant-numeric:tabular-nums">03</span>
+          <span style="font:500 14px/1.3 var(--font-sans)">Propriété intellectuelle</span>
+        </a>
+        <a href="#donnees" data-rail="donnees" style="display:flex;gap:14px;padding:12px 16px;border-radius:8px;color:var(--text-body)" style-hover="background:var(--surface-raised);color:var(--text-strong)">
+          <span class="kp-label" style="color:var(--text-muted);font-variant-numeric:tabular-nums">04</span>
+          <span style="font:500 14px/1.3 var(--font-sans)">Données personnelles</span>
+        </a>
+        <a href="#droits" data-rail="droits" style="display:flex;gap:14px;padding:12px 16px;border-radius:8px;color:var(--text-body)" style-hover="background:var(--surface-raised);color:var(--text-strong)">
+          <span class="kp-label" style="color:var(--text-muted);font-variant-numeric:tabular-nums">05</span>
+          <span style="font:500 14px/1.3 var(--font-sans)">Vos droits</span>
+        </a>
+        <a href="#cookies" data-rail="cookies" style="display:flex;gap:14px;padding:12px 16px;border-radius:8px;color:var(--text-body)" style-hover="background:var(--surface-raised);color:var(--text-strong)">
+          <span class="kp-label" style="color:var(--text-muted);font-variant-numeric:tabular-nums">06</span>
+          <span style="font:500 14px/1.3 var(--font-sans)">Cookies</span>
+        </a>
+        <div style="border-top:1px solid var(--border-default);margin-top:20px;padding-top:20px;display:flex;flex-direction:column;gap:10px">
+          <p class="kp-label">Une question ?</p>
+          <p class="kp-small">Écrivez-nous à contact@kopilot.club.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:64px">
+
+        <div id="editeur" style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 32px/1 var(--font-sans);letter-spacing:-.02em;color:var(--border-strong);font-variant-numeric:tabular-nums">01</span>
+            <h2 class="kp-h1">Éditeur du site</h2>
+          </div>
+          <p class="kp-body">Kopilot est une marque éditée par la société Datapix. Le présent site est publié sous sa responsabilité.</p>
+          <div style="border:1px solid var(--border-default);border-radius:12px;background:var(--surface-raised);overflow:hidden">
+            <div style="display:grid;grid-template-columns:200px 1fr;gap:0">
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">Raison sociale</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default)"><span class="kp-body" style="color:var(--text-strong)">Datapix</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">Forme juridique</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default)"><span class="kp-body">Société par actions simplifiée à associé unique</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">Capital social</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default)"><span class="kp-body" style="font-variant-numeric:tabular-nums">16 000 €</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">Siège social</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default)"><span class="kp-body">49 rue de la Pépinière, 44880 Sautron, France</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">Immatriculation</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default)"><span class="kp-body" style="font-variant-numeric:tabular-nums">891 371 361 RCS Nantes</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">SIREN</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default)"><span class="kp-body" style="font-variant-numeric:tabular-nums">891 371 361</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">TVA intracommunautaire</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);display:flex;align-items:center;gap:12px"><span class="kp-body" style="color:var(--text-muted)">À compléter</span><span style="padding:3px 9px;border:1px dashed var(--border-strong);border-radius:20px;font:600 10.5px/1 var(--font-sans);color:var(--text-muted)">à confirmer</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">Président</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default)"><span class="kp-body">Vincent Verhille</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);border-right:1px solid var(--border-default)"><span class="kp-label">Directeur de la publication</span></div>
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);display:flex;align-items:center;gap:12px"><span class="kp-body">Vincent Verhille</span><span style="padding:3px 9px;border:1px dashed var(--border-strong);border-radius:20px;font:600 10.5px/1 var(--font-sans);color:var(--text-muted)">à confirmer</span></div>
+              <div style="padding:16px 20px;border-right:1px solid var(--border-default)"><span class="kp-label">Contact</span></div>
+              <div style="padding:16px 20px;display:flex;align-items:center;gap:12px"><span class="kp-body" style="color:var(--text-muted)">Adresse email à publier</span><span style="padding:3px 9px;border:1px dashed var(--border-strong);border-radius:20px;font:600 10.5px/1 var(--font-sans);color:var(--text-muted)">à confirmer</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="hebergeur" style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 32px/1 var(--font-sans);letter-spacing:-.02em;color:var(--border-strong);font-variant-numeric:tabular-nums">02</span>
+            <h2 class="kp-h1">Hébergement</h2>
+          </div>
+          <p class="kp-body">Le site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis.</p>
+          <div style="border-left:2px solid var(--accent-signal);padding-left:24px;display:flex;flex-direction:column;gap:10px">
+            <p class="kp-label" style="color:var(--accent-signal)">Transfert hors Union européenne</p>
+            <p class="kp-small">L’hébergeur étant établi aux États-Unis, la consultation du site implique un transfert de données hors de l’Union européenne. Ce transfert est encadré par les clauses contractuelles types de la Commission européenne. Les données de gestion des réseaux utilisant la plateforme Kopilot sont, elles, hébergées dans l’Union européenne.</p>
+            <p class="kp-small" style="color:var(--text-muted)">Hébergeur à confirmer avant publication.</p>
+          </div>
+        </div>
+
+        <div id="propriete" style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 32px/1 var(--font-sans);letter-spacing:-.02em;color:var(--border-strong);font-variant-numeric:tabular-nums">03</span>
+            <h2 class="kp-h1">Propriété intellectuelle</h2>
+          </div>
+          <p class="kp-body">La structure du site, ses textes, ses visuels, sa charte graphique et les captures de la plateforme sont la propriété de Datapix. Toute reproduction ou représentation, totale ou partielle, sans autorisation écrite préalable, est interdite.</p>
+          <p class="kp-body">Les noms et logos des réseaux figurant sur ce site appartiennent à leurs titulaires respectifs et sont affichés avec leur accord. La marque Kopilot et le logo Kopilot sont la propriété de Datapix.</p>
+        </div>
+
+        <div id="donnees" style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 32px/1 var(--font-sans);letter-spacing:-.02em;color:var(--border-strong);font-variant-numeric:tabular-nums">04</span>
+            <h2 class="kp-h1">Données personnelles</h2>
+          </div>
+          <p class="kp-body">Datapix est responsable du traitement des données collectées sur ce site. Nous n’en collectons que lorsque vous nous les transmettez.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+            <div style="border:1px solid var(--border-default);border-radius:12px;background:var(--surface-raised);padding:24px;display:flex;flex-direction:column;gap:14px">
+              <span style="display:flex;align-items:center;gap:12px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="calendar-check" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+                <h3 class="kp-h3">Demande de démonstration</h3>
+              </span>
+              <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border-default);padding-top:14px">
+                <p class="kp-label">Données</p>
+                <p class="kp-small">Prénom, nom, email, téléphone, nom du réseau, effectif.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Finalité</p>
+                <p class="kp-small">Préparer et organiser l’entretien de démonstration que vous demandez.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Base légale</p>
+                <p class="kp-small">Votre demande explicite.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Conservation</p>
+                <p class="kp-small">Trois ans à compter du dernier échange, puis suppression.</p>
+              </div>
+            </div>
+            <div style="border:1px solid var(--border-default);border-radius:12px;background:var(--surface-raised);padding:24px;display:flex;flex-direction:column;gap:14px">
+              <span style="display:flex;align-items:center;gap:12px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="file-text" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+                <h3 class="kp-h3">Devis issu du configurateur</h3>
+              </span>
+              <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border-default);padding-top:14px">
+                <p class="kp-label">Données</p>
+                <p class="kp-small">Email, nom du réseau, configuration tarifaire retenue.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Finalité</p>
+                <p class="kp-small">Vous transmettre le devis que vous avez demandé et en garder trace.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Base légale</p>
+                <p class="kp-small">Votre demande explicite.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Conservation</p>
+                <p class="kp-small">Trois ans à compter du dernier échange, puis suppression.</p>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <h3 class="kp-h3">Destinataires</h3>
+            <p class="kp-body">Vos données sont traitées par l’équipe Kopilot et par les prestataires techniques nécessaires au fonctionnement du site et à l’organisation des rendez-vous. Elles ne sont ni vendues, ni cédées, ni utilisées à des fins publicitaires.</p>
+            <div style="border:1px dashed var(--border-strong);border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:8px">
+              <p class="kp-label" style="color:var(--text-muted)">Liste des sous-traitants à compléter</p>
+              <p class="kp-small" style="color:var(--text-muted)">Chaque outil qui touche à vos données doit être nommé ici — outil de prise de rendez-vous, envoi d’emails, hébergement — avec l’indication d’un éventuel hébergement hors Union européenne.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="droits" style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 32px/1 var(--font-sans);letter-spacing:-.02em;color:var(--border-strong);font-variant-numeric:tabular-nums">05</span>
+            <h2 class="kp-h1">Vos droits</h2>
+          </div>
+          <p class="kp-body">Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité sur vos données. Une demande adressée à Kopilot reçoit une réponse dans un délai maximal d’un mois.</p>
+          <div style="display:flex;flex-direction:column;border-top:1px solid var(--border-default)">
+            <div style="display:flex;gap:24px;padding:16px 0;border-bottom:1px solid var(--border-default);align-items:baseline">
+              <span class="kp-label" style="width:140px;flex:none;color:var(--text-strong)">Accès</span>
+              <span class="kp-small">Obtenir la copie des données que nous détenons sur vous.</span>
+            </div>
+            <div style="display:flex;gap:24px;padding:16px 0;border-bottom:1px solid var(--border-default);align-items:baseline">
+              <span class="kp-label" style="width:140px;flex:none;color:var(--text-strong)">Rectification</span>
+              <span class="kp-small">Corriger une information inexacte ou incomplète.</span>
+            </div>
+            <div style="display:flex;gap:24px;padding:16px 0;border-bottom:1px solid var(--border-default);align-items:baseline">
+              <span class="kp-label" style="width:140px;flex:none;color:var(--text-strong)">Effacement</span>
+              <span class="kp-small">Demander la suppression de vos données.</span>
+            </div>
+            <div style="display:flex;gap:24px;padding:16px 0;border-bottom:1px solid var(--border-default);align-items:baseline">
+              <span class="kp-label" style="width:140px;flex:none;color:var(--text-strong)">Opposition</span>
+              <span class="kp-small">Refuser un traitement, notamment toute prospection.</span>
+            </div>
+            <div style="display:flex;gap:24px;padding:16px 0;border-bottom:1px solid var(--border-default);align-items:baseline">
+              <span class="kp-label" style="width:140px;flex:none;color:var(--text-strong)">Portabilité</span>
+              <span class="kp-small">Récupérer vos données dans un format lisible et réutilisable.</span>
+            </div>
+          </div>
+          <p class="kp-small">Si notre réponse ne vous satisfait pas, vous pouvez saisir la Commission nationale de l’informatique et des libertés, 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.</p>
+        </div>
+
+        <div id="cookies" style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 32px/1 var(--font-sans);letter-spacing:-.02em;color:var(--border-strong);font-variant-numeric:tabular-nums">06</span>
+            <h2 class="kp-h1">Cookies</h2>
+          </div>
+          <p class="kp-body">Ce site n’utilise aucun cookie publicitaire et ne pratique aucun suivi comportemental. Seuls des cookies strictement nécessaires à son affichage sont utilisés — ils ne requièrent pas votre consentement.</p>
+          <p class="kp-body">Le jour où un outil de mesure d’audience sera mis en place, un bandeau de consentement apparaîtra à votre première visite, avec un refus au même niveau que l’acceptation, et aucun dépôt avant votre choix.</p>
+        </div>
+
+        <div style="border-top:1px solid var(--border-default);padding-top:24px;display:flex;justify-content:space-between;align-items:baseline;gap:32px">
+          <p class="kp-small" style="color:var(--text-muted)">Dernière mise à jour : février 2026.</p>
+          <a href="Accueil.dc.html" style="display:flex;align-items:center;gap:8px;font:500 15px/1 var(--font-sans);color:var(--accent-signal)" style-hover="gap:14px">
+            <span>Retour à l’accueil</span>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border-default);background:var(--surface-page);margin-top:96px">
+    <div style="max-width:1312px;margin:0 auto;padding:64px;display:flex;justify-content:space-between;align-items:flex-start;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:320px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+        <p class="kp-small">L’écosystème des réseaux d’entreprises : plateforme, accompagnement, réseau.</p>
+        <a href="https://www.linkedin.com/company/kopilot-club" target="_blank" rel="noopener" aria-label="Kopilot sur LinkedIn" style="display:flex;width:fit-content;margin-top:6px;color:var(--text-strong)" style-hover="color:var(--accent-signal)">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+      <div style="display:flex;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Produit</p>
+          <a href="Fonctionnalites.dc.html" class="kp-small">Fonctionnalités</a>
+          <a href="Tarifs.dc.html" class="kp-small">Tarifs</a>
+          <a href="Clients.dc.html" class="kp-small">Ils utilisent Kopilot</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Kopilot</p>
+          <a href="Equipe.dc.html" class="kp-small">Équipe</a>
+          <a href="LaFabrik.dc.html" class="kp-small">La Fabrik</a>
+          <a href="FabrikArticles.dc.html" class="kp-small">Articles</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;text-align:right">
+        <p class="kp-small" style="color:var(--text-muted)">© 2026 Kopilot</p>
+        <a href="MentionsLegales.dc.html" class="kp-small" style="color:var(--text-muted)">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.KopilotI18n) window.KopilotI18n.mount();
+    const ids = ['editeur', 'hebergeur', 'propriete', 'donnees', 'droits', 'cookies'];
+    this.onScroll = () => {
+      const d = document.documentElement;
+      const max = Math.max(1, d.scrollHeight - d.clientHeight);
+      if (this.bar) this.bar.style.width = ((d.scrollTop / max) * 100).toFixed(2) + '%';
+      if (this.head) this.head.style.height = d.scrollTop > 8 ? '64px' : '80px';
+      let active = ids[0];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.35) active = id;
+      });
+      document.querySelectorAll('[data-rail]').forEach(a => {
+        const on = a.getAttribute('data-rail') === active;
+        a.style.background = on ? 'var(--surface-raised)' : 'transparent';
+        a.style.color = on ? 'var(--accent-signal)' : 'var(--text-body)';
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+
+  renderVals() {
+    return {
+      logoHeight: 26,
+      i18: 18,
+      barRef: el => { this.bar = el; },
+      headRef: el => { this.head = el; }
+    };
+  }
+}
+</script>
+</body>
+</html>
