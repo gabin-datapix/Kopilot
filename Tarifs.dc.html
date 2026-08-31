@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/colors.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/typography.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/shape.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/motion.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/styles.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/_ds_bundle.js"></script>
+<script src="i18n.js"></script>
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-link-hover)}
+  input[type=range]{accent-color:var(--accent-signal)}
+</style>
+</helmet>
+
+<div style="background:var(--surface-page);min-width:1280px">
+
+  <header style="position:sticky;top:0;z-index:30;background:rgba(247,245,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-default)">
+    <div ref="{{ headRef }}" style="max-width:1312px;margin:0 auto;padding:0 64px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:height 160ms cubic-bezier(.2,.6,.2,1)">
+      <a href="Accueil.dc.html" style="display:flex;align-items:center">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+      </a>
+      <nav style="display:flex;gap:40px;align-items:center">
+        <a href="Fonctionnalites.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Fonctionnalités</a>
+        <a href="Tarifs.dc.html" style="font:500 15px/1 var(--font-sans);color:var(--text-strong);padding:8px 0;border-bottom:1px solid var(--accent-signal)">Tarifs</a>
+        <a href="Clients.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Ils utilisent Kopilot</a>
+        <a href="Equipe.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Équipe</a>
+        <a href="LaFabrik.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">La Fabrik</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:24px">
+        <div onClick="{{ toggleLang }}" data-i18n-skip="1" title="Switch language" style="display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--border-default);border-radius:6px;cursor:pointer;background:transparent" style-hover="border-color:var(--text-strong)">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="languages" size="{{ iLang }}" color="var(--text-strong)" hint-size="16px,16px"></x-import>
+          <span data-lang-label="1" style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;color:var(--text-strong)">EN</span>
+        </div>
+        <a href="#" style="font:500 15px/1 var(--font-sans);color:var(--text-strong)" style-hover="color:var(--accent-signal)">Se connecter</a>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" size="sm" variant="primary" onClick="{{ openDemo }}" hint-size="180px,40px">Réserver une démo</x-import>
+      </div>
+    </div>
+    <div ref="{{ barRef }}" style="height:2px;background:var(--accent-signal);width:0;margin-top:-1px"></div>
+  </header>
+
+  <section id="tarifs" style="max-width:1312px;margin:0 auto;padding:96px 64px 64px">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="120px,16px">Tarifs</x-import>
+        <h1 class="kp-display-l">Nos tarifs, <span class="kp-accent">selon votre nombre de membres.</span></h1>
+      </div>
+      <p class="kp-body-lg" style="max-width:420px">Le socle couvre ce dont un bureau a besoin toute l’année. Les modules et l’accompagnement s’ajoutent seulement s’ils vous servent. Composez votre configuration ci-dessous.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1312px;margin:0 auto;padding:0 64px 128px">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:start">
+
+      <div style="display:flex;flex-direction:column;gap:64px">
+
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal)">Étape 1</span>
+            <h2 class="kp-h2">Votre socle Kopilot</h2>
+          </div>
+          <p class="kp-body" style="max-width:600px">Le socle est calculé par tranches de 25 membres, sur le nombre de membres payant une adhésion au moment de la souscription. La tranche n’évolue qu’au renouvellement annuel.</p>
+
+          <div style="background:var(--surface-raised);border:1px solid var(--border-default);border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Membres actifs</p>
+                <p class="kp-h1" style="font-variant-numeric:tabular-nums">{{ membersLabel }}</p>
+              </div>
+              <div style="text-align:right;display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">{{ trancheLabel }}</p>
+                <p class="kp-h2" style="font-variant-numeric:tabular-nums;color:var(--accent-signal)">{{ socleLabel }}</p>
+              </div>
+            </div>
+            <input type="range" min="10" max="420" step="{{ step }}" value="{{ members }}" onChange="{{ onMembers }}" style="width:100%;height:4px;cursor:pointer">
+            <div style="display:flex;justify-content:space-between">
+              <span class="kp-small" style="color:var(--text-muted)">10</span>
+              <span class="kp-small" style="color:var(--text-muted)">200</span>
+              <span class="kp-small" style="color:var(--text-muted)">400 et plus</span>
+            </div>
+            <sc-if value="{{ devis }}" hint-placeholder-val="{{ false }}">
+              <div style="border-top:1px solid var(--border-default);padding-top:24px;display:flex;gap:16px;align-items:flex-start">
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:9px;flex:none"></span>
+                <p class="kp-body">Au-delà de 400 membres, le socle est établi sur devis. Fédérations et réseaux multi-antennes compris.</p>
+              </div>
+            </sc-if>
+          </div>
+
+          <p class="kp-small" style="color:var(--text-muted)">Le socle fonctionne pleinement sans aucun module avancé.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal)">Étape 2</span>
+            <h2 class="kp-h2">Vos modules avancés</h2>
+          </div>
+          <p class="kp-body" style="max-width:600px">Optionnels, activables à tout moment, facturés au prorata de la période en cours.</p>
+
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div onClick="{{ toggleStripe }}" style="position:relative;background:var(--surface-raised);border:1px solid var(--border-default);border-radius:12px;padding:24px 32px;display:flex;align-items:center;gap:24px;cursor:pointer" style-hover="border-color:var(--text-strong)">
+              <sc-if value="{{ stripeOn }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;inset:-1px;border:2px solid var(--accent-signal);border-radius:12px;pointer-events:none"></span>
+              </sc-if>
+              <span style="width:20px;height:20px;border:1px solid var(--border-strong);border-radius:4px;flex:none;display:flex;align-items:center;justify-content:center">
+                <sc-if value="{{ stripeOn }}" hint-placeholder-val="{{ false }}">
+                  <span style="width:10px;height:10px;background:var(--accent-signal);border-radius:2px"></span>
+                </sc-if>
+              </span>
+              <span style="flex:none;display:flex;align-items:center">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="credit-card" size="{{ iconSize }}" hint-size="24px,24px"></x-import>
+              </span>
+              <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+                <span class="kp-h3">Paiements en ligne</span>
+                <span class="kp-small">Encaissement des adhésions et des événements, par Stripe Connect.</span>
+              </span>
+              <span class="kp-h3" style="font-variant-numeric:tabular-nums;flex:none">+ 100 € HT / an</span>
+            </div>
+
+            <div onClick="{{ toggleBridge }}" style="position:relative;background:var(--surface-raised);border:1px solid var(--border-default);border-radius:12px;padding:24px 32px;display:flex;align-items:center;gap:24px;cursor:pointer" style-hover="border-color:var(--text-strong)">
+              <sc-if value="{{ bridgeOn }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;inset:-1px;border:2px solid var(--accent-signal);border-radius:12px;pointer-events:none"></span>
+              </sc-if>
+              <span style="width:20px;height:20px;border:1px solid var(--border-strong);border-radius:4px;flex:none;display:flex;align-items:center;justify-content:center">
+                <sc-if value="{{ bridgeOn }}" hint-placeholder-val="{{ false }}">
+                  <span style="width:10px;height:10px;background:var(--accent-signal);border-radius:2px"></span>
+                </sc-if>
+              </span>
+              <span style="flex:none;display:flex;align-items:center">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="building-2" size="{{ iconSize }}" hint-size="24px,24px"></x-import>
+              </span>
+              <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+                <span class="kp-h3">Banque connectée</span>
+                <span class="kp-small">Vos comptes bancaires rapprochés dans Kopilot, par Bridge.</span>
+              </span>
+              <span class="kp-h3" style="font-variant-numeric:tabular-nums;flex:none">+ 100 € HT / an</span>
+            </div>
+
+            <div onClick="{{ toggleSite }}" style="position:relative;background:var(--surface-raised);border:1px solid var(--border-default);border-radius:12px;padding:24px 32px;display:flex;align-items:center;gap:24px;cursor:pointer" style-hover="border-color:var(--text-strong)">
+              <sc-if value="{{ siteOn }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;inset:-1px;border:2px solid var(--accent-signal);border-radius:12px;pointer-events:none"></span>
+              </sc-if>
+              <span style="width:20px;height:20px;border:1px solid var(--border-strong);border-radius:4px;flex:none;display:flex;align-items:center;justify-content:center">
+                <sc-if value="{{ siteOn }}" hint-placeholder-val="{{ false }}">
+                  <span style="width:10px;height:10px;background:var(--accent-signal);border-radius:2px"></span>
+                </sc-if>
+              </span>
+              <span style="flex:none;display:flex;align-items:center">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="link" size="{{ iconSize }}" hint-size="24px,24px"></x-import>
+              </span>
+              <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+                <span class="kp-h3">Site internet public</span>
+                <span class="kp-small">Le site du réseau, toujours synchronisé avec vos membres et vos événements.</span>
+              </span>
+              <span class="kp-h3" style="font-variant-numeric:tabular-nums;flex:none">+ 150 € HT / an</span>
+            </div>
+          </div>
+
+          <sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
+            <div style="border:1px dashed var(--border-strong);border-radius:12px;padding:24px 32px;display:flex;align-items:center;gap:32px">
+              <p class="kp-label" style="flex:none">Bientôt disponibles</p>
+              <div style="display:flex;gap:32px;flex:1">
+                <span class="kp-body" style="color:var(--text-muted)">E-Facturation</span>
+                <span class="kp-body" style="color:var(--text-muted)">Kopilot Développement</span>
+                <span class="kp-body" style="color:var(--text-muted)">Kopilot Studio</span>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border-default);padding-bottom:16px">
+            <span style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal)">Étape 3</span>
+            <h2 class="kp-h2">Votre mise en route</h2>
+          </div>
+          <p class="kp-body" style="max-width:600px">Des packs ponctuels, hors abonnement, pour la phase de lancement. L’effort est concentré sur la première année.</p>
+
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+            <div onClick="{{ pickStart }}" style="position:relative;background:var(--surface-raised);border:1px solid var(--border-default);border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:24px;cursor:pointer" style-hover="border-color:var(--text-strong)">
+              <sc-if value="{{ startOn }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;inset:-1px;border:2px solid var(--accent-signal);border-radius:12px;pointer-events:none"></span>
+              </sc-if>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Pack services</p>
+                <p class="kp-h3">Start</p>
+                <p class="kp-h2" style="font-variant-numeric:tabular-nums">490 € HT</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border-default);padding-top:24px">
+                <span class="kp-small">Paramétrages initiaux</span>
+                <span class="kp-small">Intégration de vos données</span>
+                <span class="kp-small">Formation back-office, 2 × 1 h</span>
+                <span class="kp-small">Référent dédié</span>
+              </div>
+            </div>
+
+            <div onClick="{{ pickLaunch }}" style="position:relative;background:var(--surface-raised);border:1px solid var(--border-default);border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:24px;cursor:pointer" style-hover="border-color:var(--text-strong)">
+              <sc-if value="{{ launchOn }}" hint-placeholder-val="{{ true }}">
+                <span style="position:absolute;inset:-1px;border:2px solid var(--accent-signal);border-radius:12px;pointer-events:none"></span>
+              </sc-if>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <p class="kp-label">Pack services</p>
+                  <sc-if value="{{ launchRecommended }}" hint-placeholder-val="{{ true }}">
+                    <span style="font:500 11px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal);border:1px solid var(--accent-signal);border-radius:4px;padding:4px 8px">Le plus choisi</span>
+                  </sc-if>
+                </div>
+                <p class="kp-h3">Launch</p>
+                <p class="kp-h2" style="font-variant-numeric:tabular-nums">1 200 € HT</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border-default);padding-top:24px">
+                <span class="kp-small">Tout le pack Start</span>
+                <span class="kp-small">Coordination du lancement</span>
+                <span class="kp-small">Soirée de lancement membres</span>
+              </div>
+            </div>
+
+            <div onClick="{{ pickSignature }}" style="position:relative;background:var(--surface-raised);border:1px solid var(--border-default);border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:24px;cursor:pointer" style-hover="border-color:var(--text-strong)">
+              <sc-if value="{{ signatureOn }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;inset:-1px;border:2px solid var(--accent-signal);border-radius:12px;pointer-events:none"></span>
+              </sc-if>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p class="kp-label">Pack services</p>
+                <p class="kp-h3">Signature</p>
+                <p class="kp-h2" style="font-variant-numeric:tabular-nums">1 850 € HT</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border-default);padding-top:24px">
+                <span class="kp-small">Tout le pack Launch</span>
+                <span class="kp-small">Réunion conseil par trimestre</span>
+                <span class="kp-small">Assistance à la conception du site</span>
+              </div>
+            </div>
+          </div>
+
+          <div onClick="{{ pickNone }}" style="position:relative;display:flex;align-items:center;gap:16px;padding:20px 32px;border:1px solid var(--border-default);border-radius:12px;cursor:pointer" style-hover="border-color:var(--text-strong)">
+            <sc-if value="{{ noneOn }}" hint-placeholder-val="{{ true }}">
+              <span style="position:absolute;inset:-1px;border:2px solid var(--accent-signal);border-radius:12px;pointer-events:none"></span>
+            </sc-if>
+            <span class="kp-body" style="color:var(--text-strong)">Nous démarrons seuls, sans pack de services.</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:sticky;top:112px;display:flex;flex-direction:column;gap:24px">
+        <div class="kp-dark" style="background:var(--navy-900);border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:32px">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <p class="kp-label" style="color:rgba(255,255,255,.55)">Votre configuration</p>
+            <p class="kp-h3" style="color:#fff">{{ profileLabel }}</p>
+          </div>
+
+          <sc-if value="{{ notDevis }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:32px">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;justify-content:space-between;gap:16px">
+                  <span class="kp-small" style="color:rgba(255,255,255,.78)">Socle Kopilot</span>
+                  <span class="kp-small" style="color:#fff;font-variant-numeric:tabular-nums">{{ socleLabel }}</span>
+                </div>
+                <sc-if value="{{ stripeOn }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;justify-content:space-between;gap:16px">
+                    <span class="kp-small" style="color:rgba(255,255,255,.78)">Paiements en ligne</span>
+                    <span class="kp-small" style="color:#fff;font-variant-numeric:tabular-nums">100 € HT / an</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ bridgeOn }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;justify-content:space-between;gap:16px">
+                    <span class="kp-small" style="color:rgba(255,255,255,.78)">Banque connectée</span>
+                    <span class="kp-small" style="color:#fff;font-variant-numeric:tabular-nums">100 € HT / an</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ siteOn }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;justify-content:space-between;gap:16px">
+                    <span class="kp-small" style="color:rgba(255,255,255,.78)">Site internet public</span>
+                    <span class="kp-small" style="color:#fff;font-variant-numeric:tabular-nums">150 € HT / an</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ hasPack }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--white-a12);padding-top:12px">
+                    <span class="kp-small" style="color:rgba(255,255,255,.78)">{{ packLabel }}</span>
+                    <span class="kp-small" style="color:#fff;font-variant-numeric:tabular-nums">{{ packPriceLabel }}</span>
+                  </div>
+                </sc-if>
+              </div>
+
+              <sc-if value="{{ showPerMember }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--white-a12);padding-top:32px">
+                <p class="kp-label" style="color:rgba(255,255,255,.55)">Coût mensuel par membre</p>
+                <p style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--accent-signal);font-variant-numeric:tabular-nums;margin:0">{{ perMemberLabel }}</p>
+                <p class="kp-small" style="color:rgba(255,255,255,.55)">Abonnement et modules, hors services ponctuels.</p>
+              </div>
+              </sc-if>
+
+              <div style="display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--white-a12);padding-top:32px">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+                  <span class="kp-body" style="color:#fff">Année 1</span>
+                  <span class="kp-h2" style="color:#fff;font-variant-numeric:tabular-nums">{{ year1Label }}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+                  <span class="kp-body" style="color:rgba(255,255,255,.78)">Années suivantes</span>
+                  <span class="kp-h3" style="color:rgba(255,255,255,.78);font-variant-numeric:tabular-nums">{{ yearNLabel }}</span>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ devis }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--white-a12);padding-top:32px">
+              <p class="kp-h2" style="color:#fff">Sur devis</p>
+              <p class="kp-body" style="color:rgba(255,255,255,.78)">Au-delà de 400 membres, nous construisons le budget avec vous : périmètre, antennes, volume d’événements, accompagnement.</p>
+            </div>
+          </sc-if>
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" onClick="{{ openDemo }}" hint-size="100%,48px">{{ ctaLabel }}</x-import>
+            <sc-if value="{{ notDevis }}" hint-placeholder-val="{{ true }}">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="inverse" onClick="{{ openPdf }}" hint-size="100%,48px">Télécharger le devis</x-import>
+            </sc-if>
+          </div>
+        </div>
+        <p class="kp-small" style="color:var(--text-muted)">Tarifs hors taxes. Facturation annuelle. La tranche est révisée au renouvellement, avec tolérance en cours d’année.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:0 64px 128px">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="120px,16px">Questions de budget</x-import>
+        <h2 class="kp-h1">Ce que le bureau demande avant de voter.</h2>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div onClick="{{ toggleFaq0 }}" style="border-top:1px solid var(--border-default);padding:32px 0;display:flex;flex-direction:column;gap:16px;cursor:pointer">
+          <div style="display:flex;align-items:baseline;gap:24px">
+            <span style="font:600 12px/1.4 var(--font-sans);color:var(--text-muted);font-variant-numeric:tabular-nums">01</span>
+            <h3 class="kp-h3" style="flex:1">Que se passe-t-il si nous dépassons notre tranche en cours d’année ?</h3>
+            <span class="kp-label" style="color:var(--accent-signal);flex:none">{{ faq0Sign }}</span>
+          </div>
+          <sc-if value="{{ faq0 }}" hint-placeholder-val="{{ true }}">
+            <p class="kp-body" style="padding-left:48px;max-width:640px">Rien. Une tolérance est admise pendant l’année en cours ; la tranche est ajustée au renouvellement annuel.</p>
+          </sc-if>
+        </div>
+        <div onClick="{{ toggleFaq1 }}" style="border-top:1px solid var(--border-default);padding:32px 0;display:flex;flex-direction:column;gap:16px;cursor:pointer">
+          <div style="display:flex;align-items:baseline;gap:24px">
+            <span style="font:600 12px/1.4 var(--font-sans);color:var(--text-muted);font-variant-numeric:tabular-nums">02</span>
+            <h3 class="kp-h3" style="flex:1">Qui encaisse les adhésions ?</h3>
+            <span class="kp-label" style="color:var(--accent-signal);flex:none">{{ faq1Sign }}</span>
+          </div>
+          <sc-if value="{{ faq1 }}" hint-placeholder-val="{{ false }}">
+            <p class="kp-body" style="padding-left:48px;max-width:640px">Votre réseau. Avec le module Paiements en ligne, les règlements arrivent sur votre compte via Stripe Connect ; Kopilot ne détient jamais vos fonds.</p>
+          </sc-if>
+        </div>
+        <div onClick="{{ toggleFaq2 }}" style="border-top:1px solid var(--border-default);padding:32px 0;display:flex;flex-direction:column;gap:16px;cursor:pointer">
+          <div style="display:flex;align-items:baseline;gap:24px">
+            <span style="font:600 12px/1.4 var(--font-sans);color:var(--text-muted);font-variant-numeric:tabular-nums">03</span>
+            <h3 class="kp-h3" style="flex:1">Peut-on activer un module en cours d’année ?</h3>
+            <span class="kp-label" style="color:var(--accent-signal);flex:none">{{ faq2Sign }}</span>
+          </div>
+          <sc-if value="{{ faq2 }}" hint-placeholder-val="{{ false }}">
+            <p class="kp-body" style="padding-left:48px;max-width:640px">Oui, à tout moment. La facturation est annuelle, avec prorata temporis pour la période restante.</p>
+          </sc-if>
+        </div>
+        <div onClick="{{ toggleFaq3 }}" style="border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default);padding:32px 0;display:flex;flex-direction:column;gap:16px;cursor:pointer">
+          <div style="display:flex;align-items:baseline;gap:24px">
+            <span style="font:600 12px/1.4 var(--font-sans);color:var(--text-muted);font-variant-numeric:tabular-nums">04</span>
+            <h3 class="kp-h3" style="flex:1">Un pack de services est-il obligatoire ?</h3>
+            <span class="kp-label" style="color:var(--accent-signal);flex:none">{{ faq3Sign }}</span>
+          </div>
+          <sc-if value="{{ faq3 }}" hint-placeholder-val="{{ false }}">
+            <p class="kp-body" style="padding-left:48px;max-width:640px">Non. Les packs sont indépendants de l’abonnement. Ils répondent aux réseaux qui veulent un cadre renforcé au lancement ou en montée en puissance.</p>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kp-dark" style="background:var(--navy-900)">
+    <div style="max-width:1312px;margin:0 auto;padding:96px 64px;display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2 class="kp-h1" style="color:#fff">Une démonstration sur le fonctionnement réel de votre réseau.</h2>
+        <p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Trente minutes, votre configuration sous les yeux.</p>
+      </div>
+      <div style="display:flex;justify-content:flex-end">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" size="lg" onClick="{{ openDemo }}" hint-size="220px,56px">Réserver une démo</x-import>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border-default);background:var(--surface-page)">
+    <div style="max-width:1312px;margin:0 auto;padding:64px;display:flex;justify-content:space-between;align-items:flex-start;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:320px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+        <p class="kp-small">L’écosystème des réseaux d’entreprises : plateforme, accompagnement, réseau.</p>
+        <a href="https://www.linkedin.com/company/kopilot-club" target="_blank" rel="noopener" aria-label="Kopilot sur LinkedIn" style="display:flex;width:fit-content;margin-top:6px;color:var(--text-strong)" style-hover="color:var(--accent-signal)">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+      <div style="display:flex;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Produit</p>
+          <a href="Fonctionnalites.dc.html" class="kp-small">Fonctionnalités</a>
+          <a href="Tarifs.dc.html" class="kp-small">Tarifs</a>
+          <a href="Clients.dc.html" class="kp-small">Ils utilisent Kopilot</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Kopilot</p>
+          <a href="Equipe.dc.html" class="kp-small">Équipe</a>
+          <a href="LaFabrik.dc.html" class="kp-small">La Fabrik</a>
+          <a href="FabrikArticles.dc.html" class="kp-small">Articles</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;text-align:right">
+        <p class="kp-small" style="color:var(--text-muted)">© 2026 Kopilot</p>
+        <a href="MentionsLegales.dc.html" class="kp-small" style="color:var(--text-muted)">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(15,36,56,.6);z-index:50;display:flex;align-items:center;justify-content:center;padding:64px">
+      <div onClick="{{ stop }}" style="background:var(--surface-raised);border-radius:12px;padding:48px;width:560px;display:flex;flex-direction:column;gap:32px;box-shadow:0 16px 40px rgba(15,36,56,.1)">
+        <sc-if value="{{ formStage }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <p class="kp-label">{{ modalLabel }}</p>
+              <h3 class="kp-h2">{{ modalTitle }}</h3>
+              <p class="kp-body">{{ modalIntro }}</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Prénom et nom" placeholder="Camille Rousset" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Email" placeholder="camille@club.fr" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Nom du réseau" placeholder="Réseau des entrepreneurs" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Téléphone" placeholder="06 12 34 56 78" hint-size="100%,64px"></x-import>
+            </div>
+            <div style="border-top:1px solid var(--border-default);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:24px">
+              <p class="kp-small" style="color:var(--text-muted)">{{ modalRecap }}</p>
+              <div style="flex:none">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" onClick="{{ submitForm }}" hint-size="160px,40px">{{ submitLabel }}</x-import>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sentStage }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <p class="kp-label">Demande enregistrée</p>
+            <h3 class="kp-h2">Votre demande est bien enregistrée.</h3>
+            <p class="kp-body">Votre configuration est jointe à la demande. Vous recevez le récapitulatif par email dans quelques minutes.</p>
+            <div style="display:flex">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" onClick="{{ closeModal }}" hint-size="120px,40px">Fermer</x-import>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultMembers&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:170,&quot;min&quot;:10,&quot;max&quot;:420,&quot;step&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Configurateur&quot;},&quot;sliderStep&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;fin&quot;,&quot;par tranche de 25&quot;],&quot;default&quot;:&quot;fin&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Configurateur&quot;},&quot;showPerMember&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Configurateur&quot;},&quot;showRoadmap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;recommendedPack&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;aucun&quot;,&quot;start&quot;,&quot;launch&quot;,&quot;signature&quot;],&quot;default&quot;:&quot;launch&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+const TRANCHES = [
+  { max: 24, price: 680, label: 'Moins de 25 membres' },
+  { max: 49, price: 880, label: 'Tranche 25 – 49' },
+  { max: 74, price: 990, label: 'Tranche 50 – 74' },
+  { max: 99, price: 1090, label: 'Tranche 75 – 99' },
+  { max: 124, price: 1210, label: 'Tranche 100 – 124' },
+  { max: 149, price: 1430, label: 'Tranche 125 – 149' },
+  { max: 174, price: 1650, label: 'Tranche 150 – 174' },
+  { max: 199, price: 1870, label: 'Tranche 175 – 199' },
+  { max: 224, price: 2090, label: 'Tranche 200 – 224' },
+  { max: 249, price: 2310, label: 'Tranche 225 – 249' },
+  { max: 274, price: 2490, label: 'Tranche 250 – 274' },
+  { max: 299, price: 2590, label: 'Tranche 275 – 299' },
+  { max: 324, price: 2720, label: 'Tranche 300 – 324' },
+  { max: 349, price: 2830, label: 'Tranche 325 – 349' },
+  { max: 374, price: 2920, label: 'Tranche 350 – 374' },
+  { max: 399, price: 2980, label: 'Tranche 375 – 399' }
+];
+const PACKS = { start: { label: 'Pack Services Start', price: 490 }, launch: { label: 'Pack Services Launch', price: 1200 }, signature: { label: 'Pack Services Signature', price: 1850 } };
+const eur = n => n.toLocaleString('fr-FR') + ' € HT';
+
+class Component extends DCLogic {
+  state = { members: 170, stripe: false, bridge: false, site: false, pack: 'none', modal: null, sent: false, faq: 0 };
+
+  set(patch) { this.setState(patch); }
+
+  toggleFaq(i) { this.setState(s => ({ faq: s.faq === i ? -1 : i })); }
+
+  componentDidMount() {
+    if (this.props.defaultMembers) this.setState({ members: this.props.defaultMembers });
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      const els = Array.from(document.querySelectorAll('[data-reveal]'));
+      els.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px)';
+        el.style.transition = 'opacity 200ms cubic-bezier(.2,.6,.2,1), transform 200ms cubic-bezier(.2,.6,.2,1)';
+      });
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this.io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px' });
+      els.forEach(el => this.io.observe(el));
+    }
+    this.onScroll = () => {
+      const d = document.documentElement;
+      const max = Math.max(1, d.scrollHeight - d.clientHeight);
+      if (this.bar) this.bar.style.width = ((d.scrollTop / max) * 100).toFixed(2) + '%';
+      if (this.head) this.head.style.height = d.scrollTop > 8 ? '64px' : '80px';
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.io) this.io.disconnect();
+  }
+
+  renderVals() {
+    const members = this.state.members ?? 170;
+    const devis = members >= 400;
+    const t = devis ? null : TRANCHES.find(x => members <= x.max);
+    const socle = devis ? 0 : t.price;
+    const mods = (this.state.stripe ? 100 : 0) + (this.state.bridge ? 100 : 0) + (this.state.site ? 150 : 0);
+    const pack = PACKS[this.state.pack];
+    const recurring = socle + mods;
+    const perMember = recurring / 12 / Math.max(members, 1);
+    const recommended = this.props.recommendedPack ?? 'launch';
+    const pdf = this.state.modal === 'pdf';
+    const faq = this.state.faq;
+
+    return {
+      logoHeight: 26,
+      iLang: 16,
+      toggleLang: () => { if (window.KopilotI18n) window.KopilotI18n.toggle(); },
+      iconSize: 24,
+      step: (this.props.sliderStep ?? 'fin') === 'par tranche de 25' ? 25 : 5,
+      showPerMember: this.props.showPerMember ?? true,
+      barRef: el => { this.bar = el; },
+      headRef: el => { this.head = el; },
+      faq0: faq === 0, faq1: faq === 1, faq2: faq === 2, faq3: faq === 3,
+      faq0Sign: faq === 0 ? '−' : '+',
+      faq1Sign: faq === 1 ? '−' : '+',
+      faq2Sign: faq === 2 ? '−' : '+',
+      faq3Sign: faq === 3 ? '−' : '+',
+      toggleFaq0: () => this.toggleFaq(0),
+      toggleFaq1: () => this.toggleFaq(1),
+      toggleFaq2: () => this.toggleFaq(2),
+      toggleFaq3: () => this.toggleFaq(3),
+      members,
+      membersLabel: members >= 420 ? '420 et plus' : String(members),
+      trancheLabel: devis ? 'Au-delà de 400 membres' : t.label,
+      socleLabel: devis ? 'Sur devis' : eur(socle),
+      devis,
+      notDevis: !devis,
+      profileLabel: devis ? 'Grand réseau ou fédération' : members + ' membres actifs',
+      stripeOn: !!this.state.stripe,
+      bridgeOn: !!this.state.bridge,
+      siteOn: !!this.state.site,
+      startOn: this.state.pack === 'start',
+      launchOn: this.state.pack === 'launch',
+      signatureOn: this.state.pack === 'signature',
+      noneOn: this.state.pack === 'none',
+      launchRecommended: recommended === 'launch',
+      hasPack: !!pack,
+      packLabel: pack ? pack.label : '',
+      packPriceLabel: pack ? eur(pack.price) : '',
+      showRoadmap: this.props.showRoadmap ?? true,
+      perMemberLabel: perMember.toFixed(2).replace('.', ',') + ' €',
+      year1Label: eur(recurring + (pack ? pack.price : 0)),
+      yearNLabel: eur(recurring),
+      ctaLabel: devis ? 'Parler à un conseiller' : 'Réserver une démo avec cette configuration',
+      modalOpen: !!this.state.modal,
+      formStage: !!this.state.modal && !this.state.sent,
+      sentStage: !!this.state.modal && !!this.state.sent,
+      modalLabel: pdf ? 'Devis' : 'Démonstration',
+      modalTitle: pdf ? 'Recevez le devis de cette configuration.' : 'Réservez votre démonstration.',
+      modalIntro: pdf
+        ? 'Le devis reprend votre tranche, vos modules et votre pack de services, prêt à présenter à votre bureau.'
+        : 'Votre configuration est transmise avec la demande : nous préparons la démonstration sur cette base.',
+      modalRecap: devis ? 'Configuration : sur devis, ' + members + ' membres.' : 'Année 1 : ' + eur(recurring + (pack ? pack.price : 0)),
+      submitLabel: pdf ? 'Recevoir le devis' : 'Envoyer la demande',
+      onMembers: e => this.set({ members: Number(e.target.value) }),
+      toggleStripe: () => this.set({ stripe: !this.state.stripe }),
+      toggleBridge: () => this.set({ bridge: !this.state.bridge }),
+      toggleSite: () => this.set({ site: !this.state.site }),
+      pickStart: () => this.set({ pack: this.state.pack === 'start' ? 'none' : 'start' }),
+      pickLaunch: () => this.set({ pack: this.state.pack === 'launch' ? 'none' : 'launch' }),
+      pickSignature: () => this.set({ pack: this.state.pack === 'signature' ? 'none' : 'signature' }),
+      pickNone: () => this.set({ pack: 'none' }),
+      openDemo: () => this.set({ modal: 'demo', sent: false }),
+      openPdf: () => this.set({ modal: 'pdf', sent: false }),
+      submitForm: () => this.set({ sent: true }),
+      closeModal: () => this.set({ modal: null, sent: false }),
+      stop: e => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>

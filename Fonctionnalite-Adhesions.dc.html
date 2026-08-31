@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/colors.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/typography.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/shape.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/motion.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/styles.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/_ds_bundle.js"></script>
+<script src="i18n.js"></script>
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-link-hover)}
+</style>
+</helmet>
+
+<div style="background:var(--surface-page);min-width:1280px">
+
+  <header style="position:sticky;top:0;z-index:30;background:rgba(247,245,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-default)">
+    <div ref="{{ headRef }}" style="max-width:1312px;margin:0 auto;padding:0 64px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:height 160ms cubic-bezier(.2,.6,.2,1)">
+      <a href="Accueil.dc.html" style="display:flex;align-items:center">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+      </a>
+      <nav style="display:flex;gap:40px;align-items:center">
+        <a href="Fonctionnalites.dc.html" style="font:500 15px/1 var(--font-sans);color:var(--text-strong);padding:8px 0;border-bottom:1px solid var(--accent-signal)">Fonctionnalités</a>
+        <a href="Tarifs.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Tarifs</a>
+        <a href="Clients.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Ils utilisent Kopilot</a>
+        <a href="Equipe.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Équipe</a>
+        <a href="LaFabrik.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">La Fabrik</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:24px">
+        <div onClick="{{ toggleLang }}" data-i18n-skip="1" title="Switch language" style="display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--border-default);border-radius:6px;cursor:pointer;background:transparent" style-hover="border-color:var(--text-strong)">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="languages" size="{{ iLang }}" color="var(--text-strong)" hint-size="16px,16px"></x-import>
+          <span data-lang-label="1" style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;color:var(--text-strong)">EN</span>
+        </div>
+        <a href="#" style="font:500 15px/1 var(--font-sans);color:var(--text-strong)" style-hover="color:var(--accent-signal)">Se connecter</a>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" size="sm" variant="primary" onClick="{{ openDemo }}" hint-size="180px,40px">Réserver une démo</x-import>
+      </div>
+    </div>
+    <div ref="{{ barRef }}" style="height:2px;background:var(--accent-signal);width:0;margin-top:-1px"></div>
+  </header>
+
+  <section style="max-width:1312px;margin:0 auto;padding:64px 64px 0">
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="Fonctionnalites.dc.html" class="kp-label" style="color:var(--text-muted)" style-hover="color:var(--accent-signal)">Fonctionnalités</a>
+      <span class="kp-label" style="color:var(--border-strong)">/</span>
+      <span class="kp-label" style="color:var(--text-strong)">Gestion des adhésions</span>
+    </div>
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:end;padding-top:40px">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="220px,16px">Module Gestion des adhésions</x-import>
+        <h1 class="kp-display-l">Une campagne d’adhésions <span class="kp-accent">qui se pilote,</span> pas qui se subit.</h1>
+      </div>
+      <p class="kp-body-lg" style="max-width:420px">Toutes les adhésions d’une saison, chacune à une étape connue. Vos formules, vos documents, vos délais de relance : rien n’est imposé, tout se règle une fois puis tourne.</p>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:56px;padding-top:32px;border-top:1px solid var(--border-default);flex-wrap:wrap">
+      <a href="#campagne" data-rail="campagne" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">01 — La campagne</a>
+      <a href="#tarifs" data-rail="tarifs" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">02 — Les tarifs</a>
+      <a href="#diffusion" data-rail="diffusion" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">03 — La diffusion</a>
+      <a href="#suivi" data-rail="suivi" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">04 — Le suivi</a>
+      <a href="#analyse" data-rail="analyse" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">05 — L’analyse</a>
+      <a href="#cloture" data-rail="cloture" style="padding:8px 14px;border:1px solid var(--border-default);border-radius:6px;font:500 13px/1 var(--font-sans);color:var(--text-body)" style-hover="border-color:var(--text-strong);color:var(--text-strong)">06 — La clôture</a>
+    </div>
+  </section>
+
+  <section style="max-width:1312px;margin:0 auto;padding:64px 64px 0">
+    <div style="border:1px solid var(--border-default);border-radius:14px;background:var(--surface-raised);overflow:hidden">
+      <div style="padding:24px 22px;border-bottom:1px solid var(--border-default);display:flex;align-items:baseline;justify-content:space-between;gap:32px">
+        <h2 class="kp-h2">Aucun réseau ne fonctionne comme le voisin. Tout se règle.</h2>
+        <p class="kp-small" style="max-width:420px;text-align:right">Kopilot fournit des valeurs de départ pour ne pas partir d’une page blanche. Chacune se change, et ce que vous changez s’applique à toute la campagne.</p>
+      </div>
+      <div data-compose="1" style="display:grid;grid-template-columns:repeat(3,1fr)">
+      <div style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1px solid var(--border-default)">
+        <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;color:var(--accent-signal);font-variant-numeric:tabular-nums">01</span>
+        <span class="kp-label" style="color:var(--text-strong)">Vos formules de cotisation</span>
+        <span class="kp-small">Autant de tarifs que nécessaire, avec leurs bornes d’effectif et leur échéance.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1px solid var(--border-default)">
+        <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;color:var(--accent-signal);font-variant-numeric:tabular-nums">02</span>
+        <span class="kp-label" style="color:var(--text-strong)">Le rythme des relances</span>
+        <span class="kp-small">Vingt-et-un jours par défaut. Mettez-en dix, ou quarante-cinq.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1px solid var(--border-default)">
+        <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;color:var(--accent-signal);font-variant-numeric:tabular-nums">03</span>
+        <span class="kp-label" style="color:var(--text-strong)">Le canal de chaque étape</span>
+        <span class="kp-small">Email ou SMS, étape par étape. Une relance qui ne vous ressemble pas se désactive.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1px solid var(--border-default)">
+        <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;color:var(--accent-signal);font-variant-numeric:tabular-nums">04</span>
+        <span class="kp-label" style="color:var(--text-strong)">Le texte de chaque message</span>
+        <span class="kp-small">Objet et corps réécrits librement, avec les variables du réseau.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1px solid var(--border-default)">
+        <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;color:var(--accent-signal);font-variant-numeric:tabular-nums">05</span>
+        <span class="kp-label" style="color:var(--text-strong)">Le document envoyé</span>
+        <span class="kp-small">Appel à cotisation ou facture, au choix, adhésion par adhésion.</span>
+      </div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding:20px 22px">
+          <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;color:var(--accent-signal);font-variant-numeric:tabular-nums">06</span>
+          <span class="kp-label" style="color:var(--text-strong)">Le contenu du document</span>
+          <span class="kp-small">Bénéfices, actions du réseau, perspectives : blocs activables et personnalisables.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="campagne" style="max-width:1312px;margin:0 auto;padding:96px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:28px">
+      <div style="display:flex;align-items:baseline;gap:20px">
+        <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">01</span>
+        <h2 class="kp-h1">La campagne</h2>
+      </div>
+      <p class="kp-body-lg">Une saison, une campagne. Kopilot regroupe les adhésions qui attendent une décision de votre part, et les ramène à cinq gestes.</p>
+    </div>
+
+    <div data-compose="1" style="margin-top:40px;background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+      <div style="height:40px;background:#F7F8FA;border-bottom:1px solid #E4E7EC;display:flex;align-items:center;gap:8px;padding:0 16px">
+        <span style="width:9px;height:9px;border-radius:50%;background:#E4E7EC;display:block"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:#E4E7EC;display:block"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:#E4E7EC;display:block"></span>
+        <span style="font:500 11.5px/1 var(--font-sans);color:#98A2B3;margin-left:12px">Cockpit — Gestion des adhésions</span>
+      </div>
+      <div style="padding:22px 24px 24px;display:flex;flex-direction:column;gap:18px">
+        <div style="background:#FDF6EE;border:1px solid #F5E3CE;border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:18px">
+          <span style="font:700 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-signal)">Campagne d’adhésions</span>
+          <span style="width:1px;height:16px;background:#F0D6B4"></span>
+          <span style="font:700 15px/1 var(--font-sans);color:#101828">Saison 2025-2026</span>
+          <span style="display:flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid #F0D6B4;border-radius:20px;background:#fff;font:600 11px/1 var(--font-sans);color:var(--accent-signal)">Campagne en cours</span>
+          <span style="margin-left:auto;display:flex;align-items:center;gap:7px;padding:8px 13px;border:1px solid #F0D6B4;border-radius:8px;background:#fff;font:600 11.5px/1 var(--font-sans);color:var(--accent-signal)">Changer d’exercice</span>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #E4E7EC">
+          <span style="display:flex;gap:22px;align-items:baseline">
+            <span style="padding:0 0 10px;border-bottom:2px solid var(--accent-signal);font:600 12.5px/1 var(--font-sans);color:var(--accent-signal)">Vue d’ensemble</span>
+            <span style="padding:0 0 10px;display:flex;align-items:center;gap:7px"><span style="font:500 12.5px/1 var(--font-sans);color:#667085">En cours</span><span style="padding:2px 7px;border-radius:20px;background:#F1F3F6;font:600 10px/1 var(--font-sans);color:#667085">32</span></span>
+            <span style="padding:0 0 10px;display:flex;align-items:center;gap:7px"><span style="font:500 12.5px/1 var(--font-sans);color:#667085">Payées</span><span style="padding:2px 7px;border-radius:20px;background:#F1F3F6;font:600 10px/1 var(--font-sans);color:#667085">22</span></span>
+            <span style="padding:0 0 10px;font:500 12.5px/1 var(--font-sans);color:#667085">Analyse</span>
+          </span>
+          <span style="display:flex;gap:22px;align-items:baseline">
+            <span style="padding:0 0 10px;display:flex;align-items:center;gap:7px"><span style="font:500 12.5px/1 var(--font-sans);color:#667085">Tarifs</span><span style="padding:2px 7px;border-radius:20px;background:#F1F3F6;font:600 10px/1 var(--font-sans);color:#667085">5</span></span>
+            <span style="padding:0 0 10px;font:500 12.5px/1 var(--font-sans);color:#667085">Documents</span>
+            <span style="padding:0 0 10px;font:500 12.5px/1 var(--font-sans);color:#667085">Diffusion</span>
+          </span>
+        </div>
+
+        <div style="background:#FEFAF4;border:1px solid #F5E3CE;border-radius:10px;padding:18px">
+          <div style="display:flex;align-items:flex-start;gap:14px;padding-bottom:16px">
+            <span style="width:30px;height:30px;border-radius:8px;background:var(--accent-signal);display:flex;align-items:center;justify-content:center;flex:none">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="list-checks" size="{{ i16 }}" color="#ffffff" hint-size="16px,16px"></x-import>
+            </span>
+            <span style="display:flex;flex-direction:column;gap:5px">
+              <span style="font:700 14px/1 var(--font-sans);color:#101828">Actions à mener sur la campagne</span>
+              <span style="font:400 11.5px/1.5 var(--font-sans);color:#667085">Chaque étape ouvre la liste correspondante, déjà filtrée.</span>
+            </span>
+          </div>
+          <div style="background:#fff;border:1px solid #F5E3CE;border-radius:8px;display:grid;grid-template-columns:repeat(5,1fr)">
+            <span style="padding:16px;border-right:1px solid #F4F5F7;display:flex;flex-direction:column;gap:9px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:700 13.5px/1 var(--font-sans);color:#101828">Diffuser</span><span style="padding:2px 8px;border-radius:20px;background:#FDF3E7;font:700 11px/1 var(--font-sans);color:#B54708">5</span></span>
+              <span style="font:400 11px/1.5 var(--font-sans);color:#667085">Adhésions préparées, pas encore envoyées à l’adhérent.</span>
+              <span style="font:600 11px/1 var(--font-sans);color:var(--accent-signal);margin-top:auto">Ouvrir la liste ›</span>
+            </span>
+            <span style="padding:16px;border-right:1px solid #F4F5F7;display:flex;flex-direction:column;gap:9px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:700 13.5px/1 var(--font-sans);color:#101828">Relancer</span><span style="padding:2px 8px;border-radius:20px;background:#FDF3E7;font:700 11px/1 var(--font-sans);color:#B54708">14</span></span>
+              <span style="font:400 11px/1.5 var(--font-sans);color:#667085">Adhésions diffusées dont le règlement n’est pas arrivé.</span>
+              <span style="font:600 11px/1 var(--font-sans);color:var(--accent-signal);margin-top:auto">Ouvrir la liste ›</span>
+            </span>
+            <span style="padding:16px;border-right:1px solid #F4F5F7;background:#FEFAF4;display:flex;flex-direction:column;gap:9px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:700 13.5px/1 var(--font-sans);color:#101828">Arbitrer</span><span style="padding:2px 8px;border-radius:20px;background:#FDF3E7;font:700 11px/1 var(--font-sans);color:#B54708">4</span></span>
+              <span style="font:400 11px/1.5 var(--font-sans);color:#667085">Trois relances sans réponse : à relancer autrement ou à sortir.</span>
+              <span style="font:600 11px/1 var(--font-sans);color:var(--accent-signal);margin-top:auto">Ouvrir la liste ›</span>
+            </span>
+            <span style="padding:16px;border-right:1px solid #F4F5F7;display:flex;flex-direction:column;gap:9px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:700 13.5px/1 var(--font-sans);color:#101828">Facturer</span><span style="padding:2px 8px;border-radius:20px;background:#FDF3E7;font:700 11px/1 var(--font-sans);color:#B54708">14</span></span>
+              <span style="font:400 11px/1.5 var(--font-sans);color:#667085">Adhésions réglées dont la facture n’a pas été diffusée.</span>
+              <span style="font:600 11px/1 var(--font-sans);color:var(--accent-signal);margin-top:auto">Ouvrir la liste ›</span>
+            </span>
+            <span style="padding:16px;display:flex;flex-direction:column;gap:9px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:700 13.5px/1 var(--font-sans);color:#101828">Rapprocher</span><span style="padding:2px 8px;border-radius:20px;background:#FDF3E7;font:700 11px/1 var(--font-sans);color:#B54708">4</span></span>
+              <span style="font:400 11px/1.5 var(--font-sans);color:#667085">Virements du compte au montant d’une adhésion non réglée.</span>
+              <span style="font:600 11px/1 var(--font-sans);color:var(--accent-signal);margin-top:auto">Ouvrir la liste ›</span>
+            </span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #E4E7EC;border-radius:10px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr)">
+            <span style="padding:18px;border-right:1px solid #F4F5F7;display:flex;flex-direction:column;gap:10px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between">
+                <span style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#D92D20;display:block"></span><span style="font:500 12.5px/1 var(--font-sans);color:#344054">Reste à encaisser</span></span>
+                <span style="font:700 11.5px/1 var(--font-sans);color:#D92D20">50 %</span>
+              </span>
+              <span style="font:700 26px/1 var(--font-sans);color:#D92D20;font-variant-numeric:tabular-nums">13 250,00 €</span>
+              <span style="height:5px;border-radius:3px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:5px;width:50%;background:#D92D20"></span></span>
+            </span>
+            <span style="padding:18px;border-right:1px solid #F4F5F7;display:flex;flex-direction:column;gap:10px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between">
+                <span style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#12805C;display:block"></span><span style="font:500 12.5px/1 var(--font-sans);color:#344054">Encaissé</span></span>
+                <span style="font:700 11.5px/1 var(--font-sans);color:#12805C">50 %</span>
+              </span>
+              <span style="font:700 26px/1 var(--font-sans);color:#12805C;font-variant-numeric:tabular-nums">13 500,00 €</span>
+              <span style="height:5px;border-radius:3px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:5px;width:50%;background:#12805C"></span></span>
+            </span>
+            <span style="padding:18px;display:flex;flex-direction:column;gap:10px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between">
+                <span style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent-signal);display:block"></span><span style="font:500 12.5px/1 var(--font-sans);color:#344054">Clôturé sans encaissement</span></span>
+                <span style="font:700 11.5px/1 var(--font-sans);color:var(--accent-signal)">9 adhésions</span>
+              </span>
+              <span style="font:700 26px/1 var(--font-sans);color:var(--accent-signal);font-variant-numeric:tabular-nums">6 150,00 €</span>
+              <span style="height:5px;border-radius:3px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:5px;width:23%;background:var(--accent-signal)"></span></span>
+            </span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #E4E7EC">
+            <span style="padding:18px;border-right:1px solid #F4F5F7;display:flex;flex-direction:column;gap:11px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-signal);display:block"></span><span style="font:700 12.5px/1 var(--font-sans);color:#101828">À encaisser</span></span><span style="font:700 17px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">23</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:82px;padding:4px 9px;border-radius:5px;background:#F1F3F6;font:600 10.5px/1.2 var(--font-sans);color:#475467;flex:none">À diffuser</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:16%;background:#98A2B3"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">5</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">3 150,00 €</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:82px;padding:4px 9px;border-radius:5px;background:#E8F0FE;font:600 10.5px/1.2 var(--font-sans);color:#1D4ED8;flex:none">Diffusé</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:20%;background:#2C6BE0"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">6</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">3 300,00 €</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:82px;padding:4px 9px;border-radius:5px;background:#FDF6DC;font:600 10.5px/1.2 var(--font-sans);color:#A16207;flex:none">Relance 1</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:16%;background:#D08700"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">5</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">2 850,00 €</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:82px;padding:4px 9px;border-radius:5px;background:#FDECE0;font:600 10.5px/1.2 var(--font-sans);color:#C2410C;flex:none">Relance 2</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:10%;background:#EA580C"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">3</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">1 500,00 €</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:82px;padding:4px 9px;border-radius:5px;background:#FDECEC;font:600 10.5px/1.2 var(--font-sans);color:#B42318;flex:none">Dernière relance</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:13%;background:#D92D20"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">4</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">2 450,00 €</span></span>
+            </span>
+            <span style="padding:18px;border-right:1px solid #F4F5F7;display:flex;flex-direction:column;gap:11px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#12805C;display:block"></span><span style="font:700 12.5px/1 var(--font-sans);color:#101828">Adhésions payées</span></span><span style="font:700 17px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">22</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:96px;padding:4px 9px;border-radius:5px;background:#E7F5EF;font:600 10.5px/1.2 var(--font-sans);color:#12805C;flex:none">Facture envoyée</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:36%;background:#12805C"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">8</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">4 500,00 €</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:96px;padding:4px 9px;border-radius:5px;background:#E8F0FE;font:600 10.5px/1.2 var(--font-sans);color:#1D4ED8;flex:none">Facture à envoyer</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:64%;background:#2C6BE0"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">14</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">9 000,00 €</span></span>
+            </span>
+            <span style="padding:18px;display:flex;flex-direction:column;gap:11px">
+              <span style="display:flex;align-items:baseline;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-signal);display:block"></span><span style="font:700 12.5px/1 var(--font-sans);color:#101828">Clôturées</span></span><span style="font:700 17px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">9</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:90px;padding:4px 9px;border-radius:5px;background:#FDF3E7;font:600 10.5px/1.2 var(--font-sans);color:#B54708;flex:none">Non renouvelé</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:55%;background:var(--accent-signal)"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">5</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">3 550,00 €</span></span>
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:90px;padding:4px 9px;border-radius:5px;background:#F1F3F6;font:600 10.5px/1.2 var(--font-sans);color:#475467;flex:none">Sans suite</span><span style="flex:1;height:4px;border-radius:2px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:4px;width:44%;background:#667085"></span></span><span style="font:700 11px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums;width:16px;text-align:right">4</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums;width:62px;text-align:right">2 600,00 €</span></span>
+              <span style="font:400 10.5px/1.5 var(--font-sans);color:#98A2B3">Sorties de la saison, sans encaissement attendu.</span>
+            </span>
+          </div>
+          <div style="background:#FAFBFC;border-top:1px solid #E4E7EC;padding:14px 18px;display:flex;align-items:baseline;justify-content:space-between">
+            <span style="font:500 12.5px/1 var(--font-sans);color:#475467">Total cotisations attendues</span>
+            <span style="display:flex;align-items:baseline;gap:14px"><span style="font:400 11.5px/1 var(--font-sans);color:#98A2B3">45 adhésions actives</span><span style="font:700 18px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">26 750,00 €</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:40px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h3 class="kp-h3">Un exercice à la fois</h3>
+        <p class="kp-small">La campagne en cours est celle qu’on pilote ; les saisons précédentes restent consultables sans se mélanger à elle.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h3 class="kp-h3">Entreprises et membres individuels</h3>
+        <p class="kp-small">Une adhésion porte sur une organisation ou sur une personne, avec le contact qui la suit.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h3 class="kp-h3">Quatre natures d’adhésion</h3>
+        <p class="kp-small">Renouvellement, nouvelle adhésion, réadhésion, sans suite : le bilan de fin de saison en découle directement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tarifs" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">02</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="140px,16px">Les tarifs</x-import>
+        </div>
+        <h2 class="kp-h1">Votre grille, la vôtre, sans modèle imposé.</h2>
+        <p class="kp-body-lg">Un réseau ne facture pas tout le monde au même prix. Vous créez autant de formules que nécessaire, chacune avec ses conditions. Kopilot propose ensuite la bonne selon l’effectif de l’entreprise.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--border-default);padding-top:20px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">TTC et HT calculés ensemble : le trésorier lit le montant qui l’intéresse.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Bornes d’effectif : une formule réservée aux entreprises de moins de trois salariés ne sera pas proposée aux autres.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Échéance à la campagne, ou glissante — vingt-et-un jours après l’envoi du document.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Un tarif déjà utilisé ne peut plus être supprimé : l’historique reste juste.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-compose="1" style="background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+        <div style="padding:18px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EDEFF3">
+          <span style="display:flex;flex-direction:column;gap:4px">
+            <span style="font:700 14px/1 var(--font-sans);color:#101828">Tarifs de la campagne (5)</span>
+            <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Applicables aux adhésions de cette campagne</span>
+          </span>
+          <span style="padding:9px 15px;border-radius:8px;background:var(--accent-signal);font:600 11.5px/1 var(--font-sans);color:#fff">+ Nouveau tarif</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr .8fr .8fr .5fr .5fr .9fr .9fr;gap:10px;padding:11px 20px;background:#FAFBFC;border-bottom:1px solid #EDEFF3">
+          <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Nom du tarif</span>
+          <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">TTC</span>
+          <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">HT</span>
+          <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:center">Mini</span>
+          <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:center">Maxi</span>
+          <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Échéance</span>
+          <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">Utilisation</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr .8fr .8fr .5fr .5fr .9fr .9fr;gap:10px;padding:14px 20px;border-bottom:1px solid #F4F5F7;align-items:center">
+          <span style="font:500 12.5px/1 var(--font-sans);color:#101828">Classique &gt; 3 salariés</span>
+          <span style="font:700 12.5px/1 var(--font-sans);color:#101828;text-align:right;font-variant-numeric:tabular-nums">800,00 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">666,67 €</span>
+          <span style="font:500 12px/1 var(--font-sans);color:#344054;text-align:center;font-variant-numeric:tabular-nums">4</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#C6CBD4;text-align:center">—</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Campagne</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085;text-align:right">13 adhésions</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr .8fr .8fr .5fr .5fr .9fr .9fr;gap:10px;padding:14px 20px;border-bottom:1px solid #F4F5F7;align-items:center">
+          <span style="font:500 12.5px/1 var(--font-sans);color:#101828">Matinales</span>
+          <span style="font:700 12.5px/1 var(--font-sans);color:#101828;text-align:right;font-variant-numeric:tabular-nums">750,00 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">625,00 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#C6CBD4;text-align:center">—</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#C6CBD4;text-align:center">—</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Campagne</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085;text-align:right">8 adhésions</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr .8fr .8fr .5fr .5fr .9fr .9fr;gap:10px;padding:14px 20px;border-bottom:1px solid #F4F5F7;align-items:center">
+          <span style="font:500 12.5px/1 var(--font-sans);color:#101828">Matinales ½ année</span>
+          <span style="font:700 12.5px/1 var(--font-sans);color:#101828;text-align:right;font-variant-numeric:tabular-nums">450,00 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">375,00 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#C6CBD4;text-align:center">—</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#C6CBD4;text-align:center">—</span>
+          <span style="font:600 11.5px/1 var(--font-sans);color:var(--accent-signal)">Édition + 21 j</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085;text-align:right">6 adhésions</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr .8fr .8fr .5fr .5fr .9fr .9fr;gap:10px;padding:14px 20px;border-bottom:1px solid #F4F5F7;align-items:center">
+          <span style="font:500 12.5px/1 var(--font-sans);color:#101828">Classique &lt; 3 salariés</span>
+          <span style="font:700 12.5px/1 var(--font-sans);color:#101828;text-align:right;font-variant-numeric:tabular-nums">600,00 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">500,00 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#C6CBD4;text-align:center">—</span>
+          <span style="font:500 12px/1 var(--font-sans);color:#344054;text-align:center;font-variant-numeric:tabular-nums">3</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Campagne</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085;text-align:right">9 adhésions</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr .8fr .8fr .5fr .5fr .9fr .9fr;gap:10px;padding:14px 20px;align-items:center">
+          <span style="font:500 12.5px/1 var(--font-sans);color:#101828">Individuelle</span>
+          <span style="font:700 12.5px/1 var(--font-sans);color:#101828;text-align:right;font-variant-numeric:tabular-nums">250,00 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">208,33 €</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#C6CBD4;text-align:center">—</span>
+          <span style="font:400 12px/1 var(--font-sans);color:#C6CBD4;text-align:center">—</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Campagne</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085;text-align:right">9 adhésions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="diffusion" class="kp-dark" style="background:var(--navy-900);margin-top:112px">
+    <div style="max-width:1312px;margin:0 auto;padding:96px 64px;display:flex;flex-direction:column;gap:48px">
+      <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:end">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:rgba(255,255,255,.24);font-variant-numeric:tabular-nums">03</span>
+          <h2 class="kp-h1" style="color:#fff">La diffusion</h2>
+        </div>
+        <p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Vous écrivez le parcours une fois : combien de relances, à quel rythme, par quel canal, avec quel texte. Les vingt-et-un jours proposés se changent en un clic. Ensuite, le bureau ne tient plus le calendrier dans sa tête.</p>
+      </div>
+
+      <div data-compose="1" style="background:#fff;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font:700 15px/1 var(--font-sans);color:#101828">Parcours de diffusion</span>
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Cliquez sur une étape pour éditer son message, son délai et son canal. L’interrupteur la retire du parcours.</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr) 20px 1.1fr;gap:12px;align-items:start">
+          <span style="border:1px solid var(--accent-signal);background:#FEFAF4;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px">
+            <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-signal);display:block"></span><span style="font:700 13px/1 var(--font-sans);color:#101828">Diffusion</span></span>
+            <span style="display:flex;align-items:center;gap:6px"><span style="border:1px solid #F0D6B4;border-radius:5px;padding:3px 7px;background:#fff;font:700 10.5px/1 var(--font-sans);color:#B54708;font-variant-numeric:tabular-nums">0</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">jour d’attente</span></span>
+            <span style="display:flex;align-items:center;gap:8px"><span style="padding:3px 8px;border-radius:5px;background:#FDF3E7;font:600 10.5px/1 var(--font-sans);color:#B54708">Email</span></span>
+            <span style="font:600 11px/1 var(--font-sans);color:#12805C">Personnalisé</span>
+          </span>
+          <span style="border:1px solid #E4E7EC;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px">
+            <span style="display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-signal);display:block"></span><span style="font:700 13px/1 var(--font-sans);color:#101828">Relance 1</span></span><span style="width:30px;height:17px;border-radius:20px;background:var(--accent-signal);display:flex;align-items:center;justify-content:flex-end;padding:0 2px;box-sizing:border-box;flex:none"><span style="width:13px;height:13px;border-radius:50%;background:#fff;display:block"></span></span></span>
+            <span style="display:flex;align-items:center;gap:6px"><span style="border:1px solid #F0D6B4;border-radius:5px;padding:3px 7px;background:#FEFAF4;font:700 10.5px/1 var(--font-sans);color:#B54708;font-variant-numeric:tabular-nums">+ 21</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">jours</span></span>
+            <span style="display:flex"><span style="padding:3px 8px;border-radius:5px;background:#FDF3E7;font:600 10.5px/1 var(--font-sans);color:#B54708">Email</span></span>
+            <span style="font:600 11px/1 var(--font-sans);color:#12805C">Personnalisé</span>
+          </span>
+          <span style="border:1px solid #E4E7EC;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px">
+            <span style="display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-signal);display:block"></span><span style="font:700 13px/1 var(--font-sans);color:#101828">Relance 2</span></span><span style="width:30px;height:17px;border-radius:20px;background:var(--accent-signal);display:flex;align-items:center;justify-content:flex-end;padding:0 2px;box-sizing:border-box;flex:none"><span style="width:13px;height:13px;border-radius:50%;background:#fff;display:block"></span></span></span>
+            <span style="display:flex;align-items:center;gap:6px"><span style="border:1px solid #F0D6B4;border-radius:5px;padding:3px 7px;background:#FEFAF4;font:700 10.5px/1 var(--font-sans);color:#B54708;font-variant-numeric:tabular-nums">+ 21</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">jours</span></span>
+            <span style="display:flex"><span style="padding:3px 8px;border-radius:5px;background:#FDF3E7;font:600 10.5px/1 var(--font-sans);color:#B54708">Email</span></span>
+            <span style="font:600 11px/1 var(--font-sans);color:#12805C">Personnalisé</span>
+          </span>
+          <span style="border:1px solid #E4E7EC;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px">
+            <span style="display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-signal);display:block"></span><span style="font:700 13px/1 var(--font-sans);color:#101828">Relance 3</span></span><span style="width:30px;height:17px;border-radius:20px;background:var(--accent-signal);display:flex;align-items:center;justify-content:flex-end;padding:0 2px;box-sizing:border-box;flex:none"><span style="width:13px;height:13px;border-radius:50%;background:#fff;display:block"></span></span></span>
+            <span style="display:flex;align-items:center;gap:6px"><span style="border:1px solid #F0D6B4;border-radius:5px;padding:3px 7px;background:#FEFAF4;font:700 10.5px/1 var(--font-sans);color:#B54708;font-variant-numeric:tabular-nums">+ 21</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">jours · dernière</span></span>
+            <span style="display:flex"><span style="padding:3px 8px;border-radius:5px;background:#F1F3F6;font:600 10.5px/1 var(--font-sans);color:#475467">SMS</span></span>
+            <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">Par défaut</span>
+          </span>
+          <span style="display:flex;align-items:center;justify-content:center;padding-top:26px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-right" size="{{ i16 }}" color="#C6CBD4" hint-size="16px,16px"></x-import>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:8px">
+            <span style="border:1px solid #E4E7EC;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:5px">
+              <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#12805C;display:block"></span><span style="font:700 12.5px/1 var(--font-sans);color:#101828">Facture acquittée</span></span>
+              <span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Si réglée</span>
+            </span>
+            <span style="border:1px solid #E4E7EC;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:5px">
+              <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-signal);display:block"></span><span style="font:700 12.5px/1 var(--font-sans);color:#101828">Non renouvelé</span></span>
+              <span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Adhérent qui ne repart pas</span>
+            </span>
+            <span style="border:1px solid #E4E7EC;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:5px">
+              <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#667085;display:block"></span><span style="font:700 12.5px/1 var(--font-sans);color:#101828">Sans suite</span></span>
+              <span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Prospect qui n’aboutit pas</span>
+            </span>
+          </span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;border-top:1px solid #EDEFF3;padding-top:16px">
+          <span style="font:600 10.5px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:#98A2B3">Réglable sur chaque étape</span>
+          <span style="padding:6px 11px;border:1px solid #E4E7EC;border-radius:20px;font:500 11px/1 var(--font-sans);color:#344054">Délai en jours</span>
+          <span style="padding:6px 11px;border:1px solid #E4E7EC;border-radius:20px;font:500 11px/1 var(--font-sans);color:#344054">Canal : email ou SMS</span>
+          <span style="padding:6px 11px;border:1px solid #E4E7EC;border-radius:20px;font:500 11px/1 var(--font-sans);color:#344054">Objet et message</span>
+          <span style="padding:6px 11px;border:1px solid #E4E7EC;border-radius:20px;font:500 11px/1 var(--font-sans);color:#344054">Étape active ou retirée</span>
+        </div>
+        <div style="background:#FEFAF4;border:1px solid #F5E3CE;border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="triangle-alert" size="{{ i16 }}" color="#B54708" hint-size="16px,16px"></x-import>
+          <span style="display:flex;flex-direction:column;gap:4px">
+            <span style="font:700 12px/1 var(--font-sans);color:#B54708">Diffusion déclenchée par vous</span>
+            <span style="font:400 11.5px/1.5 var(--font-sans);color:#667085">Rien ne part tout seul. Le document s’envoie quand vous cliquez sur « Diffuser », adhésion par adhésion ou en envoi groupé.</span>
+          </span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:6fr 6fr;gap:32px;align-items:start">
+        <div data-compose="1" style="background:#fff;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+          <span style="display:flex;flex-direction:column;gap:5px">
+            <span style="font:700 14px/1 var(--font-sans);color:#101828">Le message, écrit avec des variables</span>
+            <span style="font:400 11.5px/1 var(--font-sans);color:#667085">Kopilot fournit un texte de départ. Réécrivez-le, ou repartez du modèle d’un clic.</span>
+          </span>
+          <span style="border:1px solid #E4E7EC;border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:10px">
+            <span style="font:400 12px/1.6 var(--font-sans);color:#344054">Afin de finaliser votre adhésion, vous trouverez ci-joint <span style="background:#FDF3E7;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;color:#B54708">[[Document]]</span> de <span style="background:#FDF3E7;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;color:#B54708">[[Montant]]</span> pour <span style="background:#FDF3E7;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;color:#B54708">[[Organisation]]</span>, à régler avant le <span style="background:#FDF3E7;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;color:#B54708">[[DateLimite]]</span>.</span>
+          </span>
+          <span style="display:flex;align-items:center;gap:10px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-down" size="{{ i14 }}" color="#98A2B3" hint-size="14px,14px"></x-import>
+            <span style="font:600 10.5px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:#98A2B3">Ce que l’adhérent reçoit</span>
+          </span>
+          <span style="border:1px solid #EDEFF3;background:#FAFBFC;border-radius:8px;padding:14px">
+            <span style="font:400 12px/1.6 var(--font-sans);color:#101828">Afin de finaliser votre adhésion, vous trouverez ci-joint l’appel à cotisation de 800,00 € pour ATELIER MOREAU, à régler avant le 27 février 2026.</span>
+          </span>
+          <span style="font:400 11px/1.5 var(--font-sans);color:#98A2B3">Le bouton de paiement en ligne et la pièce jointe sont ajoutés automatiquement.</span>
+        </div>
+
+        <div data-compose="1" style="display:flex;flex-direction:column;gap:16px">
+          <div style="border:1px solid var(--white-a12);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box">
+            <span style="display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="file-text" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal)">Quatre documents, un par situation</span>
+            </span>
+            <span style="font:400 13.5px/1.6 var(--font-sans);color:rgba(255,255,255,.78)">Appel à cotisation pour un renouvellement, appel à première adhésion pour un nouveau membre, appel à réadhésion pour un retour, facture pour ceux qui veulent un montant dû. Après règlement, la facture acquittée part automatiquement.</span>
+          </div>
+          <div style="border:1px solid var(--white-a12);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box">
+            <span style="display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="sparkles" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span style="font:600 11px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-signal)">Le discours du réseau, dedans</span>
+            </span>
+            <span style="font:400 13.5px/1.6 var(--font-sans);color:rgba(255,255,255,.78)">Bénéfices de l’adhésion, actions du réseau, perspectives : ces blocs viennent de la Présentation du réseau. L’appel à cotisation n’est pas une facture déguisée, c’est une invitation à repartir pour un an.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="suivi" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:28px">
+      <div style="display:flex;align-items:baseline;gap:20px">
+        <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">04</span>
+        <h2 class="kp-h1">Le suivi</h2>
+      </div>
+      <p class="kp-body-lg">Chaque ligne porte son état, son retard et le bouton qui correspond. Diffuser, relancer, arbitrer, réactiver : l’action est sur la ligne, pas trois écrans plus loin.</p>
+    </div>
+
+    <div data-compose="1" style="margin-top:40px;background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+      <div style="padding:18px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #EDEFF3">
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:#98A2B3">Filtrer</span>
+        <span style="display:flex;align-items:center;gap:20px;padding:8px 13px;border:1px solid #E4E7EC;border-radius:8px;font:500 11.5px/1 var(--font-sans);color:#101828">À relancer · en retard <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import></span>
+        <span style="display:flex;align-items:center;gap:20px;padding:8px 13px;border:1px solid #E4E7EC;border-radius:8px;font:500 11.5px/1 var(--font-sans);color:#667085">Tous les tarifs <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import></span>
+        <span style="display:flex;align-items:center;gap:20px;padding:8px 13px;border:1px solid #E4E7EC;border-radius:8px;font:500 11.5px/1 var(--font-sans);color:#667085">Toutes natures <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import></span>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:10px">
+          <span style="display:flex;align-items:center;gap:7px;padding:9px 13px;border:1px solid #E4E7EC;border-radius:8px;font:600 11.5px/1 var(--font-sans);color:#344054">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="user-plus" size="{{ i14 }}" color="#667085" hint-size="14px,14px"></x-import>
+            <span>Ajouter</span>
+          </span>
+          <span style="display:flex;align-items:center;gap:7px;padding:10px 15px;border-radius:8px;background:var(--accent-signal);font:600 11.5px/1 var(--font-sans);color:#fff">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="send" size="{{ i14 }}" color="#ffffff" hint-size="14px,14px"></x-import>
+            <span>Envoi groupé</span>
+          </span>
+        </span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.5fr 1.1fr 1.1fr 1fr 1.1fr;gap:14px;padding:11px 20px;background:#FAFBFC;border-bottom:1px solid #EDEFF3">
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Adhésion pour</span>
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Tarif</span>
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Document</span>
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Diffusion</span>
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">Actions</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.5fr 1.1fr 1.1fr 1fr 1.1fr;gap:14px;padding:15px 20px;border-bottom:1px solid #F4F5F7;align-items:center">
+        <span style="display:flex;flex-direction:column;gap:6px"><span style="font:700 12.5px/1 var(--font-sans);color:#101828">BATI CONSEIL</span><span style="padding:3px 8px;border-radius:5px;background:#F1F3F6;font:600 10px/1 var(--font-sans);color:#475467;width:fit-content">Renouvellement</span></span>
+        <span style="display:flex;flex-direction:column;gap:5px"><span style="font:700 12.5px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">600,00 €</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Classique &lt; 3 salariés</span></span>
+        <span style="font:400 11.5px/1 var(--font-sans);color:#475467">Appel à cotisation</span>
+        <span style="display:flex;flex-direction:column;gap:5px"><span style="padding:4px 9px;border-radius:5px;background:#FDF6DC;font:600 10.5px/1 var(--font-sans);color:#A16207;width:fit-content">Relance 1</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">30 janv. 2026</span></span>
+        <span style="display:flex;align-items:center;gap:8px;justify-content:flex-end">
+          <span style="padding:4px 8px;border-radius:5px;background:#FDF6DC;font:600 10px/1 var(--font-sans);color:#A16207">21 j</span>
+          <span style="padding:8px 13px;border:1px solid #F0D6B4;border-radius:7px;background:#FEFAF4;font:600 11px/1 var(--font-sans);color:var(--accent-signal)">Relancer</span>
+        </span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.5fr 1.1fr 1.1fr 1fr 1.1fr;gap:14px;padding:15px 20px;border-bottom:1px solid #F4F5F7;align-items:center;background:#FEFCF8">
+        <span style="display:flex;flex-direction:column;gap:6px"><span style="font:700 12.5px/1 var(--font-sans);color:#101828">GROUPE HELIOS</span><span style="padding:3px 8px;border-radius:5px;background:#FDF3E7;font:600 10px/1 var(--font-sans);color:#B54708;width:fit-content">Nouvelle adhésion</span></span>
+        <span style="display:flex;align-items:center;gap:14px;padding:8px 11px;border:1px solid #E4E7EC;border-radius:7px;background:#fff;width:fit-content"><span style="font:500 11.5px/1 var(--font-sans);color:#101828">750 € · Matin.</span><x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import></span>
+        <span style="display:flex;align-items:center;gap:14px;padding:8px 11px;border:1px solid #E4E7EC;border-radius:7px;background:#fff;width:fit-content"><span style="font:500 11.5px/1 var(--font-sans);color:#101828">Appel</span><x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import></span>
+        <span style="padding:4px 9px;border-radius:5px;background:#F1F3F6;font:600 10.5px/1 var(--font-sans);color:#475467;width:fit-content">À diffuser</span>
+        <span style="display:flex;justify-content:flex-end">
+          <span style="display:flex;align-items:center;gap:7px;padding:9px 15px;border-radius:7px;background:var(--accent-signal);font:600 11px/1 var(--font-sans);color:#fff">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="send" size="{{ i13 }}" color="#ffffff" hint-size="13px,13px"></x-import>
+            <span>Diffuser</span>
+          </span>
+        </span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.5fr 1.1fr 1.1fr 1fr 1.1fr;gap:14px;padding:15px 20px;border-bottom:1px solid #F4F5F7;align-items:center">
+        <span style="display:flex;flex-direction:column;gap:6px"><span style="font:700 12.5px/1 var(--font-sans);color:#101828">ATELIER MOREAU</span><span style="padding:3px 8px;border-radius:5px;background:#F1F3F6;font:600 10px/1 var(--font-sans);color:#475467;width:fit-content">Renouvellement</span></span>
+        <span style="display:flex;flex-direction:column;gap:5px"><span style="font:700 12.5px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">600,00 €</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Classique &lt; 3 salariés</span></span>
+        <span style="font:400 11.5px/1 var(--font-sans);color:#475467">Appel à cotisation</span>
+        <span style="display:flex;flex-direction:column;gap:5px"><span style="padding:4px 9px;border-radius:5px;background:#FDECEC;font:600 10.5px/1 var(--font-sans);color:#B42318;width:fit-content">Dernière relance</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">23 janv. 2026</span></span>
+        <span style="display:flex;justify-content:flex-end">
+          <span style="padding:8px 13px;border:1px solid #F0D6B4;border-radius:7px;background:#FEFAF4;font:600 11px/1 var(--font-sans);color:var(--accent-signal)">Arbitrer</span>
+        </span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.5fr 1.1fr 1.1fr 1fr 1.1fr;gap:14px;padding:15px 20px;align-items:center">
+        <span style="display:flex;flex-direction:column;gap:6px"><span style="font:700 12.5px/1 var(--font-sans);color:#101828">LEGRAND &amp; ASSOCIÉS</span><span style="padding:3px 8px;border-radius:5px;background:#F1F3F6;font:600 10px/1 var(--font-sans);color:#475467;width:fit-content">Renouvellement</span></span>
+        <span style="display:flex;flex-direction:column;gap:5px"><span style="font:700 12.5px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">800,00 €</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Classique &gt; 3 salariés</span></span>
+        <span style="font:400 11.5px/1 var(--font-sans);color:#475467">Facture d’adhésion</span>
+        <span style="display:flex;flex-direction:column;gap:5px"><span style="padding:4px 9px;border-radius:5px;background:#E8F0FE;font:600 10.5px/1 var(--font-sans);color:#1D4ED8;width:fit-content">Diffusé</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">19 sept. 2025</span></span>
+        <span style="display:flex;align-items:center;gap:8px;justify-content:flex-end">
+          <span style="padding:4px 8px;border-radius:5px;background:#FDECEC;font:600 10px/1 var(--font-sans);color:#B42318">Retard 133 j</span>
+          <span style="padding:8px 13px;border:1px solid #F0D6B4;border-radius:7px;background:#FEFAF4;font:600 11px/1 var(--font-sans);color:var(--accent-signal)">Relancer</span>
+        </span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:40px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h3 class="kp-h3">Le filtre parle la langue du bureau</h3>
+        <p class="kp-small">« À relancer · en retard », « Relance en cours · délai non dépassé », « Dernière relance envoyée ». Pas des codes de statut : des situations.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h3 class="kp-h3">Envoi groupé</h3>
+        <p class="kp-small">Quarante appels à cotisation partent en une fois, chacun avec le bon document, le bon montant et le bon contact.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h3 class="kp-h3">Un commentaire interne par adhésion</h3>
+        <p class="kp-small">L’engagement pris au téléphone, l’interlocuteur rencontré : visible par les animateurs, sur aucun document envoyé.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="analyse" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:28px">
+      <div style="display:flex;align-items:baseline;gap:20px">
+        <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">05</span>
+        <h2 class="kp-h1">L’analyse</h2>
+      </div>
+      <p class="kp-body-lg">Départs et arrivées de la saison, comparés à l’exercice précédent. Portefeuille actif, solde des mouvements, taux de rétention : le bilan se lit en une ligne.</p>
+    </div>
+
+    <div data-compose="1" style="margin-top:40px;background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+      <div style="padding:18px 22px;border-bottom:1px solid #EDEFF3;display:flex;flex-direction:column;gap:4px">
+        <span style="font:700 14px/1 var(--font-sans);color:#101828">Analyse › Bilan adhésions</span>
+        <span style="font:400 11.5px/1 var(--font-sans);color:#98A2B3">Départs et arrivées de la saison, comparés à l’exercice précédent</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr;gap:14px;padding:11px 22px;background:#FAFBFC;border-bottom:1px solid #EDEFF3">
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Mouvement</span>
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">Adhésions</span>
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">Montant</span>
+        <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">Non encaissé</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr;gap:14px;padding:15px 22px;border-bottom:1px solid #F4F5F7;align-items:baseline">
+        <span style="font:500 13px/1 var(--font-sans);color:#344054">Renouvellements</span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 17px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">30</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+2</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 28</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 13.5px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">16 850,00 €</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+1 650 €</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 15 200,00 €</span></span>
+        <span style="font:400 12.5px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">7 450,00 €</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr;gap:14px;padding:15px 22px;border-bottom:1px solid #F4F5F7;align-items:baseline">
+        <span style="display:flex;align-items:center;gap:12px"><span style="font:700 14px/1 var(--font-sans);color:#D92D20">−</span><span style="font:500 13px/1 var(--font-sans);color:#344054">Non renouvelés</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 17px/1 var(--font-sans);color:#D92D20;font-variant-numeric:tabular-nums">−5</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">−2</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 7</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 13.5px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">3 550,00 €</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">−1 350 €</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 4 900,00 €</span></span>
+        <span style="font:400 12.5px/1 var(--font-sans);color:#C6CBD4;text-align:right">—</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr;gap:14px;padding:15px 22px;border-bottom:1px solid #F4F5F7;align-items:baseline">
+        <span style="display:flex;align-items:center;gap:12px"><span style="font:700 14px/1 var(--font-sans);color:#12805C">+</span><span style="font:500 13px/1 var(--font-sans);color:#344054">Nouvelles adhésions</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 17px/1 var(--font-sans);color:#12805C;font-variant-numeric:tabular-nums">+13</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+4</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 9</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 13.5px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">5 550,00 €</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+1 750 €</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 3 800,00 €</span></span>
+        <span style="font:400 12.5px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">3 250,00 €</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr;gap:14px;padding:15px 22px;border-bottom:1px solid #F4F5F7;align-items:baseline">
+        <span style="display:flex;align-items:center;gap:12px"><span style="font:700 14px/1 var(--font-sans);color:#12805C">+</span><span style="font:500 13px/1 var(--font-sans);color:#344054">Réadhésions</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 17px/1 var(--font-sans);color:#12805C;font-variant-numeric:tabular-nums">+7</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+3</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 4</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 13.5px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">4 350,00 €</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+1 950 €</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 2 400,00 €</span></span>
+        <span style="font:400 12.5px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">2 550,00 €</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr;gap:14px;padding:17px 22px;border-bottom:1px solid #F4F5F7;align-items:baseline;background:#FEFAF4">
+        <span style="display:flex;align-items:center;gap:12px"><span style="font:700 14px/1 var(--font-sans);color:#98A2B3">=</span><span style="font:700 13.5px/1 var(--font-sans);color:#101828">Portefeuille actif</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 19px/1 var(--font-sans);color:var(--accent-signal);font-variant-numeric:tabular-nums">45</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+11</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 34</span></span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 15px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">26 750,00 €</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+5 350 €</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 21 400,00 €</span></span>
+        <span style="font:400 12.5px/1 var(--font-sans);color:#98A2B3;text-align:right;font-variant-numeric:tabular-nums">13 250,00 €</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr;gap:14px;padding:15px 22px;background:#FAFBFC;align-items:baseline">
+        <span style="font:500 13px/1 var(--font-sans);color:#344054">Taux de rétention</span>
+        <span style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span style="display:flex;align-items:baseline;gap:8px"><span style="font:700 17px/1 var(--font-sans);color:#12805C;font-variant-numeric:tabular-nums">83 %</span><span style="padding:2px 7px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C">+8 pts</span></span><span style="font:400 10px/1 var(--font-sans);color:#98A2B3">N-1 · 75 %</span></span>
+        <span style="font:400 11.5px/1 var(--font-sans);color:#98A2B3;grid-column:span 2">25 / 30 renouvellements repartis</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:40px">
+      <div style="border:1px solid var(--border-default);border-radius:12px;padding:24px;background:var(--surface-raised);display:flex;flex-direction:column;gap:12px" style-hover="border-color:var(--text-strong)">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chart-pie" size="{{ i20 }}" color="var(--accent-signal)" hint-size="20px,20px"></x-import>
+        <h3 class="kp-h3">Par tarif</h3>
+        <p class="kp-small">Quelle formule porte le budget, laquelle se règle vite. La Matinales encaisse en 31 jours, la Classique en 60.</p>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:12px;padding:24px;background:var(--surface-raised);display:flex;flex-direction:column;gap:12px" style-hover="border-color:var(--text-strong)">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="banknote" size="{{ i20 }}" color="var(--accent-signal)" hint-size="20px,20px"></x-import>
+        <h3 class="kp-h3">Règlements</h3>
+        <p class="kp-small">Reste à encaisser, impayés de plus de soixante jours, délai moyen de règlement, part des règlements obtenus après relance.</p>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:12px;padding:24px;background:var(--surface-raised);display:flex;flex-direction:column;gap:12px" style-hover="border-color:var(--text-strong)">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="users" size="{{ i20 }}" color="var(--accent-signal)" hint-size="20px,20px"></x-import>
+        <h3 class="kp-h3">Détail des mouvements</h3>
+        <p class="kp-small">Qui part, qui arrive, qui revient, avec les motifs déclarés — et les changements d’interlocuteur en cours d’exercice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cloture" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div data-compose="1" style="background:#fff;border:1px solid #E4E7EC;border-radius:14px;box-shadow:0 12px 32px rgba(15,36,56,.07);overflow:hidden">
+        <div style="padding:20px 22px;border-bottom:1px solid #EDEFF3;display:flex;flex-direction:column;gap:10px">
+          <span style="font:700 14px/1 var(--font-sans);color:#101828">Analyse › Synthèse de clôture</span>
+          <span style="font:400 11.5px/1.5 var(--font-sans);color:#98A2B3">Ce qui reste ouvert sur la saison. Toutes les adhésions doivent être tranchées avant de clôturer.</span>
+          <span style="display:flex;align-items:baseline;gap:12px;padding-top:6px"><span style="font:700 24px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">13 500,00 €</span><span style="font:400 11.5px/1 var(--font-sans);color:#98A2B3">encaissés sur 22 adhésions réglées</span></span>
+        </div>
+        <div style="padding:20px 22px;display:flex;flex-direction:column;gap:12px">
+          <span style="background:#FDF2F2;border:1px solid #F6CFCB;border-radius:10px;padding:15px 18px;display:flex;align-items:center;gap:18px">
+            <span style="font:700 20px/1 var(--font-sans);color:#B42318;font-variant-numeric:tabular-nums;width:28px;flex:none">4</span>
+            <span style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font:700 13px/1 var(--font-sans);color:#101828">à arbitrer</span><span style="font:400 11px/1.4 var(--font-sans);color:#667085">Trois relances sans règlement. À trancher : non-renouvellement, sans suite, ou délai accordé.</span></span>
+            <span style="font:700 13px/1 var(--font-sans);color:#B42318;font-variant-numeric:tabular-nums;flex:none">2 450,00 €</span>
+          </span>
+          <span style="background:#FEFBEB;border:1px solid #F5E3B0;border-radius:10px;padding:15px 18px;display:flex;align-items:center;gap:18px">
+            <span style="font:700 20px/1 var(--font-sans);color:#A16207;font-variant-numeric:tabular-nums;width:28px;flex:none">14</span>
+            <span style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font:700 13px/1 var(--font-sans);color:#101828">encore à encaisser</span><span style="font:400 11px/1.4 var(--font-sans);color:#667085">Diffusées, relances non épuisées : le règlement peut encore arriver.</span></span>
+            <span style="font:700 13px/1 var(--font-sans);color:#A16207;font-variant-numeric:tabular-nums;flex:none">7 650,00 €</span>
+          </span>
+          <span style="background:#FEFBEB;border:1px solid #F5E3B0;border-radius:10px;padding:15px 18px;display:flex;align-items:center;gap:18px">
+            <span style="font:700 20px/1 var(--font-sans);color:#A16207;font-variant-numeric:tabular-nums;width:28px;flex:none">5</span>
+            <span style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font:700 13px/1 var(--font-sans);color:#101828">jamais diffusées</span><span style="font:400 11px/1.4 var(--font-sans);color:#667085">Aucun appel à cotisation n’est parti. À diffuser avant toute décision.</span></span>
+            <span style="font:700 13px/1 var(--font-sans);color:#A16207;font-variant-numeric:tabular-nums;flex:none">3 150,00 €</span>
+          </span>
+          <span style="background:#FAFBFC;border:1px solid #E4E7EC;border-radius:10px;padding:15px 18px;display:flex;align-items:center;gap:18px">
+            <span style="font:700 20px/1 var(--font-sans);color:#475467;font-variant-numeric:tabular-nums;width:28px;flex:none">14</span>
+            <span style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font:700 13px/1 var(--font-sans);color:#101828">factures acquittées à envoyer</span><span style="font:400 11px/1.4 var(--font-sans);color:#667085">Règlement déjà pointé — ne bloque pas la clôture, mais reste dû à l’adhérent.</span></span>
+            <span style="font:700 13px/1 var(--font-sans);color:#475467;font-variant-numeric:tabular-nums;flex:none">9 000,00 €</span>
+          </span>
+        </div>
+        <div style="border-top:1px solid #EDEFF3;padding:16px 22px;display:flex;align-items:center;justify-content:space-between">
+          <span style="font:400 11.5px/1 var(--font-sans);color:#667085">23 adhésions restent ouvertes · 13 250,00 €</span>
+          <span style="display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;background:#F1F3F6;font:600 11.5px/1 var(--font-sans);color:#98A2B3">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="lock" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import>
+            <span>Clôturer la campagne</span>
+          </span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <span style="font:600 56px/.9 var(--font-sans);letter-spacing:-.03em;color:var(--border-strong);font-variant-numeric:tabular-nums">06</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="140px,16px">La clôture</x-import>
+        </div>
+        <h2 class="kp-h1">On ne clôt pas une saison avec des lignes en suspens.</h2>
+        <p class="kp-body-lg">Le bouton reste gris tant qu’une adhésion n’est pas tranchée. C’est ce qui garantit que le bilan présenté à l’assemblée générale correspond à la réalité.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--border-default);padding-top:20px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Chaque catégorie ouvre la liste exacte : on traite, on revient, le compteur baisse.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Une adhésion jamais diffusée ne peut pas être déclarée non renouvelée : l’adhérent n’a rien reçu.</p>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-signal);margin-top:7px;flex:none"></span>
+            <p class="kp-small">Une fois clôturée, la campagne devient l’exercice N-1 de la suivante, et sert de base de comparaison.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-compose="1" style="margin-top:56px;border:1px solid var(--border-default);border-radius:14px;background:var(--surface-raised);padding:40px;display:grid;grid-template-columns:6fr 6fr;gap:48px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="240px,16px">Rapport d’assemblée générale</x-import>
+        <h2 class="kp-h2">Les chiffres de la saison, prêts à être projetés.</h2>
+        <p class="kp-body">Vous cochez les analyses à intégrer ; chaque bloc coché devient une diapositive. Le trésorier ne recopie plus le bilan dans un tableur la veille de l’assemblée générale.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="background:#FEFAF4;border:1px solid #F5E3CE;border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px">
+          <span style="width:20px;height:20px;border-radius:5px;background:var(--accent-signal);display:flex;align-items:center;justify-content:center;flex:none">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i13 }}" color="#ffffff" hint-size="13px,13px"></x-import>
+          </span>
+          <span style="flex:1;display:flex;flex-direction:column;gap:4px"><span class="kp-label" style="color:var(--text-strong)">Bilan adhésions</span><span class="kp-small">Renouvellements, départs, arrivées, part encaissée.</span></span>
+          <span style="font:600 11px/1 var(--font-sans);color:var(--accent-signal);flex:none">Diapo 1</span>
+        </div>
+        <div style="background:#FEFAF4;border:1px solid #F5E3CE;border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px">
+          <span style="width:20px;height:20px;border-radius:5px;background:var(--accent-signal);display:flex;align-items:center;justify-content:center;flex:none">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i13 }}" color="#ffffff" hint-size="13px,13px"></x-import>
+          </span>
+          <span style="flex:1;display:flex;flex-direction:column;gap:4px"><span class="kp-label" style="color:var(--text-strong)">Non-renouvellements</span><span class="kp-small">Organisations sorties et motifs déclarés.</span></span>
+          <span style="font:600 11px/1 var(--font-sans);color:var(--accent-signal);flex:none">Diapo 2</span>
+        </div>
+        <div style="background:#FEFAF4;border:1px solid #F5E3CE;border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px">
+          <span style="width:20px;height:20px;border-radius:5px;background:var(--accent-signal);display:flex;align-items:center;justify-content:center;flex:none">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="check" size="{{ i13 }}" color="#ffffff" hint-size="13px,13px"></x-import>
+          </span>
+          <span style="flex:1;display:flex;flex-direction:column;gap:4px"><span class="kp-label" style="color:var(--text-strong)">Nouvelles adhésions</span><span class="kp-small">Organisations qui rejoignent le réseau cette saison.</span></span>
+          <span style="font:600 11px/1 var(--font-sans);color:var(--accent-signal);flex:none">Diapo 3</span>
+        </div>
+        <div style="border:1px solid var(--border-default);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px">
+          <span style="width:20px;height:20px;border-radius:5px;border:1.5px solid var(--border-strong);box-sizing:border-box;flex:none"></span>
+          <span style="flex:1;display:flex;flex-direction:column;gap:4px"><span class="kp-label" style="color:var(--text-muted)">Réadhésions</span><span class="kp-small" style="color:var(--text-muted)">Organisations de retour après une absence.</span></span>
+          <span class="kp-small" style="color:var(--text-muted);flex:none">Exclue</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kp-dark" style="background:var(--navy-900);margin-top:112px">
+    <div style="max-width:1312px;margin:0 auto;padding:96px 64px;display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2 class="kp-h1" style="color:#fff">Combien d’adhésions attendent une relance, chez vous, aujourd’hui ?</h2>
+        <p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Trente minutes pour voir votre campagne dans Kopilot, avec vos tarifs et votre calendrier.</p>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:16px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" href="Fonctionnalites.dc.html" hint-size="200px,56px">Toutes les fonctionnalités</x-import>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" size="lg" onClick="{{ openDemo }}" hint-size="200px,56px">Réserver une démo</x-import>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border-default);background:var(--surface-page)">
+    <div style="max-width:1312px;margin:0 auto;padding:64px;display:flex;justify-content:space-between;align-items:flex-start;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:320px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+        <p class="kp-small">L’écosystème des réseaux d’entreprises : plateforme, accompagnement, réseau.</p>
+        <a href="https://www.linkedin.com/company/kopilot-club" target="_blank" rel="noopener" aria-label="Kopilot sur LinkedIn" style="display:flex;width:fit-content;margin-top:6px;color:var(--text-strong)" style-hover="color:var(--accent-signal)">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+      <div style="display:flex;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Produit</p>
+          <a href="Fonctionnalites.dc.html" class="kp-small">Fonctionnalités</a>
+          <a href="Fonctionnalite-Adhesions.dc.html" class="kp-small">Gestion des adhésions</a>
+          <a href="Fonctionnalite-Application.dc.html" class="kp-small">Application membres</a>
+          <a href="Fonctionnalite-SitePublic.dc.html" class="kp-small">Site public</a>
+          <a href="Tarifs.dc.html" class="kp-small">Tarifs</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Kopilot</p>
+          <a href="Clients.dc.html" class="kp-small">Ils utilisent Kopilot</a>
+          <a href="Equipe.dc.html" class="kp-small">Équipe</a>
+          <a href="LaFabrik.dc.html" class="kp-small">La Fabrik</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;text-align:right">
+        <p class="kp-small" style="color:var(--text-muted)">© 2026 Kopilot</p>
+        <a href="MentionsLegales.dc.html" class="kp-small" style="color:var(--text-muted)">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(15,36,56,.6);z-index:50;display:flex;align-items:center;justify-content:center;padding:64px">
+      <div onClick="{{ stop }}" style="background:var(--surface-raised);border-radius:12px;padding:48px;width:560px;display:flex;flex-direction:column;gap:32px;box-shadow:0 16px 40px rgba(15,36,56,.1)">
+        <sc-if value="{{ formStage }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <p class="kp-label">Démonstration</p>
+              <h3 class="kp-h2">Réservez votre démonstration.</h3>
+              <p class="kp-body">Trente minutes, en visio, sur le fonctionnement de votre réseau.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Prénom et nom" placeholder="Camille Rousset" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Email" placeholder="camille@club.fr" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Nom du réseau" placeholder="Réseau des entrepreneurs" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Téléphone" placeholder="06 12 34 56 78" hint-size="100%,64px"></x-import>
+            </div>
+            <div style="border-top:1px solid var(--border-default);padding-top:24px;display:flex;justify-content:flex-end">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" onClick="{{ submitForm }}" hint-size="180px,40px">Envoyer la demande</x-import>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sentStage }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <p class="kp-label">Demande enregistrée</p>
+            <h3 class="kp-h2">Votre demande est bien enregistrée.</h3>
+            <p class="kp-body">Un membre de l’équipe prépare la démonstration sur la base du fonctionnement de votre réseau.</p>
+            <div style="display:flex">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" onClick="{{ closeModal }}" hint-size="120px,40px">Fermer</x-import>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { modal: false, sent: false };
+
+  componentDidMount() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      Array.from(document.querySelectorAll('[data-compose] > *')).forEach(el => {
+        const idx = Array.prototype.indexOf.call(el.parentElement.children, el);
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(14px)';
+        el.style.transition = 'opacity 460ms cubic-bezier(.2,.6,.2,1) ' + (idx * 100) + 'ms, transform 460ms cubic-bezier(.2,.6,.2,1) ' + (idx * 100) + 'ms';
+      });
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          Array.from(e.target.children).forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; });
+          this.io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
+      document.querySelectorAll('[data-compose]').forEach(el => this.io.observe(el));
+    }
+
+    const ids = ['campagne', 'tarifs', 'diffusion', 'suivi', 'analyse', 'cloture'];
+    this.onScroll = () => {
+      const d = document.documentElement;
+      const max = Math.max(1, d.scrollHeight - d.clientHeight);
+      if (this.bar) this.bar.style.width = ((d.scrollTop / max) * 100).toFixed(2) + '%';
+      if (this.head) this.head.style.height = d.scrollTop > 8 ? '64px' : '80px';
+      let active = null;
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.4) active = id;
+      });
+      document.querySelectorAll('[data-rail]').forEach(a => {
+        const on = a.getAttribute('data-rail') === active;
+        a.style.borderColor = on ? 'var(--accent-signal)' : 'var(--border-default)';
+        a.style.color = on ? 'var(--accent-signal)' : 'var(--text-body)';
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.io) this.io.disconnect();
+  }
+
+  renderVals() {
+    return {
+      logoHeight: 26,
+      iLang: 16,
+      toggleLang: () => { if (window.KopilotI18n) window.KopilotI18n.toggle(); },
+      i13: 13, i14: 14, i16: 16, i18: 18, i20: 20,
+      barRef: el => { this.bar = el; },
+      headRef: el => { this.head = el; },
+      modalOpen: !!this.state.modal,
+      formStage: !!this.state.modal && !this.state.sent,
+      sentStage: !!this.state.modal && !!this.state.sent,
+      openDemo: () => this.setState({ modal: true, sent: false }),
+      submitForm: () => this.setState({ sent: true }),
+      closeModal: () => this.setState({ modal: false, sent: false }),
+      stop: e => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>

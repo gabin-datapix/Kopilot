@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/colors.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/typography.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/shape.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/motion.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/styles.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/_ds_bundle.js"></script>
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-link-hover)}
+</style>
+</helmet>
+
+<div style="padding:48px;display:flex;gap:64px;align-items:flex-start;background:var(--surface-page);min-height:100vh;min-width:1180px">
+
+  <div style="display:flex;flex-direction:column;gap:32px;width:420px;flex:none">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="200px,16px">Application membres</x-import>
+      <h1 class="kp-h1">L’application, écran par écran.</h1>
+      <p class="kp-body">Onze captures réelles de l’application, navigables comme sur un téléphone. La barre d’onglets du bas est cliquable ; les écrans liés à un événement s’enchaînent.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <p class="kp-label" style="color:var(--text-strong)">Onglets</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="4">
+          <div onClick="{{ tab.go }}" style="border:1px solid {{ tab.border }};border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;background:var(--surface-raised);min-height:44px" style-hover="border-color:var(--text-strong)">
+            <span style="width:6px;height:6px;border-radius:50%;background:{{ tab.dot }};flex:none"></span>
+            <span style="flex:1;font:500 15px/1.3 var(--font-sans);color:var(--text-strong)">{{ tab.label }}</span>
+            <span class="kp-label" style="color:var(--text-muted)">{{ tab.note }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--border-default);padding-top:24px">
+      <p class="kp-label" style="color:var(--text-strong)">Un événement, écran par écran</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ eventScreens }}" as="scr" hint-placeholder-count="4">
+          <div onClick="{{ scr.go }}" style="border:1px solid {{ scr.border }};border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;background:var(--surface-raised);min-height:44px" style-hover="border-color:var(--text-strong)">
+            <span class="kp-label" style="color:var(--text-muted);font-variant-numeric:tabular-nums">{{ scr.index }}</span>
+            <span style="flex:1;font:500 15px/1.3 var(--font-sans);color:var(--text-strong)">{{ scr.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--border-default);padding-top:24px">
+      <p class="kp-label" style="color:var(--text-strong)">Autres écrans</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ otherScreens }}" as="scr" hint-placeholder-count="4">
+          <div onClick="{{ scr.go }}" style="border:1px solid {{ scr.border }};border-radius:4px;padding:10px 14px;cursor:pointer;background:var(--surface-raised);min-height:40px;display:flex;align-items:center" style-hover="border-color:var(--text-strong)">
+            <span class="kp-label" style="color:var(--text-strong)">{{ scr.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--border-default);padding-top:24px">
+      <p class="kp-label" style="color:var(--text-strong)">À savoir</p>
+      <p class="kp-small">Ce sont les captures de l’environnement de démonstration : les noms de membres et les chiffres qui s’y affichent sont ceux du réseau de test, pas ceux d’un client. L’interface n’est pas redessinée.</p>
+    </div>
+
+    <div style="display:flex;gap:16px;border-top:1px solid var(--border-default);padding-top:24px">
+      <a href="Fonctionnalites.dc.html" class="kp-small">Fonctionnalités</a>
+      <a href="Accueil.dc.html" class="kp-small">Accueil</a>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:16px;align-items:center;flex:none">
+    <div style="width:403px;padding:14px;background:var(--navy-900);border-radius:44px;box-shadow:0 16px 40px rgba(15,36,56,.1)">
+      <div style="width:375px;height:812px;background:#fff;border-radius:32px;overflow:hidden;position:relative">
+        <div ref="{{ shotRef }}" role="img" aria-label="Capture de l’application membres Kopilot" style="width:375px;height:812px;background-color:#fff;background-size:cover;background-position:top center;background-repeat:no-repeat"></div>
+
+        <sc-if value="{{ hasTabBar }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;left:0;right:0;bottom:0;height:8%;display:grid;grid-template-columns:repeat(5,1fr)">
+            <sc-for list="{{ hotspots }}" as="spot" hint-placeholder-count="5">
+              <div onClick="{{ spot.go }}" title="{{ spot.label }}" style="cursor:pointer"></div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+
+    <sc-if value="{{ hasBack }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ back }}" style="width:403px;height:44px;border:1px solid var(--border-strong);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--surface-raised)" style-hover="border-color:var(--text-strong)">
+        <span style="font:500 15px/1 var(--font-sans);color:var(--text-strong)">Revenir à la fiche de l’événement</span>
+      </div>
+    </sc-if>
+    <div style="width:403px;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+      <p class="kp-label" style="color:var(--text-strong)">{{ caption }}</p>
+      <p class="kp-label" style="color:var(--text-muted)">Capture réelle</p>
+    </div>
+    <p class="kp-small" style="width:403px;color:var(--text-muted)">{{ hint }}</p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:16px;width:280px;flex:none;padding-top:8px">
+    <p class="kp-label" style="color:var(--text-strong)">Ce que le membre peut faire</p>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="border-top:1px solid var(--border-default);padding-top:12px;display:flex;flex-direction:column;gap:6px">
+        <p class="kp-label" style="color:var(--accent-signal)">Lire</p>
+        <p class="kp-small">Les actualités publiées par le bureau, avec la recherche et le compteur de publications.</p>
+      </div>
+      <div style="border-top:1px solid var(--border-default);padding-top:12px;display:flex;flex-direction:column;gap:6px">
+        <p class="kp-label" style="color:var(--accent-signal)">S’inscrire</p>
+        <p class="kp-small">Confirmer sa participation à un événement, voir qui vient et retrouver le lieu.</p>
+      </div>
+      <div style="border-top:1px solid var(--border-default);padding-top:12px;display:flex;flex-direction:column;gap:6px">
+        <p class="kp-label" style="color:var(--accent-signal)">Répondre</p>
+        <p class="kp-small">Voter aux sondages du réseau depuis son téléphone.</p>
+      </div>
+      <div style="border-top:1px solid var(--border-default);padding-top:12px;display:flex;flex-direction:column;gap:6px">
+        <p class="kp-label" style="color:var(--accent-signal)">Chercher</p>
+        <p class="kp-small">Consulter la fiche d’une entreprise membre et l’équipe du réseau.</p>
+      </div>
+      <div style="border-top:1px solid var(--border-default);padding-top:12px;display:flex;flex-direction:column;gap:6px">
+        <p class="kp-label" style="color:var(--accent-signal)">Inviter</p>
+        <p class="kp-small">Faire scanner le QR code d’accès pour amener un nouveau membre dans l’application.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SCREENS = {
+  actualites: { src: 'assets/product/app-actualites.png', label: 'Actualités', caption: 'Actualités du réseau', hint: 'La barre du bas est cliquable : Agenda, Entreprises et Membres ouvrent leur écran.', tabBar: true, tab: 'actualites' },
+  agenda: { src: 'assets/product/app-evenement-participation.png', label: 'Agenda — participation', caption: 'Événement — participation', hint: 'Écran de confirmation de présence. Les écrans liés suivent dans la colonne de gauche.', tabBar: true, tab: 'agenda' },
+  entreprises: { src: 'assets/product/app-fiche-entreprise.png', label: 'Entreprises', caption: 'Fiche entreprise membre', hint: 'Fiche d\u2019une entreprise du réseau : activité, contact et coordonnées.', tabBar: true, tab: 'entreprises' },
+  membres: { src: 'assets/product/app-equipe-club.png', label: 'Membres', caption: 'Équipe du réseau', hint: 'Le bureau et les référents, tels que le membre les voit.', tabBar: true, tab: 'membres' },
+  participants: { src: 'assets/product/app-evenement-participants.png', label: 'Participants à l\u2019événement', caption: 'Événement — participants', hint: 'Qui vient : la liste est visible par les membres.', tabBar: true, back: 'agenda' },
+  localisation: { src: 'assets/product/app-evenement-localisation.png', label: 'Lieu de l\u2019événement', caption: 'Événement — localisation', hint: 'Le lieu et l\u2019itinéraire depuis la fiche de l\u2019événement.', tabBar: true, back: 'agenda' },
+  album: { src: 'assets/product/app-evenement-album.png', label: 'Album après l\u2019événement', caption: 'Événement — album photo', hint: 'Les photos partagées après la soirée.', tabBar: true, back: 'agenda' },
+  sondages: { src: 'assets/product/app-sondages.png', label: 'Sondages', caption: 'Sondages du réseau', hint: 'Le membre répond depuis son téléphone ; le bureau suit les réponses en direct.', tabBar: true },
+  documents: { src: 'assets/product/app-documents.png', label: 'Documents', caption: 'Documents du réseau', hint: 'Statuts, comptes rendus, supports : disponibles hors du mail.', tabBar: true },
+  qr: { src: 'assets/product/app-partage-qr.png', label: 'Partager l\u2019application', caption: 'Partage de l\u2019application', hint: 'QR code d\u2019accès à l\u2019application du réseau, à faire scanner par un nouveau membre.', tabBar: false },
+  conseils: { src: 'assets/product/app-conseils-partage.png', label: 'Conseils de partage', caption: 'Conseils de partage', hint: 'Ce que l\u2019application propose au membre pour diffuser le réseau.', tabBar: false },
+  installation: { src: 'assets/product/app-installation.png', label: 'Installation', caption: 'Installation de l\u2019application', hint: 'Ce que voit le membre au premier lancement.', tabBar: false }
+};
+
+const TABS = [
+  { key: 'actualites', label: 'Actualités', note: 'Fil du réseau' },
+  { key: 'agenda', label: 'Agenda', note: 'Événements' },
+  { key: 'entreprises', label: 'Entreprises', note: 'Annuaire' },
+  { key: 'membres', label: 'Membres', note: 'Équipe du réseau' }
+];
+
+const EVENT_FLOW = ['agenda', 'participants', 'localisation', 'album'];
+const OTHERS = ['sondages', 'documents', 'qr', 'conseils', 'installation'];
+// Ordre réel de la barre d’onglets : Accueil, Actualités, Agenda, Entreprises, Membres.
+const TAB_BAR = [null, 'actualites', 'agenda', 'entreprises', 'membres'];
+
+class Component extends DCLogic {
+  state = { screen: 'actualites' };
+
+  go(key) { if (key) this.setState({ screen: key }); }
+
+  paint() {
+    const s = SCREENS[this.state.screen];
+    if (this.shot && s) this.shot.style.backgroundImage = 'url(' + s.src + ')';
+  }
+
+  componentDidMount() { this.paint(); }
+
+  componentDidUpdate() { this.paint(); }
+
+  renderVals() {
+    const key = this.state.screen;
+    const s = SCREENS[key];
+    const mark = k => ({
+      border: k === key ? 'var(--accent-signal)' : 'var(--border-default)',
+      dot: k === key ? 'var(--accent-signal)' : 'var(--border-strong)'
+    });
+    return {
+      shotRef: el => { this.shot = el; if (el) el.style.backgroundImage = 'url(' + SCREENS[this.state.screen].src + ')'; },
+      caption: s.caption,
+      hint: s.hint,
+      hasTabBar: !!s.tabBar,
+      hasBack: !!s.back,
+      back: () => this.go(s.back),
+      tabs: TABS.map(t => Object.assign({}, t, mark(t.key), { go: () => this.go(t.key) })),
+      eventScreens: EVENT_FLOW.map((k, i) => Object.assign({
+        label: SCREENS[k].label,
+        index: String(i + 1).padStart(2, '0'),
+        go: () => this.go(k)
+      }, mark(k))),
+      otherScreens: OTHERS.map(k => Object.assign({ label: SCREENS[k].label, go: () => this.go(k) }, mark(k))),
+      hotspots: TAB_BAR.map((k, i) => ({
+        label: k ? SCREENS[k].label : 'Accueil (capture non fournie)',
+        go: () => this.go(k)
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

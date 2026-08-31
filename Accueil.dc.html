@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/colors.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/typography.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/shape.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/tokens/motion.css">
+<link rel="stylesheet" href="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/styles.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/kopilot-design-system-80784c17-a13d-4bb2-bb11-d071281e8910/_ds_bundle.js"></script>
+<script src="i18n.js"></script>
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-link-hover)}
+  @keyframes kpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  @keyframes kpMarquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .kp-marquee-track{animation:kpMarquee 52s linear infinite}
+  .kp-marquee:hover .kp-marquee-track{animation-play-state:paused}
+  .kp-lift{transition:transform 200ms cubic-bezier(.2,.6,.2,1),box-shadow 200ms cubic-bezier(.2,.6,.2,1),border-color 200ms}
+  .kp-lift:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(15,36,56,.14)}
+  @media (prefers-reduced-motion: reduce){.kp-marquee-track{animation:none}[data-pill] > span{animation:none !important}}
+</style>
+</helmet>
+
+<div style="background:var(--surface-page);min-width:1280px;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(247,245,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-default)">
+    <div ref="{{ headRef }}" style="max-width:1312px;margin:0 auto;padding:0 64px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:height 160ms cubic-bezier(.2,.6,.2,1)">
+      <a href="Accueil.dc.html" style="display:flex;align-items:center">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+      </a>
+      <nav style="display:flex;gap:36px;align-items:center">
+        <a href="Fonctionnalites.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Fonctionnalités</a>
+        <a href="Tarifs.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Tarifs</a>
+        <a href="Clients.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Ils utilisent Kopilot</a>
+        <a href="Equipe.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">Équipe</a>
+        <a href="LaFabrik.dc.html" style="font:400 15px/1 var(--font-sans);color:var(--text-body);padding:8px 0;border-bottom:1px solid transparent" style-hover="color:var(--accent-signal);border-bottom:1px solid var(--accent-signal)">La Fabrik</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:24px">
+        <div onClick="{{ toggleLang }}" data-i18n-skip="1" title="Switch language" style="display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--border-default);border-radius:6px;cursor:pointer;background:transparent" style-hover="border-color:var(--text-strong)">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="languages" size="{{ iLang }}" color="var(--text-strong)" hint-size="16px,16px"></x-import>
+          <span data-lang-label="1" style="font:600 12px/1 var(--font-sans);letter-spacing:.06em;color:var(--text-strong)">EN</span>
+        </div>
+        <a href="#" style="font:500 15px/1 var(--font-sans);color:var(--text-strong)" style-hover="color:var(--accent-signal)">Se connecter</a>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" size="sm" variant="primary" onClick="{{ openDemo }}" hint-size="180px,40px">Réserver une démo</x-import>
+      </div>
+    </div>
+    <div ref="{{ barRef }}" style="height:2px;background:var(--accent-signal);width:0;margin-top:-1px"></div>
+  </header>
+
+  <section style="position:relative;overflow:hidden">
+    <div style="position:absolute;left:50%;top:-120px;width:1500px;height:900px;margin-left:-750px;background:radial-gradient(closest-side, rgba(24,83,158,.10), rgba(24,83,158,0));pointer-events:none"></div>
+    <div style="position:relative;max-width:1312px;margin:0 auto;padding:80px 64px 0">
+      <div style="display:grid;grid-template-columns:6fr 6fr;gap:56px;align-items:center">
+        <div data-hero-el="1" style="display:flex;flex-direction:column;gap:26px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="260px,16px">Plateforme, accompagnement, réseau</x-import>
+          <h1 class="kp-display-l">Kopilot, le copilote <span class="kp-accent">des réseaux d’entreprises.</span></h1>
+          <p class="kp-body-lg">Adhésions, événements, paiements, communication, application des membres. Une plateforme unique, une équipe qui vous accompagne, et un bureau qui retrouve du temps.</p>
+          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" size="lg" onClick="{{ openDemo }}" hint-size="200px,56px">Réserver une démo</x-import>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" size="lg" href="Fonctionnalites.dc.html" hint-size="220px,56px">Découvrir la plateforme</x-import>
+          </div>
+        </div>
+
+        <div data-hero-scene="1" style="position:relative;height:592px;perspective:1500px;perspective-origin:60% 40%;transform-style:preserve-3d">
+          <span data-hero-chip="0" class="kp-lift" style="position:absolute;left:-46px;top:4px;z-index:5;display:flex;align-items:center;gap:9px;background:var(--surface-raised);border:1px solid var(--border-default);border-radius:999px;padding:8px 15px 8px 9px;box-shadow:0 8px 22px rgba(15,36,56,.12)">
+            <span style="width:28px;height:28px;border-radius:999px;background:#FDF3E7;display:flex;align-items:center;justify-content:center;flex:none">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="user-round" size="{{ i16 }}" color="var(--accent-signal)" hint-size="16px,16px"></x-import>
+            </span>
+            <span style="font:600 13px/1 var(--font-sans);color:var(--text-strong);white-space:nowrap">Un référent dédié</span>
+          </span>
+          <span data-hero-chip="1" class="kp-lift" style="position: absolute; top: -7px; z-index: 5; display: flex; align-items: center; gap: 9px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: 999px; padding: 8px 15px 8px 9px; box-shadow: 0 8px 22px rgba(15,36,56,.12); left: 337px">
+            <span style="width:28px;height:28px;border-radius:999px;background:#FDF3E7;display:flex;align-items:center;justify-content:center;flex:none">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="clock" size="{{ i16 }}" color="var(--accent-signal)" hint-size="16px,16px"></x-import>
+            </span>
+            <span style="font:600 13px/1 var(--font-sans);color:var(--text-strong);white-space:nowrap">Un écosystème d’outils</span>
+          </span>
+                    
+          <span data-hero-chip="3" class="kp-lift" style="position: absolute; top: 378px; z-index: 5; display: flex; align-items: center; gap: 9px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: 999px; padding: 8px 15px 8px 9px; box-shadow: 0 8px 22px rgba(15,36,56,.12); left: 162px">
+            <span style="width:28px;height:28px;border-radius:999px;background:#FDF3E7;display:flex;align-items:center;justify-content:center;flex:none">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="database" size="{{ i16 }}" color="var(--accent-signal)" hint-size="16px,16px"></x-import>
+            </span>
+            <span style="font:600 13px/1 var(--font-sans);color:var(--text-strong);white-space:nowrap">Reprise de vos données</span>
+          </span>
+
+
+          <div data-hero-el="2" style="position:absolute;left:0;top:22px;width:470px;transform-style:preserve-3d;will-change:transform;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(15,36,56,.18);border:1px solid var(--border-default);background:#fff">
+            <div style="height:32px;background:#F7F8FA;border-bottom:1px solid var(--border-default);display:flex;align-items:center;gap:7px;padding:0 13px">
+              <span style="width:8px;height:8px;border-radius:50%;background:#D9DEE6;display:block"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#D9DEE6;display:block"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#D9DEE6;display:block"></span>
+              <span style="font:500 10.5px/1 var(--font-sans);color:#98A2B3;margin-left:10px">Cockpit — Club Horizon Entreprises</span>
+            </div>
+            <div style="display:grid;grid-template-columns:130px minmax(0,1fr);min-height:300px">
+
+              <div style="border-right:1px solid #EDEFF3;background:#FCFCFD;padding:13px 9px;display:flex;flex-direction:column;gap:12px">
+                <span style="display:flex;align-items:center;gap:8px;padding:0 3px">
+                  <span style="width:25px;height:25px;border-radius:7px;background:var(--accent-signal);display:flex;align-items:center;justify-content:center;flex:none;font:700 11.5px/1 var(--font-sans);color:#fff">C</span>
+                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1">
+                    <span style="font:700 10px/1.1 var(--font-sans);color:#101828;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Club Horizon</span>
+                    <span style="font:400 8.5px/1 var(--font-sans);color:#98A2B3">Cockpit</span>
+                  </span>
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevrons-up-down" size="{{ i12 }}" color="#C6CBD4" hint-size="12px,12px"></x-import>
+                </span>
+                <span style="display:flex;align-items:center;gap:7px;border:1px solid #EDEFF3;border-radius:7px;padding:6px 8px;background:#fff">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="search" size="{{ i12 }}" color="var(--accent-signal)" hint-size="12px,12px"></x-import>
+                  <span style="flex:1;font:400 9.5px/1 var(--font-sans);color:#C6CBD4">Rechercher…</span>
+                  <span style="padding:2px 5px;border-radius:4px;background:#F1F3F6;font:600 7.5px/1 var(--font-sans);color:#98A2B3">⌘K</span>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:1px">
+                  <span style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="house" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import>
+                    <span style="flex:1;font:500 10.5px/1 var(--font-sans);color:#667085;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Accueil</span>
+                    
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;background:#FDF0E2;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="folder" size="{{ i13 }}" color="var(--accent-signal)" hint-size="13px,13px"></x-import>
+                    <span style="flex:1;font:600 10.5px/1 var(--font-sans);color:#101828;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Gestion</span>
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i12 }}" color="#C6CBD4" hint-size="12px,12px"></x-import>
+                  </span>
+                  <span style="display:flex;flex-direction:column;gap:1px;padding:3px 0 3px 14px;margin-left:6px;border-left:1px solid #EDEFF3">
+                    <span style="display:flex;align-items:center;padding:5px 9px;border-radius:6px;background:#FFF7EE;border:1px solid #F5E3CE;box-sizing:border-box">
+                      <span style="font:600 10px/1 var(--font-sans);color:#101828">Contacts</span>
+                    </span>
+                    <span style="display:flex;align-items:center;padding:5px 9px;border-radius:6px;box-sizing:border-box">
+                      <span style="font:400 10px/1 var(--font-sans);color:#98A2B3">Groupes</span>
+                    </span>
+                    <span style="display:flex;align-items:center;padding:5px 9px;border-radius:6px;box-sizing:border-box">
+                      <span style="font:400 10px/1 var(--font-sans);color:#98A2B3">Organisations</span>
+                    </span>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="piggy-bank" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import>
+                    <span style="flex:1;font:500 10.5px/1 var(--font-sans);color:#667085;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Finances</span>
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i12 }}" color="#C6CBD4" hint-size="12px,12px"></x-import>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="globe" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import>
+                    <span style="flex:1;font:500 10.5px/1 var(--font-sans);color:#667085;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Communication</span>
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i12 }}" color="#C6CBD4" hint-size="12px,12px"></x-import>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="settings" size="{{ i13 }}" color="#98A2B3" hint-size="13px,13px"></x-import>
+                    <span style="flex:1;font:500 10.5px/1 var(--font-sans);color:#667085;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Paramètres</span>
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="chevron-down" size="{{ i12 }}" color="#C6CBD4" hint-size="12px,12px"></x-import>
+                  </span>
+                </span>
+                <span style="margin-top:auto;display:flex;align-items:center;gap:8px;padding:9px 3px 0;border-top:1px solid #EDEFF3">
+                  <span style="width:22px;height:22px;border-radius:50%;background:#EEF4FC;display:flex;align-items:center;justify-content:center;flex:none;font:700 8.5px/1 var(--font-sans);color:#12468F">MD</span>
+                  <span style="display:flex;flex-direction:column;gap:1px;min-width:0">
+                    <span style="font:600 9.5px/1 var(--font-sans);color:#344054">Marie Dubois</span>
+                    <span style="font:400 8px/1 var(--font-sans);color:#98A2B3">Animatrice</span>
+                  </span>
+                </span>
+              </div>
+
+              <div style="padding:14px 168px 14px 14px;display:flex;flex-direction:column;gap:14px">
+                <span style="display:flex;align-items:flex-start;gap:9px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="panel-left" size="{{ i13 }}" color="#C6CBD4" hint-size="13px,13px"></x-import>
+                  <span style="width:26px;height:26px;border-radius:8px;background:var(--accent-signal);display:flex;align-items:center;justify-content:center;flex:none"><x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="users" size="{{ i14 }}" color="#ffffff" hint-size="14px,14px"></x-import></span>
+                  <span style="display:flex;flex-direction:column;gap:3px;flex:1;min-width:0">
+                    <span style="font:700 14px/1 var(--font-sans);color:#101828">Contacts</span>
+                    <span style="font:400 9px/1.2 var(--font-sans);color:#98A2B3">Gérez les contacts de votre réseau.</span>
+                  </span>
+                </span>
+
+                <span style="display:flex;align-items:flex-end;gap:14px">
+                  <span style="display:flex;flex-direction:column;gap:3px">
+                    <span style="display:flex;align-items:center;gap:7px">
+                      <span style="font:700 12.5px/1 var(--font-sans);color:#101828">Membres</span>
+                      <span style="padding:2px 7px;border-radius:20px;background:#FDF0E2;font:700 9px/1 var(--font-sans);color:#B54708;font-variant-numeric:tabular-nums">40</span>
+                    </span>
+                    <span style="font:400 9px/1 var(--font-sans);color:#98A2B3">Tous les membres du réseau</span>
+                  </span>
+                </span>
+
+
+                <span style="display:flex;flex-direction:column">
+                  <span style="display:flex;align-items:center;gap:8px;padding:0 0 6px">
+                    <span style="width:150px;flex:none;font:600 7.5px/1 var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:#98A2B3">Nom</span>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #F4F5F7">
+                    <span style="width:150px;flex:none;display:flex;flex-direction:column;gap:2px;min-width:0">
+                      <span style="font:700 10.5px/1.15 var(--font-sans);color:#101828;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">MARCHAND</span>
+                      <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Julien</span>
+                    </span>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #F4F5F7">
+                    <span style="width:150px;flex:none;display:flex;flex-direction:column;gap:2px;min-width:0">
+                      <span style="font:700 10.5px/1.15 var(--font-sans);color:#101828;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">DAUTRY</span>
+                      <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Mathilde</span>
+                    </span>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #F4F5F7">
+                    <span style="width:150px;flex:none;display:flex;flex-direction:column;gap:2px;min-width:0">
+                      <span style="font:700 10.5px/1.15 var(--font-sans);color:#101828;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">BELLOT</span>
+                      <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Karim</span>
+                    </span>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #F4F5F7">
+                    <span style="width:150px;flex:none;display:flex;flex-direction:column;gap:2px;min-width:0">
+                      <span style="font:700 10.5px/1.15 var(--font-sans);color:#101828;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">LENOIR</span>
+                      <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Sophie</span>
+                    </span>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #F4F5F7">
+                    <span style="width:150px;flex:none;display:flex;flex-direction:column;gap:2px;min-width:0">
+                      <span style="font:700 10.5px/1.15 var(--font-sans);color:#101828;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">AMRANI</span>
+                      <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Yasmine</span>
+                    </span>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div data-hero-el="3" style="position:absolute;right:14px;top:104px;width:218px;z-index:3;transform-style:preserve-3d;will-change:transform">
+            <div style="border-radius:28px;border:1px solid var(--border-default);background:#fff;padding:6px;box-sizing:border-box;box-shadow:0 26px 56px rgba(15,36,56,.26)">
+              <div style="border-radius:23px;overflow:hidden;background:#fff;font-family:Montserrat,sans-serif;height:412px;display:flex;flex-direction:column">
+
+                <div style="background:#12468F;padding:11px 12px 10px;display:flex;align-items:center;gap:9px;flex:none">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="menu" size="{{ i13 }}" color="#ffffff" hint-size="13px,13px"></x-import>
+                  <span style="flex:1;font:700 10.5px/1.2 Montserrat,sans-serif;color:#fff;text-align:center;padding-right:22px">Club Horizon</span>
+                </div>
+
+                <div style="height:58px;background:linear-gradient(180deg,#12468f 0%,#5d84b6 100%);position:relative;flex:none">
+                  <span style="position:absolute;inset:0;background-image:radial-gradient(circle, rgba(255,255,255,.24) 1px, transparent 1.4px);background-size:15px 15px;display:block"></span>
+                  <span style="position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);width:52px;height:52px;border-radius:999px;background:#fff;border:2px solid #fff;box-shadow:0 3px 9px rgba(16,24,40,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box">
+                    <span style="font:700 7.5px/1.15 Montserrat,sans-serif;color:#12468f">Club</span>
+                    <span style="font:700 7.5px/1 Montserrat,sans-serif;color:#e8a33d">HORIZON</span>
+                  </span>
+                </div>
+
+                <div style="padding:24px 14px 0;flex:none">
+                  <p style="font:400 8.5px/1.45 Montserrat,sans-serif;color:#98A2B3;text-align:center;margin:0">Networking, synergies et opportunités pour dirigeants.</p>
+                </div>
+
+                <div style="padding:13px 12px 0;display:flex;flex-direction:column;gap:8px;flex:none">
+                  <span style="display:flex;align-items:baseline;justify-content:space-between">
+                    <span style="font:700 11px/1 Montserrat,sans-serif;color:#101828">Prochain événement</span>
+                    <span style="display:flex;align-items:center;gap:4px">
+                      <span style="font:600 8.5px/1 Montserrat,sans-serif;color:#12468F">Voir</span>
+                      <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="external-link" size="{{ i10 }}" color="#12468F" hint-size="10px,10px"></x-import>
+                    </span>
+                  </span>
+                  <span style="border:1px solid #EDEFF3;border-radius:11px;overflow:hidden;display:block;box-shadow:0 2px 6px rgba(16,24,40,.05)">
+                    <img src="assets/photos/networking-cocktail.png" alt="Visuel de la soirée du réseau" style="width:100%;height:52px;object-fit:cover;display:block">
+                    <span style="padding:9px 10px;display:flex;flex-direction:column;gap:3px">
+                      <span style="font:700 6.5px/1 Montserrat,sans-serif;letter-spacing:.1em;color:#98A2B3">À VENIR</span>
+                      <span style="font:700 9.5px/1.2 Montserrat,sans-serif;color:#101828">Soirée de début d’année</span>
+                      <span style="font:400 8px/1 Montserrat,sans-serif;color:#98A2B3">mercredi 23 septembre 2026</span>
+                      <span style="font:400 7.5px/1.3 Montserrat,sans-serif;color:#C6CBD4">Venez participer à notre soirée festive…</span>
+                    </span>
+                  </span>
+                </div>
+
+                <div style="padding:8px 12px 0;display:flex;gap:8px;flex:none">
+                  <span style="flex:1;border:1px solid #EDEFF3;border-radius:11px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:4px;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="newspaper" size="{{ i14 }}" color="#12468F" hint-size="14px,14px"></x-import>
+                    <span style="font:700 13px/1 Montserrat,sans-serif;color:#101828;font-variant-numeric:tabular-nums">3</span>
+                    <span style="font:400 7.5px/1 Montserrat,sans-serif;color:#98A2B3">Actualités</span>
+                  </span>
+                  <span style="flex:1;border:1px solid #EDEFF3;border-radius:11px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:4px;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="calendar-days" size="{{ i14 }}" color="#12468F" hint-size="14px,14px"></x-import>
+                    <span style="font:700 13px/1 Montserrat,sans-serif;color:#101828;font-variant-numeric:tabular-nums">3</span>
+                    <span style="font:400 7.5px/1 Montserrat,sans-serif;color:#98A2B3">Événements</span>
+                  </span>
+                </div>
+
+                <div style="margin-top:auto;border-top:1px solid #EDEFF3;padding:7px 3px 8px;display:flex;align-items:flex-end;position:relative;flex:none">
+                  <span title="Accueil" style="flex:1;display:flex;align-items:center;justify-content:center;background:#EAF1FA;border-radius:9px;padding:9px 0;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="house" size="{{ i15 }}" color="#12468F" hint-size="15px,15px"></x-import>
+                  </span>
+                  <span title="Actus" style="flex:1;display:flex;align-items:center;justify-content:center;padding:9px 0;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="newspaper" size="{{ i15 }}" color="#C6CBD4" hint-size="15px,15px"></x-import>
+                  </span>
+                  <span title="Agenda" style="flex:1;display:flex;align-items:center;justify-content:center;padding:9px 0;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="calendar-days" size="{{ i15 }}" color="#C6CBD4" hint-size="15px,15px"></x-import>
+                  </span>
+                  <span title="Entreprises" style="flex:1;display:flex;align-items:center;justify-content:center;padding:9px 0;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="building-2" size="{{ i15 }}" color="#C6CBD4" hint-size="15px,15px"></x-import>
+                  </span>
+                  <span title="Membres" style="flex:1;display:flex;align-items:center;justify-content:center;padding:9px 0;box-sizing:border-box">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="users" size="{{ i15 }}" color="#C6CBD4" hint-size="15px,15px"></x-import>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1312px;margin:0 auto;padding:32px 64px 0">
+    <div style="background:var(--surface-raised);border:1px solid var(--border-default);border-radius:16px;padding:32px 40px;display:flex;flex-direction:column;gap:28px;box-shadow:0 10px 30px rgba(15,36,56,.06)">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:48px">
+        <p class="kp-label" style="flex:none">Ils nous font déjà confiance</p>
+        <div style="display:flex;gap:48px;align-items:baseline">
+          <span style="display:flex;align-items:baseline;gap:10px"><span style="font:600 40px/1 var(--font-sans);letter-spacing:-.03em;color:var(--text-strong);font-variant-numeric:tabular-nums">15</span><span class="kp-small">réseaux équipés</span></span>
+          <span style="width:1px;height:22px;background:var(--border-default)"></span>
+          <span style="display:flex;align-items:baseline;gap:10px"><span style="font:600 40px/1 var(--font-sans);letter-spacing:-.03em;color:var(--text-strong);font-variant-numeric:tabular-nums">800</span><span class="kp-small">membres environ</span></span>
+        </div>
+      </div>
+      <div class="kp-marquee" style="overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)">
+          <div class="kp-marquee-track" style="display:flex;gap:16px;width:max-content">
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/bas-chantenay.png" alt="Collectif Entreprises Bas-Chantenay" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/reso.png" alt="Réso" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/le-mans-ouest-entreprises.png" alt="Le Mans Ouest Entreprises" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-business-sarthe.png" alt="Club Business Sarthe" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/c2es.png" alt="C2ES — Club des Entreprises d’Estuaire et Sillon" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/cina.png" alt="CINA" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-07.png" alt="Club adhérent" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/brezeo.png" alt="Brézéo Entrepreneurs Cœur de Bretagne" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-09.png" alt="Club adhérent" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/zac-grand-large.png" alt="ZAC Grand Large" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-kairos.png" alt="Club Kairos" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/ressource-industrie.png" alt="Ressource Industrie" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/wtc-rennes-bretagne.png" alt="WTC Rennes Bretagne" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-pro-vals-de-saintonge.png" alt="Club.pro Vals de Saintonge" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/v2.png" alt="V²" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/bas-chantenay.png" alt="Collectif Entreprises Bas-Chantenay" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/reso.png" alt="Réso" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/le-mans-ouest-entreprises.png" alt="Le Mans Ouest Entreprises" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-business-sarthe.png" alt="Club Business Sarthe" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/c2es.png" alt="C2ES — Club des Entreprises d’Estuaire et Sillon" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/cina.png" alt="CINA" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-07.png" alt="Club adhérent" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/brezeo.png" alt="Brézéo Entrepreneurs Cœur de Bretagne" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-09.png" alt="Club adhérent" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/zac-grand-large.png" alt="ZAC Grand Large" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-kairos.png" alt="Club Kairos" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/ressource-industrie.png" alt="Ressource Industrie" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/wtc-rennes-bretagne.png" alt="WTC Rennes Bretagne" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/club-pro-vals-de-saintonge.png" alt="Club.pro Vals de Saintonge" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+            <span style="flex:none;width:112px;height:112px;border:1px solid var(--border-default);border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;transition:border-color 180ms ease,transform 180ms ease" style-hover="border-color:var(--border-strong);transform:translateY(-2px)"><img src="assets/logos/v2.png" alt="V²" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></span>
+          </div>
+    </div>
+  </div></section>
+
+  <sc-if value="{{ showConstat }}" hint-placeholder-val="{{ true }}">
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:flex;flex-direction:column;gap:40px">
+      
+      <div style="display:grid;grid-template-columns:6fr 6fr;gap:64px;align-items:end">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="120px,16px">Le constat</x-import>
+          <h2 class="kp-h1" style="width: 999px; height: 99px">Ceux qui gèrent le réseau <span class="kp-accent">passent d’un outil à l’autre toute la journée.</span></h2><p class="kp-body-lg" style="width: 1301px; height: 55px">Des échéances qui passent, des relances qui s’accumulent, un fichier de membres que personne n’ose ouvrir. Le bureau administre au lieu d’animer.</p>
+        </div>
+        
+      </div><div style="display:grid;grid-template-columns:repeat(4,1fr) 56px 1.15fr;gap:16px;align-items:stretch">
+        <div style="border:1px dashed var(--border-strong);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;background:transparent">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="table" size="{{ i20 }}" color="var(--text-muted)" hint-size="20px,20px"></x-import>
+          <p class="kp-h3" style="color:var(--text-muted)">Excel</p>
+          <p class="kp-small" style="color:var(--text-muted)">Le fichier des membres, dans trois versions différentes.</p>
+        </div>
+        <div style="border:1px dashed var(--border-strong);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;background:transparent">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="mail" size="{{ i20 }}" color="var(--text-muted)" hint-size="20px,20px"></x-import>
+          <p class="kp-h3" style="color:var(--text-muted)">Boîte mail</p>
+          <p class="kp-small" style="color:var(--text-muted)">Les invitations, les rappels, les relances de cotisation.</p>
+        </div>
+        <div style="border:1px dashed var(--border-strong);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;background:transparent">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="ticket" size="{{ i20 }}" color="var(--text-muted)" hint-size="20px,20px"></x-import>
+          <p class="kp-h3" style="color:var(--text-muted)">Billetterie</p>
+          <p class="kp-small" style="color:var(--text-muted)">Les inscriptions aux événements, hors du fichier membres.</p>
+        </div>
+        <div style="border:1px dashed var(--border-strong);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;background:transparent">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="landmark" size="{{ i20 }}" color="var(--text-muted)" hint-size="20px,20px"></x-import>
+          <p class="kp-h3" style="color:var(--text-muted)">Virements</p>
+          <p class="kp-small" style="color:var(--text-muted)">Les règlements, pointés à la main par le trésorier.</p>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ i24 }}" color="var(--accent-signal)" hint-size="24px,24px"></x-import>
+        </div>
+        <div class="kp-dark" style="background:var(--navy-900);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:12px;box-shadow:0 16px 36px rgba(15,36,56,.18)">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="white" height="{{ logoSmall }}" base="." hint-size="96px,20px"></x-import>
+          <p class="kp-h3" style="color:#fff;margin-top:4px">Un seul endroit</p>
+          <p class="kp-small" style="color:rgba(255,255,255,.78)">Les membres, l’argent, les événements et la communication dans le même outil — et vos membres dans l’application.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+
+  <sc-if value="{{ showMission }}" hint-placeholder-val="{{ true }}">
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="140px,16px">Notre mission</x-import>
+        <h2 class="kp-display-l">Faire rayonner <span class="kp-accent">les réseaux d’entreprises.</span></h2>
+        <p class="kp-body-lg" style="max-width:600px">Les réseaux d’entreprises font vivre l’économie de leur territoire. Nous leur donnons la plateforme et l’accompagnement pour tenir ce rôle, et rendre visible ce qu’ils produisent.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border-default);margin-top:8px">
+          <div class="kp-lift" style="padding:24px 24px 24px 0;border-right:1px solid var(--border-default);display:flex;flex-direction:column;gap:10px">
+            <span style="display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="users" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span class="kp-label" style="color:var(--text-strong)">Vos membres</span>
+            </span>
+            <p class="kp-small">Mis en lumière&nbsp;: leur entreprise, leur expertise, ce qu’ils cherchent.</p>
+          </div>
+          <div class="kp-lift" style="padding:24px;border-right:1px solid var(--border-default);display:flex;flex-direction:column;gap:10px">
+            <span style="display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="megaphone" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span class="kp-label" style="color:var(--text-strong)">Vos actions</span>
+            </span>
+            <p class="kp-small">Visibles au-delà du réseau&nbsp;: événements, actualités, prises de position.</p>
+          </div>
+          <div class="kp-lift" style="padding:24px;display:flex;flex-direction:column;gap:10px">
+            <span style="display:flex;align-items:center;gap:10px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="trending-up" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+              <span class="kp-label" style="color:var(--text-strong)">Votre impact</span>
+            </span>
+            <p class="kp-small">Mesuré et raconté&nbsp;: ce que le collectif produit sur son territoire.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.PhotoFrame" src="assets/photos/mission-club-eclaire.png" alt="Un réseau en réunion, éclairé depuis la rue à la tombée du jour" ratio="1 / 1" hint-size="100%,466px"></x-import>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <div data-pin="1" style="position:relative;height:calc(100vh + 120px);margin-top:112px;background:var(--navy-900)">
+  <section class="kp-dark" style="background:var(--navy-900);position:sticky;top:0;min-height:100vh;display:flex;align-items:center;justify-content:center">
+    <div style="max-width:1312px;margin:0 auto;padding:28px 64px;display:flex;flex-direction:column;gap:20px;width:100%;box-sizing:border-box">
+      <div style="display:grid;grid-template-columns:6fr 6fr;gap:64px;align-items:end">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" tone="strong" hint-size="180px,16px">Ce que fait la plateforme</x-import>
+          <h2 class="kp-h1" style="color:#fff">Trois métiers, une seule plateforme. <span class="kp-accent">Tout est centralisé.</span></h2>
+        </div>
+        <div style="display:flex;justify-content:flex-end;align-items:end">
+          <a href="Fonctionnalites.dc.html" style="display:flex;align-items:center;gap:10px;font:500 16px/1 var(--font-sans);color:#fff;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:6px" style-hover="gap:16px;border-bottom:1px solid var(--accent-signal)">
+            <span>Voir toutes les fonctionnalités</span>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ i18 }}" color="#ffffff" hint-size="18px,18px"></x-import>
+          </a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:5fr 7fr;gap:40px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;align-items:center;gap:14px;padding:0 20px 10px">
+            <span style="font:600 11.5px/1 var(--font-sans);color:#fff;font-variant-numeric:tabular-nums">{{ featCounter }}</span>
+            <span style="flex:1;height:2px;background:rgba(255,255,255,.14);display:block;overflow:hidden"><span ref="{{ pinBarRef }}" style="display:block;height:2px;width:20%;background:var(--accent-signal);transition:width 240ms cubic-bezier(.2,.6,.2,1)"></span></span>
+          </div>
+          <sc-for list="{{ features }}" as="f" hint-placeholder-count="5">
+            <div onClick="{{ f.pick }}" data-feat-row="{{ f.idx }}" style="display:flex;gap:16px;padding:11px 20px;border-radius:10px;cursor:pointer;border-left:2px solid {{ f.bar }};background:{{ f.bg }};transition:background 200ms ease">
+              <span style="font:600 11.5px/1.6 var(--font-sans);color:rgba(255,255,255,.38);font-variant-numeric:tabular-nums;flex:none">{{ f.num }}</span>
+              <span style="display:flex;flex-direction:column;gap:5px">
+                <span style="font:600 16.5px/1.3 var(--font-sans);color:#fff">{{ f.title }}</span>
+                <span data-feat-body="{{ f.idx }}" style="font:400 13px/1.55 var(--font-sans);color:rgba(255,255,255,.66);display:block;overflow:hidden">{{ f.body }}</span>
+              </span>
+            </div>
+          </sc-for>
+          <a href="Fonctionnalites.dc.html" style="display:flex;align-items:center;gap:10px;font:500 15px/1 var(--font-sans);color:var(--accent-signal);width:fit-content;margin:14px 0 0 22px" style-hover="gap:16px">
+            <span>Tout voir en détail</span>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+          </a>
+        </div>
+        <div style="border-radius:14px;overflow:hidden;border:1px solid var(--white-a12);background:#fff;box-shadow:0 28px 64px rgba(0,0,0,.32);align-self:center">
+          <div style="height:34px;background:#F1F3F6;border-bottom:1px solid var(--border-default);display:flex;align-items:center;gap:7px;padding:0 14px">
+            <span style="width:9px;height:9px;border-radius:50%;background:#D9DEE6;display:block"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:#D9DEE6;display:block"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:#D9DEE6;display:block"></span>
+            <span style="font:500 11px/1 var(--font-sans);color:#6B7280;margin-left:12px">Cockpit — {{ shotLabel }}</span>
+          </div>
+          <div ref="{{ shotWrapRef }}" style="position:relative;height:470px;overflow:hidden;background:#fff">
+          <div style="position:absolute;left:0;top:0;width:100%;height:470px;overflow:hidden;background:#fff;perspective:1400px;transform-style:preserve-3d;transform-origin:top left">
+
+            <div data-shot="0" style="position:absolute;inset:0;overflow:hidden;padding:18px 20px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
+              <div style="display:flex;align-items:center;gap:10px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="badge-check" size="{{ i18 }}" color="#18539E" hint-size="18px,18px"></x-import>
+                <span style="font:700 15px/1 var(--font-sans);color:#101828">Adhésions</span>
+                <span style="padding:3px 9px;border-radius:20px;background:#EAF1FB;font:600 10px/1 var(--font-sans);color:#18539E;border:1px solid #CFE0F5;flex:none">Saison 2025-2026</span>
+                <span style="margin-left:auto;padding:7px 12px;border-radius:7px;background:#18539E;font:600 10.5px/1 var(--font-sans);color:#fff">+ Nouvelle adhésion</span>
+              </div>
+              <div style="display:flex;gap:10px">
+            <div style="flex:1;border:1px solid #E4E7EC;border-radius:9px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font:600 9px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Reste à encaisser</span>
+              <span style="font:700 20px/1 var(--font-sans);color:#B54708;font-variant-numeric:tabular-nums">8 250&nbsp;€</span>
+              <span style="font:400 9.5px/1.3 var(--font-sans);color:#98A2B3">14 adhésions en attente</span>
+            </div>
+            <div style="flex:1;border:1px solid #E4E7EC;border-radius:9px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font:600 9px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Encaissé</span>
+              <span style="font:700 20px/1 var(--font-sans);color:#12805C;font-variant-numeric:tabular-nums">18 500&nbsp;€</span>
+              <span style="font:400 9.5px/1.3 var(--font-sans);color:#98A2B3">31 adhésions réglées</span>
+            </div>
+            <div style="flex:1;border:1px solid #E4E7EC;border-radius:9px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font:600 9px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Portefeuille actif</span>
+              <span style="font:700 20px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">26 750&nbsp;€</span>
+              <span style="font:400 9.5px/1.3 var(--font-sans);color:#98A2B3">45 adhésions · rétention 83&nbsp;%</span>
+            </div>
+              </div>
+              <div style="display:flex;gap:16px;border-bottom:1px solid #E4E7EC">
+                <span style="padding:0 0 8px;border-bottom:2px solid #18539E;font:600 11px/1 var(--font-sans);color:#18539E">Toutes · 45</span>
+                <span style="padding:0 0 8px;font:500 11px/1 var(--font-sans);color:#667085">À relancer · 14</span>
+                <span style="padding:0 0 8px;font:500 11px/1 var(--font-sans);color:#667085">Réglées · 31</span>
+                <span style="padding:0 0 8px;font:500 11px/1 var(--font-sans);color:#667085">Clôturées · 4</span>
+              </div>
+              <div style="display:flex;flex-direction:column">
+                <div style="display:grid;grid-template-columns:1.5fr 1fr .7fr .8fr;gap:10px;padding:7px 0;border-bottom:1px solid #EDEFF3">
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Entreprise</span>
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Formule</span>
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">Montant</span>
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">Statut</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1.5fr 1fr .7fr .8fr;gap:10px;padding:10px 0;border-bottom:1px solid #F4F5F7;align-items:center">
+                  <span style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#7C3AED;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">TH</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font:600 11px/1 var(--font-sans);color:#101828">Thermalis</span><span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Nathalie Aubert</span></span></span>
+                  <span style="font:400 10.5px/1.3 var(--font-sans);color:#344054">Entreprise 20-49</span>
+                  <span style="font:600 11px/1 var(--font-sans);color:#101828;text-align:right;font-variant-numeric:tabular-nums">750&nbsp;€</span>
+                  <span style="display:flex;justify-content:flex-end"><span style="padding:3px 9px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C;border:1px solid #A6DFC4;flex:none">Réglée</span></span>
+                </div>
+                <div style="display:grid;grid-template-columns:1.5fr 1fr .7fr .8fr;gap:10px;padding:10px 0;border-bottom:1px solid #F4F5F7;align-items:center">
+                  <span style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#DB7B2B;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">AL</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font:600 11px/1 var(--font-sans);color:#101828">Atelier Lumis</span><span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Romain Audigier</span></span></span>
+                  <span style="font:400 10.5px/1.3 var(--font-sans);color:#344054">Artisan &lt; 10</span>
+                  <span style="font:600 11px/1 var(--font-sans);color:#101828;text-align:right;font-variant-numeric:tabular-nums">340&nbsp;€</span>
+                  <span style="display:flex;justify-content:flex-end"><span style="padding:3px 9px;border-radius:20px;background:#FDECD9;font:600 10px/1 var(--font-sans);color:#B54708;border:1px solid #F0C99A;flex:none">Relance 2</span></span>
+                </div>
+                <div style="display:grid;grid-template-columns:1.5fr 1fr .7fr .8fr;gap:10px;padding:10px 0;align-items:center">
+                  <span style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#12805C;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">BK</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font:600 11px/1 var(--font-sans);color:#101828">Biokas</span><span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Isabelle Courtois</span></span></span>
+                  <span style="font:400 10.5px/1.3 var(--font-sans);color:#344054">Entreprise 50+</span>
+                  <span style="font:600 11px/1 var(--font-sans);color:#101828;text-align:right;font-variant-numeric:tabular-nums">1 200&nbsp;€</span>
+                  <span style="display:flex;justify-content:flex-end"><span style="padding:3px 9px;border-radius:20px;background:#EAF1FB;font:600 10px/1 var(--font-sans);color:#18539E;border:1px solid #CFE0F5;flex:none">À diffuser</span></span>
+                </div>
+              </div>
+              <div style="margin-top:auto;background:#FDF6EE;border:1px solid #F5E3CE;border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="clock" size="{{ i14 }}" color="#B54708" hint-size="14px,14px"></x-import>
+                <span style="font:500 10.5px/1.4 var(--font-sans);color:#B54708">Prochaine relance programmée dans 6 jours · 14 destinataires · par email</span>
+              </div>
+            </div>
+
+            <div data-shot="1" style="position:absolute;inset:0;overflow:hidden;padding:18px 20px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
+              <div style="display:flex;align-items:center;gap:10px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="users" size="{{ i18 }}" color="#18539E" hint-size="18px,18px"></x-import>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:700 15px/1 var(--font-sans);color:#101828">Contacts</span>
+                  <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Membres, partenaires et anciens.</span>
+                </span>
+                <span style="margin-left:auto;padding:7px 12px;border-radius:7px;background:#18539E;font:600 10.5px/1 var(--font-sans);color:#fff;flex:none">+ Nouveau contact</span>
+              </div>
+              <div style="display:flex;gap:24px;border-bottom:1px solid #E4E7EC;padding-bottom:0">
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:#98A2B3">Contacts actifs</span>
+                  <span style="display:flex;gap:14px">
+                    <span style="padding:0 0 8px;border-bottom:2px solid #18539E;display:flex;align-items:center;gap:6px"><span style="font:600 11px/1 var(--font-sans);color:#18539E">Membres</span><span style="padding:3px 9px;border-radius:20px;background:#EAF1FB;font:600 10px/1 var(--font-sans);color:#18539E;border:1px solid #CFE0F5;flex:none">52</span></span>
+                    <span style="padding:0 0 8px;display:flex;align-items:center;gap:6px"><span style="font:500 11px/1 var(--font-sans);color:#667085">Partenaires</span><span style="padding:3px 9px;border-radius:20px;background:#F1F3F6;font:600 10px/1 var(--font-sans);color:#667085;border:1px solid #E4E7EC;flex:none">4</span></span>
+                  </span>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:#98A2B3">Contacts inactifs</span>
+                  <span style="display:flex;gap:14px">
+                    <span style="padding:0 0 8px;display:flex;align-items:center;gap:6px"><span style="font:500 11px/1 var(--font-sans);color:#667085">Anciens membres</span><span style="padding:3px 9px;border-radius:20px;background:#F1F3F6;font:600 10px/1 var(--font-sans);color:#667085;border:1px solid #E4E7EC;flex:none">9</span></span>
+                  </span>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:#98A2B3">Administratifs</span>
+                  <span style="display:flex;gap:14px">
+                    <span style="padding:0 0 8px;font:500 11px/1 var(--font-sans);color:#667085">Administrateurs</span>
+                    <span style="padding:0 0 8px;font:500 11px/1 var(--font-sans);color:#667085">Référents</span>
+                  </span>
+                </span>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <span style="flex:1;border:1px solid #E4E7EC;border-radius:7px;padding:8px 11px;display:flex;align-items:center;gap:8px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="search" size="{{ i14 }}" color="#98A2B3" hint-size="14px,14px"></x-import>
+                  <span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Rechercher un membre</span>
+                </span>
+                <span style="border:1px solid #E4E7EC;border-radius:7px;padding:8px 11px;display:flex;align-items:center;gap:7px">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="filter" size="{{ i13 }}" color="#344054" hint-size="13px,13px"></x-import>
+                  <span style="font:600 10.5px/1 var(--font-sans);color:#344054">Filtres avancés</span>
+                </span>
+                <span style="border:1px solid #E4E7EC;border-radius:7px;padding:8px 11px;font:600 10.5px/1 var(--font-sans);color:#344054">Fonctions</span>
+                <span style="border:1px solid #E4E7EC;border-radius:7px;padding:8px 11px;font:600 10.5px/1 var(--font-sans);color:#344054">Domaines d’expertise</span>
+              </div>
+              <div style="display:flex;flex-direction:column">
+                <div style="display:grid;grid-template-columns:1.1fr 1fr 1.3fr .8fr;gap:10px;padding:7px 0;border-bottom:1px solid #EDEFF3">
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Nom</span>
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Entreprise</span>
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Fonctions</span>
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Référent</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1.1fr 1fr 1.3fr .8fr;gap:10px;padding:9px 0;border-bottom:1px solid #F4F5F7;align-items:center">
+                  <span style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#18539E;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">NA</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font:700 10.5px/1 var(--font-sans);color:#101828">Aubert</span><span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Nathalie</span></span></span>
+                  <span style="font:500 10.5px/1.3 var(--font-sans);color:#344054">Thermalis</span>
+                  <span style="border:1px dashed #D9DEE6;border-radius:6px;padding:6px 8px;display:flex;flex-direction:column;gap:2px"><span style="font:600 9.5px/1.2 var(--font-sans);color:#101828">Directrice générale</span><span style="font:400 8.5px/1.2 var(--font-sans);color:#98A2B3">Direction &amp; gouvernance</span></span>
+                  <span style="display:flex;align-items:center;gap:7px"><span style="width:26px;height:26px;border-radius:50%;background:#B54708;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">MD</span><span style="font:400 9.5px/1.2 var(--font-sans);color:#344054">Marc D.</span></span>
+                </div>
+                <div style="display:grid;grid-template-columns:1.1fr 1fr 1.3fr .8fr;gap:10px;padding:9px 0;border-bottom:1px solid #F4F5F7;align-items:center">
+                  <span style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#7C3AED;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">RA</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font:700 10.5px/1 var(--font-sans);color:#101828">Audigier</span><span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Romain</span></span></span>
+                  <span style="font:500 10.5px/1.3 var(--font-sans);color:#344054">Atelier Lumis</span>
+                  <span style="border:1px dashed #D9DEE6;border-radius:6px;padding:6px 8px;display:flex;flex-direction:column;gap:2px"><span style="font:600 9.5px/1.2 var(--font-sans);color:#101828">Fondateur, architecte</span><span style="font:400 8.5px/1.2 var(--font-sans);color:#98A2B3">Direction &amp; gouvernance</span></span>
+                  <span style="font:400 10.5px/1 var(--font-sans);color:#C6CBD4">—</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1.1fr 1fr 1.3fr .8fr;gap:10px;padding:9px 0;align-items:center">
+                  <span style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#12805C;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">IC</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font:700 10.5px/1 var(--font-sans);color:#101828">Courtois</span><span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Isabelle</span></span></span>
+                  <span style="font:500 10.5px/1.3 var(--font-sans);color:#344054">Biokas</span>
+                  <span style="border:1px dashed #D9DEE6;border-radius:6px;padding:6px 8px;display:flex;flex-direction:column;gap:2px"><span style="font:600 9.5px/1.2 var(--font-sans);color:#101828">Présidente, fondatrice</span><span style="font:400 8.5px/1.2 var(--font-sans);color:#98A2B3">Direction &amp; gouvernance</span></span>
+                  <span style="display:flex;align-items:center;gap:7px"><span style="width:26px;height:26px;border-radius:50%;background:#18539E;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">SM</span><span style="font:400 9.5px/1.2 var(--font-sans);color:#344054">Sophie M.</span></span>
+                </div>
+              </div>
+            </div>
+
+            <div data-shot="2" style="position:absolute;inset:0;overflow:hidden;display:flex;flex-direction:column;box-sizing:border-box">
+          <div style="padding:16px 20px;border-bottom:1px solid #EDEFF3;display:flex;align-items:center;gap:12px">
+            <span style="width:38px;height:44px;border:1px solid #E4E7EC;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;overflow:hidden">
+              <span style="width:100%;background:#18539E;font:700 8px/1 var(--font-sans);color:#fff;text-align:center;padding:3px 0">MARS</span>
+              <span style="font:700 15px/1 var(--font-sans);color:#101828;padding-top:4px;font-variant-numeric:tabular-nums">12</span>
+            </span>
+            <span style="flex:1;display:flex;flex-direction:column;gap:4px;min-width:0">
+              <span style="font:700 14px/1.2 var(--font-sans);color:#101828">Petit-déjeuner des adhérents</span>
+              <span style="font:400 11px/1 var(--font-sans);color:#98A2B3">8 h 30 · Espace Bellevue · Le Mans</span>
+            </span>
+            <span style="padding:4px 10px;border-radius:20px;background:#E7F5EF;font:600 10.5px/1 var(--font-sans);color:#12805C;flex:none">En cours</span>
+          </div>
+        
+          <div style="padding:0 20px;display:flex;gap:16px;border-bottom:1px solid #EDEFF3">
+            <span style="padding:11px 0;font:500 11.5px/1 var(--font-sans);color:#667085">Infos</span>
+            <span style="padding:11px 0;font:500 11.5px/1 var(--font-sans);color:#667085">Billetterie</span>
+            <span style="padding:11px 0;font:500 11.5px/1 var(--font-sans);color:#667085">Invités</span>
+            <span style="padding:11px 0;border-bottom:2px solid #18539E;font:600 11.5px/1 var(--font-sans);color:#18539E">Présence</span>
+            <span style="padding:11px 0;font:500 11.5px/1 var(--font-sans);color:#667085">Finances</span>
+          </div>
+        
+          <div style="padding:18px 20px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:end;justify-content:space-between;gap:16px">
+              <span style="display:flex;flex-direction:column;gap:5px">
+                <span style="font:600 10px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Présence confirmée</span>
+                <span style="display:flex;align-items:baseline;gap:6px">
+                  <span style="font:700 28px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">48</span>
+                  <span style="font:500 13px/1 var(--font-sans);color:#98A2B3">/ 64 inscrits</span>
+                </span>
+              </span>
+              <span style="display:flex;align-items:center;gap:8px;border:1px solid #E4E7EC;border-radius:7px;padding:8px 12px;flex:none">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="qr-code" size="{{ i14 }}" color="#18539E" hint-size="14px,14px"></x-import>
+                <span style="font:600 11px/1 var(--font-sans);color:#18539E">Scanner un QR code</span>
+              </span>
+            </div>
+            <span style="height:6px;border-radius:3px;background:#F1F3F6;display:block;overflow:hidden"><span style="display:block;height:6px;width:75%;background:#12805C"></span></span>
+            <div style="display:flex;gap:20px">
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 15px/1 var(--font-sans);color:#12805C;font-variant-numeric:tabular-nums">58</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">réglés en ligne</span></span>
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 15px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">12</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">invités externes</span></span>
+              <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 15px/1 var(--font-sans);color:#B54708;font-variant-numeric:tabular-nums">6</span><span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">sans réponse</span></span>
+            </div>
+            <div style="display:flex;flex-direction:column;border-top:1px solid #EDEFF3">
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F4F5F7">
+              <span style="width:26px;height:26px;border-radius:50%;background:#18539E;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">NA</span>
+              <span style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0">
+                <span style="font:600 12px/1.2 var(--font-sans);color:#101828">Nathalie Aubert</span>
+                <span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Thermalis</span>
+              </span>
+              <span style="display:flex;align-items:center;gap:6px;flex:none"><span style="width:18px;height:18px;border-radius:50%;background:#12805C;display:flex;align-items:center;justify-content:center;font:700 10px/1 var(--font-sans);color:#fff">✓</span><span style="font:600 10.5px/1 var(--font-sans);color:#12805C">Présent</span></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F4F5F7">
+              <span style="width:26px;height:26px;border-radius:50%;background:#7C3AED;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">RA</span>
+              <span style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0">
+                <span style="font:600 12px/1.2 var(--font-sans);color:#101828">Romain Audigier</span>
+                <span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Atelier Lumis</span>
+              </span>
+              <span style="display:flex;align-items:center;gap:6px;flex:none"><span style="width:18px;height:18px;border-radius:50%;background:#12805C;display:flex;align-items:center;justify-content:center;font:700 10px/1 var(--font-sans);color:#fff">✓</span><span style="font:600 10.5px/1 var(--font-sans);color:#12805C">Présent</span></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F4F5F7">
+              <span style="width:26px;height:26px;border-radius:50%;background:#12805C;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 var(--font-sans);color:#fff;flex:none">IC</span>
+              <span style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0">
+                <span style="font:600 12px/1.2 var(--font-sans);color:#101828">Isabelle Courtois</span>
+                <span style="font:400 10.5px/1 var(--font-sans);color:#98A2B3">Biokas</span>
+              </span>
+              <span style="display:flex;align-items:center;gap:6px;flex:none"><span style="width:18px;height:18px;border-radius:50%;border:1.5px solid #C6CBD4;display:block;box-sizing:border-box"></span><span style="font:500 10.5px/1 var(--font-sans);color:#98A2B3">Attendu</span></span>
+            </div>
+            </div>
+          </div>
+            </div>
+
+            <div data-shot="3" style="position:absolute;inset:0;overflow:hidden;padding:18px 20px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
+              <div style="display:flex;align-items:center;gap:10px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="newspaper" size="{{ i18 }}" color="#18539E" hint-size="18px,18px"></x-import>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:700 15px/1 var(--font-sans);color:#101828">Nouvelle actualité</span>
+                  <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Écrite une fois, diffusée sur les trois canaux du réseau.</span>
+                </span>
+                <span style="margin-left:auto;padding:7px 12px;border-radius:7px;background:#18539E;font:600 10.5px/1 var(--font-sans);color:#fff">Publier</span>
+              </div>
+              <div style="border:1px solid #E4E7EC;border-radius:9px;overflow:hidden">
+                <div style="padding:11px 13px;border-bottom:1px solid #EDEFF3;display:flex;flex-direction:column;gap:4px">
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Titre</span>
+                  <span style="font:700 13px/1.3 var(--font-sans);color:#101828">Trois nouvelles entreprises rejoignent le réseau</span>
+                </div>
+                <div style="padding:11px 13px;display:flex;gap:12px">
+                  <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+                    <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Contenu</span>
+                    <span style="font:400 10.5px/1.6 var(--font-sans);color:#475467">Elles ont été accueillies lors de la soirée de rentrée&nbsp;: un cabinet d’architecture, une entreprise de logistique et un studio de production. Leurs fiches sont déjà en ligne dans l’annuaire.</span>
+                  </span>
+                  <span style="width:104px;height:74px;border:1px dashed #D9DEE6;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex:none">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="image" size="{{ i16 }}" color="#98A2B3" hint-size="16px,16px"></x-import>
+                    <span style="font:500 8.5px/1 var(--font-sans);color:#98A2B3">Visuel</span>
+                  </span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Diffusion</span>
+                <div style="display:flex;gap:9px">
+                  <span style="flex:1;border:1px solid #CFE0F5;background:#F5F9FF;border-radius:8px;padding:11px;display:flex;flex-direction:column;gap:6px">
+                    <span style="display:flex;align-items:center;gap:7px">
+                      <span style="width:15px;height:15px;border-radius:4px;background:#18539E;display:flex;align-items:center;justify-content:center;font:700 9px/1 var(--font-sans);color:#fff;flex:none">✓</span>
+                      <span style="font:600 10.5px/1 var(--font-sans);color:#101828">Application</span>
+                    </span>
+                    <span style="font:400 9px/1.3 var(--font-sans);color:#667085">Notification aux 52 membres</span>
+                  </span>
+                  <span style="flex:1;border:1px solid #CFE0F5;background:#F5F9FF;border-radius:8px;padding:11px;display:flex;flex-direction:column;gap:6px">
+                    <span style="display:flex;align-items:center;gap:7px">
+                      <span style="width:15px;height:15px;border-radius:4px;background:#18539E;display:flex;align-items:center;justify-content:center;font:700 9px/1 var(--font-sans);color:#fff;flex:none">✓</span>
+                      <span style="font:600 10.5px/1 var(--font-sans);color:#101828">Site public</span>
+                    </span>
+                    <span style="font:400 9px/1.3 var(--font-sans);color:#667085">Page Actualités du site</span>
+                  </span>
+                  <span style="flex:1;border:1px solid #E4E7EC;border-radius:8px;padding:11px;display:flex;flex-direction:column;gap:6px">
+                    <span style="display:flex;align-items:center;gap:7px">
+                      <span style="width:15px;height:15px;border-radius:4px;border:1.5px solid #C6CBD4;display:block;box-sizing:border-box;flex:none"></span>
+                      <span style="font:600 10.5px/1 var(--font-sans);color:#101828">Newsletter</span>
+                    </span>
+                    <span style="font:400 9px/1.3 var(--font-sans);color:#98A2B3">Prochain envoi&nbsp;: 5 mai</span>
+                  </span>
+                </div>
+              </div>
+              <div style="margin-top:auto;border-top:1px solid #EDEFF3;padding-top:10px;display:flex;flex-direction:column;gap:8px">
+                <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Dernières publications</span>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="flex:1;font:500 10.5px/1 var(--font-sans);color:#344054">Retour sur la visite du site Biokas</span>
+                  <span style="padding:3px 9px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C;border:1px solid #A6DFC4;flex:none">Publiée</span>
+                  <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums">41 lectures</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="flex:1;font:500 10.5px/1 var(--font-sans);color:#344054">Assemblée générale&nbsp;: convocation</span>
+                  <span style="padding:3px 9px;border-radius:20px;background:#E7F5EF;font:600 10px/1 var(--font-sans);color:#12805C;border:1px solid #A6DFC4;flex:none">Publiée</span>
+                  <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3;font-variant-numeric:tabular-nums">50 lectures</span>
+                </div>
+              </div>
+            </div>
+
+            <div data-shot="4" style="position:absolute;inset:0;overflow:hidden;padding:18px 20px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
+              <div style="display:flex;align-items:center;gap:10px">
+                <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="piggy-bank" size="{{ i18 }}" color="#18539E" hint-size="18px,18px"></x-import>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:700 15px/1 var(--font-sans);color:#101828">Finances — Tableau de bord</span>
+                  <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Visualisez la situation financière consolidée du réseau.</span>
+                </span>
+              </div>
+              <div style="display:flex;gap:9px">
+            <div style="flex:1;border:1px solid #E4E7EC;border-radius:9px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font:600 9px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Solde global</span>
+              <span style="font:700 20px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">12 480,00&nbsp;€</span>
+              <span style="font:400 9.5px/1.3 var(--font-sans);color:#98A2B3">Total consolidé des comptes connectés</span>
+            </div>
+            <div style="flex:1;border:1px solid #E4E7EC;border-radius:9px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font:600 9px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Crédits (avril)</span>
+              <span style="font:700 20px/1 var(--font-sans);color:#12805C;font-variant-numeric:tabular-nums">+ 3 250,00&nbsp;€</span>
+              <span style="font:400 9.5px/1.3 var(--font-sans);color:#98A2B3">Reçus sur les 30 derniers jours</span>
+            </div>
+            <div style="flex:1;border:1px solid #E4E7EC;border-radius:9px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font:600 9px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Débits (avril)</span>
+              <span style="font:700 20px/1 var(--font-sans);color:#C0392B;font-variant-numeric:tabular-nums">− 1 180,00&nbsp;€</span>
+              <span style="font:400 9.5px/1.3 var(--font-sans);color:#98A2B3">Versés sur les 30 derniers jours</span>
+            </div>
+            <div style="flex:1;border:1px solid #E4E7EC;border-radius:9px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font:600 9px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Comptes synchronisés</span>
+              <span style="font:700 20px/1 var(--font-sans);color:#101828;font-variant-numeric:tabular-nums">2</span>
+              <span style="font:400 9.5px/1.3 var(--font-sans);color:#98A2B3">Comptes bancaires Bridge actifs</span>
+            </div>
+              </div>
+              <div style="display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid #EDEFF3;padding-top:11px">
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font:700 12.5px/1 var(--font-sans);color:#101828">Derniers mouvements</span>
+                  <span style="font:400 9.5px/1 var(--font-sans);color:#98A2B3">Historique consolidé des comptes synchronisés.</span>
+                </span>
+                <span style="display:flex;gap:8px;position:relative;z-index:4">
+                  <span style="border:1px solid #E4E7EC;border-radius:7px;padding:7px 11px;font:600 10px/1 var(--font-sans);color:#344054">Crédits →</span>
+                  <span style="border:1px solid #E4E7EC;border-radius:7px;padding:7px 11px;font:600 10px/1 var(--font-sans);color:#344054">Débits →</span>
+                </span>
+              </div>
+              <div style="display:flex;flex-direction:column">
+                <div style="display:grid;grid-template-columns:.6fr 1.9fr .8fr;gap:10px;padding:7px 0;border-bottom:1px solid #EDEFF3">
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Date</span>
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3">Description</span>
+                  <span style="font:600 8.5px/1 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:#98A2B3;text-align:right">Montant</span>
+                </div>
+                <div style="display:grid;grid-template-columns:.6fr 1.9fr .8fr;gap:10px;padding:9px 0;border-bottom:1px solid #F4F5F7;align-items:center">
+                  <span style="font:400 10px/1 var(--font-sans);color:#667085">21 avr.</span>
+                  <span style="display:flex;flex-direction:column;gap:2px"><span style="font:600 10.5px/1 var(--font-sans);color:#101828">Adhésion entreprise — Thermalis</span><span style="font:400 8.5px/1 var(--font-sans);color:#98A2B3">crédit · rapproché</span></span>
+                  <span style="font:700 11px/1 var(--font-sans);color:#12805C;text-align:right;font-variant-numeric:tabular-nums">+ 750,00&nbsp;€</span>
+                </div>
+                <div style="display:grid;grid-template-columns:.6fr 1.9fr .8fr;gap:10px;padding:9px 0;border-bottom:1px solid #F4F5F7;align-items:center">
+                  <span style="font:400 10px/1 var(--font-sans);color:#667085">19 avr.</span>
+                  <span style="display:flex;flex-direction:column;gap:2px"><span style="font:600 10.5px/1 var(--font-sans);color:#101828">Subvention — Le Mans Métropole</span><span style="font:400 8.5px/1 var(--font-sans);color:#98A2B3">crédit · rapproché</span></span>
+                  <span style="font:700 11px/1 var(--font-sans);color:#12805C;text-align:right;font-variant-numeric:tabular-nums">+ 1 000,00&nbsp;€</span>
+                </div>
+                <div style="display:grid;grid-template-columns:.6fr 1.9fr .8fr;gap:10px;padding:9px 0;border-bottom:1px solid #F4F5F7;align-items:center">
+                  <span style="font:400 10px/1 var(--font-sans);color:#667085">18 avr.</span>
+                  <span style="display:flex;flex-direction:column;gap:2px"><span style="font:600 10.5px/1 var(--font-sans);color:#101828">Frais transport intervenant</span><span style="font:400 8.5px/1 var(--font-sans);color:#98A2B3">débit · à catégoriser</span></span>
+                  <span style="font:700 11px/1 var(--font-sans);color:#C0392B;text-align:right;font-variant-numeric:tabular-nums">− 85,00&nbsp;€</span>
+                </div>
+                <div style="display:grid;grid-template-columns:.6fr 1.9fr .8fr;gap:10px;padding:9px 0;align-items:center">
+                  <span style="font:400 10px/1 var(--font-sans);color:#667085">12 avr.</span>
+                  <span style="display:flex;flex-direction:column;gap:2px"><span style="font:600 10.5px/1 var(--font-sans);color:#101828">Location de salle — soirée de rentrée</span><span style="font:400 8.5px/1 var(--font-sans);color:#98A2B3">débit · rattaché à un événement</span></span>
+                  <span style="font:700 11px/1 var(--font-sans);color:#C0392B;text-align:right;font-variant-numeric:tabular-nums">− 1 440,00&nbsp;€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <section class="kp-dark" style="background:var(--navy-900)">
+    <div style="max-width:1312px;margin:0 auto;padding:96px 64px">
+      <div style="display:grid;grid-template-columns:4fr 8fr;gap:64px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" tone="strong" hint-size="180px,16px">Et dans la poche des membres</x-import>
+          <h3 class="kp-h1" style="color:#fff">L’application que vos membres ouvrent vraiment.</h3>
+          <p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Les actualités du réseau, les prochains événements, l’annuaire des entreprises et leur carte de visite.</p>
+          <a href="Fonctionnalite-Application.dc.html" style="display:flex;align-items:center;gap:10px;font:500 16px/1 var(--font-sans);color:var(--accent-signal);width:fit-content;margin-top:8px" style-hover="gap:16px">
+            <span>Naviguer dans l’application</span>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+          </a>
+        </div>
+        <div style="position:relative;height:696px">
+
+          <div style="position:absolute;left:0;top:14px;width:320px;box-sizing:border-box;z-index:1;border-radius:46px;border:1px solid rgba(255,255,255,.16);background:#fff;padding:11px;box-shadow:0 30px 70px rgba(4,14,26,.42)">
+            <div style="border-radius:35px;overflow:hidden;background:#fff;font-family:Montserrat,sans-serif;height:645px;display:flex;flex-direction:column">
+              <div style="background:#12468F;padding:20px 18px 14px;display:flex;align-items:center;gap:13px;flex:none">
+                <span style="display:flex;flex:none"><x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="menu" size="{{ i20 }}" color="#ffffff" hint-size="20px,20px"></x-import></span>
+                <span style="font:700 15px/1.2 Montserrat,sans-serif;color:#fff">Club Horizon Entreprises</span>
+              </div>
+              <div style="height:96px;background:linear-gradient(180deg,#12468f 0%,#7c9ac4 100%);position:relative;flex:none">
+                <div style="position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);width:76px;height:76px;border-radius:999px;background:#fff;border:3px solid #fff;box-shadow:0 4px 10px rgba(16,24,40,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;box-sizing:border-box">
+                  <span style="font:700 10px/1.15 Montserrat,sans-serif;color:#12468f">Club</span>
+                  <span style="font:700 10px/1 Montserrat,sans-serif;color:#e8a33d">HORIZON</span>
+                </div>
+              </div>
+              <div style="padding:44px 20px 0;flex:none">
+                <p style="font:400 12.5px/1.45 Montserrat,sans-serif;color:#6B7280;text-align:center;margin:0">Networking, synergies et opportunités pour dirigeants et entrepreneurs.</p>
+              </div>
+              <div style="padding:18px 20px 0;display:flex;flex-direction:column;gap:11px;flex:none">
+                <div style="display:flex;align-items:baseline;justify-content:space-between">
+                  <span style="font:700 16px/1 Montserrat,sans-serif;color:#101828">Prochain événement</span>
+                  <span style="font:600 12px/1 Montserrat,sans-serif;color:#12468F">Voir</span>
+                </div>
+                <div style="border:1px solid #EDEFF3;border-radius:14px;overflow:hidden">
+                  <img src="assets/photos/networking-cocktail.png" alt="Visuel de l’événement du réseau" style="width:100%;height:126px;object-fit:cover;display:block">
+                  <div style="padding:13px;display:flex;flex-direction:column;gap:4px">
+                    <span style="font:700 9.5px/1 Montserrat,sans-serif;letter-spacing:.08em;color:#6B7280">À VENIR</span>
+                    <span style="font:700 14.5px/1.2 Montserrat,sans-serif;color:#101828">Soirée de début d’année</span>
+                    <span style="font:400 12px/1 Montserrat,sans-serif;color:#6B7280">mercredi 23 septembre 2026</span>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:10px;flex:none">
+                <div style="display:flex;align-items:baseline;justify-content:space-between">
+                  <span style="font:700 16px/1 Montserrat,sans-serif;color:#101828">Actualités</span>
+                  <span style="font:600 12px/1 Montserrat,sans-serif;color:#12468F">Voir tout</span>
+                </div>
+                <div style="border:1px solid #EDEFF3;border-radius:12px;padding:11px;display:flex;gap:11px;align-items:center">
+                  <span style="width:36px;height:36px;border-radius:9px;background:#EEF4FC;display:flex;align-items:center;justify-content:center;flex:none"><x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="newspaper" size="{{ i16 }}" color="#12468F" hint-size="16px,16px"></x-import></span>
+                  <span style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                    <span style="font:700 12.5px/1.2 Montserrat,sans-serif;color:#101828">Trois nouveaux adhérents</span>
+                    <span style="font:400 10.5px/1 Montserrat,sans-serif;color:#98A2B3">Publié hier</span>
+                  </span>
+                </div>
+              </div>
+              <div style="border-top:1px solid #EDEFF3;background:#fff;padding:11px 6px 14px;display:flex;justify-content:space-between;flex:none;margin-top:auto">
+                  <span style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="house" size="{{ i18 }}" color="#12468F" hint-size="18px,18px"></x-import>
+                    <span style="font:600 9px/1 Montserrat,sans-serif;color:#12468F">Accueil</span>
+                  </span>
+                  <span style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="newspaper" size="{{ i18 }}" color="#9AA3AF" hint-size="18px,18px"></x-import>
+                    <span style="font:500 9px/1 Montserrat,sans-serif;color:#98A2B3">Actus</span>
+                  </span>
+                  <span style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="calendar-days" size="{{ i18 }}" color="#9AA3AF" hint-size="18px,18px"></x-import>
+                    <span style="font:500 9px/1 Montserrat,sans-serif;color:#98A2B3">Agenda</span>
+                  </span>
+                  <span style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="building-2" size="{{ i18 }}" color="#9AA3AF" hint-size="18px,18px"></x-import>
+                    <span style="font:500 9px/1 Montserrat,sans-serif;color:#98A2B3">Entreprises</span>
+                  </span>
+                  <span style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1">
+                    <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="users" size="{{ i18 }}" color="#9AA3AF" hint-size="18px,18px"></x-import>
+                    <span style="font:500 9px/1 Montserrat,sans-serif;color:#98A2B3">Membres</span>
+                  </span>
+              </div>
+            </div>
+          </div>
+
+          <div style="position:absolute;left:268px;top:0;width:272px;box-sizing:border-box;z-index:3;background:#fff;border-radius:16px;box-shadow:0 26px 54px rgba(4,14,26,.34);font-family:Montserrat,sans-serif;padding:18px;animation:kpFloat 7.4s ease-in-out infinite;animation-delay:0s">
+            <div style="display:flex;flex-direction:column;gap:13px">
+              <span style="align-self:flex-start;background:#12468F;border-radius:999px;padding:6px 13px;font:600 10.5px/1 Montserrat,sans-serif;color:#fff">À venir · J-37 jours</span>
+              <span style="font:700 20px/1.15 Montserrat,sans-serif;color:#101828">Soirée Padel</span>
+              <span style="display:flex;gap:7px">
+                <span style="border:1px solid #E4E4E7;border-radius:999px;padding:6px 12px;font:500 11px/1 Montserrat,sans-serif;color:#4B5563">Présentiel</span>
+                <span style="border:1px solid #E4E4E7;border-radius:999px;padding:6px 12px;font:500 11px/1 Montserrat,sans-serif;color:#4B5563">Afterwork</span>
+              </span>
+              <span style="height:1px;background:#EDEFF3;display:block"></span>
+              <span style="display:flex;gap:8px">
+                <span style="flex:1;text-align:center;background:#12468F;border-radius:10px;padding:10px 0;font:600 12px/1 Montserrat,sans-serif;color:#fff">Je participe</span>
+                <span style="flex:1;text-align:center;border:1px solid #E4E4E7;border-radius:10px;padding:9px 0;font:500 12px/1 Montserrat,sans-serif;color:#4B5563">Peut-être</span>
+              </span>
+            </div>
+          </div>
+
+          <div style="position:absolute;left:392px;top:216px;width:300px;box-sizing:border-box;z-index:3;background:#fff;border-radius:16px;box-shadow:0 26px 54px rgba(4,14,26,.34);font-family:Montserrat,sans-serif;padding:18px;animation:kpFloat 8.2s ease-in-out infinite;animation-delay:-1.4s">
+            <div style="display:flex;flex-direction:column;gap:13px">
+              <span style="display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 15.5px/1.2 Montserrat,sans-serif;color:#101828">Sondage du bureau</span>
+                <span style="font:400 11.5px/1.35 Montserrat,sans-serif;color:#6B7280">Quel format pour les afterworks&nbsp;?</span>
+              </span>
+              <span style="background:#EEF4FC;border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:8px">
+                <span style="display:flex;justify-content:space-between">
+                  <span style="font:600 11.5px/1 Montserrat,sans-serif;color:#12468F">Petit-déjeuner</span>
+                  <span style="font:700 11.5px/1 Montserrat,sans-serif;color:#12468F;font-variant-numeric:tabular-nums">62&nbsp;%</span>
+                </span>
+                <span style="height:5px;border-radius:999px;background:#D6E4F7;display:block;overflow:hidden">
+                  <span style="display:block;height:5px;width:62%;background:#12468F;border-radius:999px"></span>
+                </span>
+              </span>
+              <span style="display:flex;justify-content:space-between;padding:0 2px">
+                <span style="font:500 11.5px/1 Montserrat,sans-serif;color:#6B7280">Fin de journée</span>
+                <span style="font:600 11.5px/1 Montserrat,sans-serif;color:#9AA3AF;font-variant-numeric:tabular-nums">38&nbsp;%</span>
+              </span>
+              <span style="font:400 10.5px/1 Montserrat,sans-serif;color:#9AA3AF">41 réponses sur 58 membres</span>
+            </div>
+          </div>
+
+          <div style="position:absolute;left:294px;top:456px;width:258px;box-sizing:border-box;z-index:3;background:#fff;border-radius:16px;box-shadow:0 26px 54px rgba(4,14,26,.34);font-family:Montserrat,sans-serif;padding:18px;animation:kpFloat 6.9s ease-in-out infinite;animation-delay:-2.6s">
+            <div style="display:flex;flex-direction:column;gap:13px">
+              <span style="display:flex;align-items:center;gap:12px">
+                <span style="width:42px;height:42px;border-radius:999px;background:#EEF4FC;display:flex;align-items:center;justify-content:center;flex:none;font:700 13px/1 Montserrat,sans-serif;color:#12468F">JM</span>
+                <span style="display:flex;flex-direction:column;gap:3px;flex:1;min-width:0">
+                  <span style="font:700 14px/1.2 Montserrat,sans-serif;color:#101828">Julien Marchand</span>
+                  <span style="font:400 11px/1.25 Montserrat,sans-serif;color:#6B7280">Directeur — Atelier Marchand</span>
+                </span>
+              </span>
+              <span style="height:1px;background:#EDEFF3;display:block"></span>
+              <span style="display:flex;gap:8px">
+                <span style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#12468F;border-radius:10px;padding:10px 0">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="qr-code" size="{{ i16 }}" color="#ffffff" hint-size="16px,16px"></x-import>
+                  <span style="font:600 11.5px/1 Montserrat,sans-serif;color:#fff">Ma carte</span>
+                </span>
+                <span style="width:42px;border:1px solid #E4E4E7;border-radius:10px;display:flex;align-items:center;justify-content:center">
+                  <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="mail" size="{{ i16 }}" color="#4B5563" hint-size="16px,16px"></x-import>
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="position:relative;height:520px;overflow:hidden">
+    <img src="assets/photos/networking-cocktail.png" alt="Temps de networking dans un réseau d’entreprises" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(15,36,56,.92) 0%, rgba(15,36,56,.72) 46%, rgba(15,36,56,.28) 100%)"></div>
+    <div class="kp-dark" style="position:relative;max-width:1312px;margin:0 auto;padding:0 64px;height:100%;display:flex;flex-direction:column;justify-content:center;gap:28px">
+      <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" tone="strong" hint-size="180px,16px">Ils utilisent Kopilot</x-import>
+      <h2 class="kp-h1" style="color:#fff;max-width:640px">Ils ont choisi Kopilot pour structurer leur réseau.</h2>
+      <p class="kp-body-lg" style="color:rgba(255,255,255,.82);max-width:560px">Des réseaux de 40 membres aux réseaux de plusieurs centaines, en ville comme sur un territoire rural.</p>
+      <div style="display:flex;gap:16px;align-items:center;margin-top:8px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" size="lg" href="Clients.dc.html" hint-size="220px,56px">Voir les réseaux équipés</x-import>
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="ghost" size="lg" href="Clients.dc.html" hint-size="180px,56px">Lire les cas clients</x-import>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showConfigurateur }}" hint-placeholder-val="{{ true }}">
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:88px 64px 0">
+    <div style="display:grid;grid-template-columns:6fr 6fr;gap:48px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="160px,16px">Votre configuration</x-import>
+        <h2 class="kp-h1">Un tarif <span class="kp-accent">à la taille de votre réseau.</span></h2>
+        <p class="kp-body-lg">Dès 680 € HT par an, socle complet inclus. Vous n’ajoutez que les modules dont vous avez besoin.</p>
+        <a href="Tarifs.dc.html" style="display:flex;align-items:center;gap:10px;font:500 16px/1 var(--font-sans);color:var(--accent-signal);width:fit-content;margin-top:8px" style-hover="gap:16px">
+          <span>Composer la configuration complète</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+        </a>
+      </div>
+      <div class="kp-dark" style="background: var(--navy-900); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 24px 60px rgba(15,36,56,.20); width: 815px; height: 328px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <p class="kp-label" style="color:rgba(255,255,255,.55)">Combien de membres&nbsp;?</p>
+            <p style="font:600 26px/1 var(--font-sans);letter-spacing:-.02em;color:#fff;font-variant-numeric:tabular-nums;margin:0">{{ membersLabel }}</p>
+          </div>
+          
+          <input type="range" min="25" max="420" step="5" value="{{ members }}" onChange="{{ onMembers }}" onInput="{{ onMembers }}" style="width:100%;accent-color:#F0662C;height:4px;cursor:pointer"><div style="display:flex;justify-content:space-between">
+            <span class="kp-small" style="color:rgba(255,255,255,.45)">25</span>
+            <span class="kp-small" style="color:rgba(255,255,255,.45)">400 +</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--white-a12);padding-top:20px">
+          <p class="kp-label" style="color:rgba(255,255,255,.55)">Ce dont votre réseau a besoin</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <div onClick="{{ b0.toggle }}" style="border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid {{ b0.border }};background:{{ b0.bg }}">
+              <span style="font:500 13.5px/1 var(--font-sans);color:{{ b0.color }};white-space:nowrap">Piloter les adhésions</span>
+            </div>
+            <div onClick="{{ b1.toggle }}" style="border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid {{ b1.border }};background:{{ b1.bg }}">
+              <span style="font:500 13.5px/1 var(--font-sans);color:{{ b1.color }};white-space:nowrap">Relancer les cotisations</span>
+            </div>
+            <div onClick="{{ b2.toggle }}" style="border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid {{ b2.border }};background:{{ b2.bg }}">
+              <span style="font:500 13.5px/1 var(--font-sans);color:{{ b2.color }};white-space:nowrap">Organiser les événements</span>
+            </div>
+            <div onClick="{{ b3.toggle }}" style="border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid {{ b3.border }};background:{{ b3.bg }}">
+              <span style="font:500 13.5px/1 var(--font-sans);color:{{ b3.color }};white-space:nowrap">Animer la communauté</span>
+            </div>
+            <div onClick="{{ togglePay }}" style="border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid {{ payBorder }};background:{{ payBg }}">
+              <span style="font:500 13.5px/1 var(--font-sans);color:{{ payColor }};white-space:nowrap">Encaisser en ligne</span>
+            </div>
+            <div onClick="{{ toggleBank }}" style="border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid {{ bankBorder }};background:{{ bankBg }}">
+              <span style="font:500 13.5px/1 var(--font-sans);color:{{ bankColor }};white-space:nowrap">Suivre la trésorerie</span>
+            </div>
+            <div onClick="{{ toggleSite }}" style="border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid {{ siteBorder }};background:{{ siteBg }}">
+              <span style="font:500 13.5px/1 var(--font-sans);color:{{ siteColor }};white-space:nowrap">Publier un site public</span>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--white-a12);padding-top:20px;display:flex">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" href="Tarifs.dc.html" hint-size="240px,40px">Voir le détail et le tarif</x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <section class="kp-dark" data-reveal="1" style="background:var(--navy-900);margin-top:112px" onMouseEnter="{{ tmPause }}" onMouseLeave="{{ tmResume }}">
+    <div style="max-width:1312px;margin:0 auto;padding:72px 64px">
+      <div onClick="{{ tmNext }}" data-tm-zone="1" style="display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:stretch;cursor:pointer;transition:transform 260ms cubic-bezier(.16,.84,.24,1)" style-hover="transform:translateY(-2px)">
+
+        <div data-tm-frame="1" style="position:relative;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid var(--white-a12);transition:border-color 260ms ease">
+          <span data-tm-hero="0" style="position:absolute;inset:0;background-size:cover;background-position:center top;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1);display:block"></span>
+          <span data-tm-hero="1" style="position:absolute;inset:0;background-size:cover;background-position:center top;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1);display:block"></span>
+          <span data-tm-hero="2" style="position:absolute;inset:0;background-size:cover;background-position:center top;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1);display:block"></span>
+          <span data-tm-hero="3" style="position:absolute;inset:0;background-size:cover;background-position:center top;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1);display:block"></span>
+          <span data-tm-empty="1" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:56px;box-sizing:border-box;opacity:0;transition:opacity 480ms cubic-bezier(.16,.84,.24,1)">
+            <span style="width:100%;aspect-ratio:1;background:#fff;border-radius:12px;background-image:url(assets/logos/wtc-rennes-bretagne.png);background-size:72%;background-position:center;background-repeat:no-repeat;display:block"></span>
+          </span>
+          <span data-tm-scrim="1" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(8,24,39,.72), transparent 55%);display:block;transition:opacity 480ms cubic-bezier(.16,.84,.24,1)"></span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:32px">
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" tone="strong" hint-size="180px,16px">Ce qu’ils en disent</x-import>
+            <span data-tm-count="" style="font:600 11.5px/1 var(--font-sans);color:rgba(255,255,255,.4);font-variant-numeric:tabular-nums">01 / 04</span>
+          </div>
+
+          <div style="position:relative;height:246px;flex:none">
+            <div data-tm-panel="0" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;opacity:0;pointer-events:none">
+              <p style="font:400 26px/1.42 var(--font-serif, Georgia, serif);color:#fff;letter-spacing:-.01em;margin:0">«&nbsp;L’installation de Kopilot a grandement aidé à développer cette animation.&nbsp;»</p>
+              <p style="font:400 14px/1.6 var(--font-sans);color:rgba(255,255,255,.6);margin:0;max-width:620px">«&nbsp;C’est d’abord un enjeu de développement, pour pérenniser le réseau. J’espère que demain on pourra accueillir de nouveaux membres grâce à Kopilot.&nbsp;»</p>
+              <span style="display:flex;align-items:center;gap:10px;padding-top:2px">
+                <span style="width:18px;height:1px;background:var(--accent-signal);display:block"></span>
+                <span style="font:600 12.5px/1.3 var(--font-sans);color:#fff">Philippe Claessen</span>
+                <span style="font:600 10.5px/1.3 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.45)">CPEMN</span>
+              </span>
+            </div>
+            <div data-tm-panel="1" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;opacity:0;pointer-events:none">
+              <p style="font:400 26px/1.42 var(--font-serif, Georgia, serif);color:#fff;letter-spacing:-.01em;margin:0">«&nbsp;Quand c’est sur l’appli, les gens font l’effort de regarder.&nbsp;»</p>
+              <p style="font:400 14px/1.6 var(--font-sans);color:rgba(255,255,255,.6);margin:0;max-width:620px">«&nbsp;Ça fait un mois que nous sommes sur Kopilot et c’est déjà devenu un outil indispensable pour animer le réseau. Nos membres avaient l’habitude d’une application.&nbsp;»</p>
+              <span style="display:flex;align-items:center;gap:10px;padding-top:2px">
+                <span style="width:18px;height:1px;background:var(--accent-signal);display:block"></span>
+                <span style="font:600 12.5px/1.3 var(--font-sans);color:#fff">Virginie de Miniac</span>
+                <span style="font:600 10.5px/1.3 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.45)">CINA</span>
+              </span>
+            </div>
+            <div data-tm-panel="2" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;opacity:0;pointer-events:none">
+              <p style="font:400 26px/1.42 var(--font-serif, Georgia, serif);color:#fff;letter-spacing:-.01em;margin:0">«&nbsp;On est passé à Kopilot pour la gestion des adhésions, et la migration est positive sur ce point.&nbsp;»</p>
+              <p style="font:400 14px/1.6 var(--font-sans);color:rgba(255,255,255,.6);margin:0;max-width:620px">«&nbsp;Après dix ans sur un autre outil, ce qui pourrait être amélioré, ce sont les passerelles entre l’outil et les réseaux sociaux.&nbsp;»</p>
+              <span style="display:flex;align-items:center;gap:10px;padding-top:2px">
+                <span style="width:18px;height:1px;background:var(--accent-signal);display:block"></span>
+                <span style="font:600 12.5px/1.3 var(--font-sans);color:#fff">Jean-Pierre Fabre</span>
+                <span style="font:600 10.5px/1.3 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.45)">Club Business Sarthe</span>
+              </span>
+            </div>
+            <div data-tm-panel="3" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;opacity:0;pointer-events:none">
+              <p style="font:400 26px/1.42 var(--font-serif, Georgia, serif);color:#fff;letter-spacing:-.01em;margin:0">«&nbsp;On faisait tout par mail. C’est le côté automatisé que nous recherchions.&nbsp;»</p>
+              <p style="font:400 14px/1.6 var(--font-sans);color:rgba(255,255,255,.6);margin:0;max-width:620px">«&nbsp;Trente événements par an, quatre-vingts membres&nbsp;: nous avions réellement besoin d’un annuaire en ligne des entreprises et des membres.&nbsp;»</p>
+              <span style="display:flex;align-items:center;gap:10px;padding-top:2px">
+                <span style="width:18px;height:1px;background:var(--accent-signal);display:block"></span>
+                <span style="font:600 12.5px/1.3 var(--font-sans);color:#fff">Johanna</span>
+                <span style="font:600 10.5px/1.3 var(--font-sans);letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.45)">WTC Rennes Bretagne</span>
+              </span>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:20px;border-top:1px solid var(--white-a12);padding-top:20px">
+            <span style="flex:1;height:2px;background:rgba(255,255,255,.12);display:block;border-radius:1px;overflow:hidden"><span data-tm-fill="x" style="display:block;height:2px;width:0;background:var(--accent-signal)"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:flex;flex-direction:column;gap:40px">
+      <div style="display:grid;grid-template-columns:6fr 6fr;gap:64px;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:28px">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="120px,16px">L’équipe</x-import>
+          <h2 class="kp-h1">L’expérience du terrain, <span class="kp-accent">les compétences d’aujourd’hui.</span></h2>
+          <p class="kp-body-lg" style="width: 1088px; height: 82px">Nous connaissons le quotidien d’un responsable de réseau : les relances, les échéances, l’animation à tenir. <br>Notre équipe est IA-native : ce que vous demandez arrive en semaines, pas en années.</p>
+        </div>
+        <div style="display:flex;justify-content:flex-end;align-items:end">
+          <a href="Equipe.dc.html" style="display:flex;align-items:center;gap:10px;font:500 16px/1 var(--font-sans);color:var(--accent-signal)" style-hover="gap:16px">
+            <span>Rencontrer l’équipe</span>
+            <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+          </a>
+        </div>
+      </div>
+      <div data-stagger="1" style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px">
+        <a href="Equipe.dc.html" class="kp-lift" style="display:flex;flex-direction:column;gap:14px;border:1px solid var(--border-default);border-radius:14px;padding:14px;background:var(--surface-raised)">
+          <img src="assets/team/vincent.jpeg" alt="Vincent, fondateur" style="width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:10px;display:block">
+          <span style="display:flex;flex-direction:column;gap:4px;padding:0 4px 6px">
+            <span class="kp-h3">Vincent</span>
+            <span class="kp-small" style="color:var(--accent-signal)">Fondateur</span>
+          </span>
+        </a>
+        <a href="Equipe.dc.html" class="kp-lift" style="display:flex;flex-direction:column;gap:14px;border:1px solid var(--border-default);border-radius:14px;padding:14px;background:var(--surface-raised)">
+          <img src="assets/team/titouan.png" alt="Titouan, lead développeur" style="width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:10px;display:block">
+          <span style="display:flex;flex-direction:column;gap:4px;padding:0 4px 6px">
+            <span class="kp-h3">Titouan</span>
+            <span class="kp-small" style="color:var(--accent-signal)">Lead développeur</span>
+          </span>
+        </a>
+        <a href="Equipe.dc.html" class="kp-lift" style="display:flex;flex-direction:column;gap:14px;border:1px solid var(--border-default);border-radius:14px;padding:14px;background:var(--surface-raised)">
+          <img src="assets/team/damien.png" alt="Gabin, communication et marketing" style="width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:10px;display:block">
+          <span style="display:flex;flex-direction:column;gap:4px;padding:0 4px 6px">
+            <span class="kp-h3">Gabin</span>
+            <span class="kp-small" style="color:var(--accent-signal)">Communication</span>
+          </span>
+        </a>
+        <a href="Equipe.dc.html" class="kp-lift" style="display:flex;flex-direction:column;gap:14px;border:1px solid var(--border-default);border-radius:14px;padding:14px;background:var(--surface-raised)">
+          <img src="assets/team/gabin.png" alt="Damien, développeur" style="width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:10px;display:block">
+          <span style="display:flex;flex-direction:column;gap:4px;padding:0 4px 6px">
+            <span class="kp-h3">Damien</span>
+            <span class="kp-small" style="color:var(--accent-signal)">Développeur</span>
+          </span>
+        </a>
+        <a href="Equipe.dc.html" class="kp-lift" style="display:flex;flex-direction:column;gap:14px;border:1px solid var(--border-default);border-radius:14px;padding:14px;background:var(--surface-raised)">
+          <img src="assets/team/natacha.jpeg" alt="Natacha, accompagnement des réseaux" style="width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:10px;display:block">
+          <span style="display:flex;flex-direction:column;gap:4px;padding:0 4px 6px">
+            <span class="kp-h3">Natacha</span>
+            <span class="kp-small" style="color:var(--accent-signal)">Accompagnement</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:flex;flex-direction:column;gap:32px">
+      <div style="display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:28px">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="120px,16px">La Fabrik</x-import>
+          <h2 class="kp-h1">Ce que nous apprenons des réseaux, écrit noir sur blanc.</h2>
+        </div>
+        <a href="LaFabrik.dc.html" style="display:flex;align-items:center;gap:10px;font:500 16px/1 var(--font-sans);color:var(--accent-signal);flex:none" style-hover="gap:16px">
+          <span>Tous les articles</span>
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.Icon" name="arrow-right" size="{{ i18 }}" color="var(--accent-signal)" hint-size="18px,18px"></x-import>
+        </a>
+      </div>
+      <div style="display:grid;grid-template-columns:7fr 5fr;gap:32px;align-items:stretch">
+        <a href="LaFabrik.dc.html" class="kp-lift" style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;background:var(--surface-raised);display:flex;flex-direction:column">
+          <div style="height:280px;overflow:hidden">
+            <img src="assets/photos/networking-cocktail.png" alt="Temps de networking dans un réseau" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div style="padding:32px;display:flex;flex-direction:column;gap:14px">
+            <span style="display:flex;gap:14px;align-items:center">
+              <span class="kp-label" style="color:var(--accent-signal)">À la une — Analyse</span>
+              <span style="width:1px;height:12px;background:var(--border-strong)"></span>
+              <span class="kp-label">8 min</span>
+            </span>
+            <h3 class="kp-h1" style="color:var(--text-strong)">Ce qui fait revenir un membre la deuxième année.</h3>
+            <p class="kp-body">Le renouvellement ne se joue pas au moment de la relance, mais sur ce que le membre a vécu dans l’année.</p>
+          </div>
+        </a>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <a href="LaFabrik.dc.html" class="kp-lift" style="border:1px solid var(--border-default);border-radius:14px;background:var(--surface-raised);padding:26px;display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center">
+            <span class="kp-label" style="color:var(--accent-signal)">Tutoriel — 7 min</span>
+            <span class="kp-h2" style="color:var(--text-strong)">Préparer son assemblée générale dans Kopilot</span>
+          </a>
+          <a href="LaFabrik.dc.html" class="kp-lift" style="border:1px solid var(--border-default);border-radius:14px;background:var(--surface-raised);padding:26px;display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center">
+            <span class="kp-label" style="color:var(--accent-signal)">Analyse — 6 min</span>
+            <span class="kp-h2" style="color:var(--text-strong)">Combien coûte vraiment la gestion d’un réseau sur tableur</span>
+          </a>
+          <a href="LaFabrik.dc.html" class="kp-lift" style="border:1px solid var(--border-default);border-radius:14px;background:var(--surface-raised);padding:26px;display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center">
+            <span class="kp-label" style="color:var(--accent-signal)">Produit — 5 min</span>
+            <span class="kp-h2" style="color:var(--text-strong)">Relances d’adhésion&nbsp;: ce qui se déclenche automatiquement</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <sc-if value="{{ showPartenaires }}" hint-placeholder-val="{{ true }}">
+  <section data-reveal="1" style="max-width:1312px;margin:0 auto;padding:112px 64px 0">
+    <div style="display:flex;flex-direction:column;gap:32px">
+      <div style="display:grid;grid-template-columns:6fr 6fr;gap:64px;align-items:end;border-bottom:1px solid var(--border-strong);padding-bottom:28px">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <x-import component-from-global-scope="KopilotDesignSystem_80784c.SectionLabel" rule="{{ true }}" hint-size="180px,16px">Intégrations</x-import>
+          <h2 class="kp-h1">Vous gardez HelloAsso ou Stripe. <span class="kp-accent">Kopilot fait le reste.</span></h2>
+        </div>
+        <p class="kp-body" style="max-width:480px">Trois intégrations natives, activables depuis le cockpit. Le rapprochement bancaire passe par Bridge, l’encaissement en ligne par HelloAsso ou Stripe, selon ce que le réseau utilise déjà.</p>
+      </div>
+      <div data-stagger="1" style="display:grid;grid-template-columns:5fr 7fr;gap:24px;align-items:stretch">
+        <div class="kp-lift" style="border:1px solid var(--border-default);border-radius:12px;background:var(--surface-raised);padding:28px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box">
+          <span style="height:44px;display:flex;align-items:center">
+            <img src="assets/partners/bridge-trim.png" alt="Bridge" style="width:112px;height:auto;display:block">
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border-default);padding-top:18px">
+            <span class="kp-label" style="color:var(--accent-signal)">Rapprochement bancaire</span>
+            <h3 class="kp-h3">Bridge</h3>
+          </span>
+          <p class="kp-small">Vos comptes bancaires connectés en lecture&nbsp;: chaque virement se rapproche de l’adhésion qui l’attend, sans pointage manuel.</p>
+        </div>
+
+        <div style="border:1px solid var(--border-default);border-radius:12px;background:var(--surface-raised);padding:28px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px">
+            <span style="display:flex;flex-direction:column;gap:6px">
+              <span class="kp-label" style="color:var(--accent-signal)">Encaissement en ligne</span>
+              <h3 class="kp-h3">Au choix du réseau, l’un ou l’autre</h3>
+            </span>
+            <span class="kp-small" style="color:var(--text-muted);text-align:right;max-width:200px">Le réseau branche le compte qu’il utilise déjà. Les règlements remontent au même endroit.</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch;border-top:1px solid var(--border-default);padding-top:20px">
+            <div class="kp-lift" style="display:flex;flex-direction:column;gap:14px;padding:4px 4px 4px 0">
+              <span style="height:44px;display:flex;align-items:center">
+                <img src="assets/partners/helloasso.png" alt="HelloAsso" style="width:118px;height:auto;display:block">
+              </span>
+              <p class="kp-small">La collecte associative que beaucoup de réseaux utilisent déjà&nbsp;: adhésions et billets encaissés côté HelloAsso, visibles dans Kopilot.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <span style="flex:1;width:1px;background:var(--border-default);display:block"></span>
+              <span style="font:600 11px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">ou</span>
+              <span style="flex:1;width:1px;background:var(--border-default);display:block"></span>
+            </div>
+            <div class="kp-lift" style="display:flex;flex-direction:column;gap:14px;padding:4px 0 4px 4px">
+              <span style="height:44px;display:flex;align-items:center">
+                <img src="assets/partners/stripe.png" alt="Stripe" style="width:92px;height:auto;display:block">
+              </span>
+              <p class="kp-small">Le paiement par carte directement sur le compte du réseau, avec reçus et relances automatiques.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <section class="kp-dark" style="background:var(--navy-900);margin-top:112px">
+    <div style="max-width: 1312px; margin: 0 auto; padding: 64px 64px 96px; display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: center; width: 1313px; height: 129px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        
+        <h2 class="kp-h1" style="color:#fff">Trente minutes pour voir votre réseau dans Kopilot.</h2><p class="kp-body-lg" style="color:rgba(255,255,255,.78)">Nous préparons la démonstration sur le fonctionnement réel de votre réseau&nbsp;: effectif, événements, cotisations.</p>
+      </div>
+      <div style="display:flex;justify-content:flex-end">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" size="lg" onClick="{{ openDemo }}" hint-size="220px,56px">Réserver une démo</x-import>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border-default);background:var(--surface-page)">
+    <div style="max-width:1312px;margin:0 auto;padding:64px;display:flex;justify-content:space-between;align-items:flex-start;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:320px">
+        <x-import component-from-global-scope="KopilotDesignSystem_80784c.Logo" variant="primary" height="{{ logoHeight }}" base="." hint-size="120px,26px"></x-import>
+        <p class="kp-small">L’écosystème des réseaux d’entreprises&nbsp;: plateforme, accompagnement, réseau.</p>
+        <a href="https://www.linkedin.com/company/kopilot-club" target="_blank" rel="noopener" aria-label="Kopilot sur LinkedIn" style="display:flex;width:fit-content;margin-top:6px;color:var(--text-strong)" style-hover="color:var(--accent-signal)">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>
+        </a>
+      </div>
+      <div style="display:flex;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Produit</p>
+          <a href="Fonctionnalites.dc.html" class="kp-small">Fonctionnalités</a>
+          <a href="Fonctionnalite-Application.dc.html" class="kp-small">Application membres</a>
+          <a href="Tarifs.dc.html" class="kp-small">Tarifs</a>
+          <a href="Clients.dc.html" class="kp-small">Ils utilisent Kopilot</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="kp-label">Kopilot</p>
+          <a href="Equipe.dc.html" class="kp-small">Équipe</a>
+          <a href="LaFabrik.dc.html" class="kp-small">La Fabrik</a>
+          <a href="APropos.dc.html" class="kp-small">À propos</a>
+          <a href="#" class="kp-small">Nous contacter</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;text-align:right">
+        <p class="kp-small" style="color:var(--text-muted)">© 2026 Kopilot</p>
+        <a href="MentionsLegales.dc.html" class="kp-small" style="color:var(--text-muted)">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(15,36,56,.6);z-index:50;display:flex;align-items:center;justify-content:center;padding:64px">
+      <div onClick="{{ stop }}" style="background:var(--surface-raised);border-radius:12px;padding:48px;width:560px;display:flex;flex-direction:column;gap:32px;box-shadow:0 16px 40px rgba(15,36,56,.1)">
+        <sc-if value="{{ formStage }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <p class="kp-label">Démonstration</p>
+              <h3 class="kp-h2">Réservez votre démonstration.</h3>
+              <p class="kp-body">Trente minutes, en visio, sur le fonctionnement de votre réseau.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Prénom et nom" placeholder="Camille Rousset" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Email" placeholder="camille@club.fr" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Nom du réseau" placeholder="Club Horizon Entreprises" hint-size="100%,64px"></x-import>
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Input" label="Téléphone" placeholder="06 12 34 56 78" hint-size="100%,64px"></x-import>
+            </div>
+            <div style="border-top:1px solid var(--border-default);padding-top:24px;display:flex;justify-content:flex-end">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="primary" onClick="{{ submitForm }}" hint-size="180px,40px">Envoyer la demande</x-import>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sentStage }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <p class="kp-label">Demande enregistrée</p>
+            <h3 class="kp-h2">Votre demande est bien enregistrée.</h3>
+            <p class="kp-body">Un membre de l’équipe prépare la démonstration sur la base du fonctionnement de votre réseau.</p>
+            <div style="display:flex">
+              <x-import component-from-global-scope="KopilotDesignSystem_80784c.Button" variant="secondary" onClick="{{ closeModal }}" hint-size="120px,40px">Fermer</x-import>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showConstat&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;showMission&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;showPartenaires&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;showConfigurateur&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  state = { modal: false, sent: false, members: 170, pay: true, bank: false, site: false, feature: 0 };
+
+  bindTestimonialHover() {
+    const zone = document.querySelector('[data-tm-zone]');
+    if (!zone || zone.dataset.bound) return;
+    zone.dataset.bound = '1';
+    const frame = zone.querySelector('[data-tm-frame]');
+    const track = zone.querySelector('[data-tm-fill]');
+    const bar = track && track.parentElement;
+    zone.addEventListener('mouseenter', () => {
+      if (frame) frame.style.borderColor = 'rgba(255,255,255,.34)';
+      if (bar) { bar.style.transition = 'height 220ms ease, background 220ms ease'; bar.style.height = '3px'; bar.style.background = 'rgba(255,255,255,.22)'; }
+      if (track) track.style.height = '3px';
+    });
+    zone.addEventListener('mouseleave', () => {
+      if (frame) frame.style.borderColor = 'var(--white-a12)';
+      if (bar) { bar.style.height = '2px'; bar.style.background = 'rgba(255,255,255,.12)'; }
+      if (track) track.style.height = '2px';
+    });
+  }
+
+  paintTestimonials() {
+    const a = this.state.tm || 0;
+    const PHOTOS = ['assets/temoins/philippe.png', 'assets/temoins/virginie.png', 'assets/temoins/jean-pierre.png', ''];
+    document.querySelectorAll('[data-tm-panel]').forEach(el => {
+      const i = Number(el.getAttribute('data-tm-panel'));
+      const on = i === a;
+      const away = i > a ? 1 : -1;
+      el.style.transition = on
+        ? 'opacity 400ms cubic-bezier(.16,.84,.24,1) 70ms, transform 560ms cubic-bezier(.16,.84,.24,1)'
+        : 'opacity 220ms cubic-bezier(.4,0,1,1), transform 460ms cubic-bezier(.16,.84,.24,1)';
+      el.style.opacity = on ? '1' : '0';
+      el.style.transform = on ? 'translateY(0)' : 'translateY(' + (away * 20) + 'px)';
+      el.style.pointerEvents = on ? 'auto' : 'none';
+    });
+    document.querySelectorAll('[data-tm-hero]').forEach(el => {
+      const i = Number(el.getAttribute('data-tm-hero'));
+      if (PHOTOS[i] && !el.style.backgroundImage) el.style.backgroundImage = 'url(' + PHOTOS[i] + ')';
+      el.style.opacity = i === a && PHOTOS[i] ? '1' : '0';
+    });
+    const empty = document.querySelector('[data-tm-empty]');
+    if (empty) empty.style.opacity = PHOTOS[a] ? '0' : '1';
+    const scrim = document.querySelector('[data-tm-scrim]');
+    if (scrim) scrim.style.opacity = PHOTOS[a] ? '1' : '0';
+    const c = document.querySelector('[data-tm-count]');
+    if (c) c.textContent = '0' + (a + 1) + ' / 04';
+    const fill = document.querySelector('[data-tm-fill]');
+    if (fill) {
+      fill.style.transition = 'none';
+      fill.style.width = '0';
+      void fill.offsetWidth;
+      if (!this.tmPaused && !this.tmReduce) {
+        fill.style.transition = 'width 7000ms linear';
+        fill.style.width = '100%';
+      }
+    }
+  }
+
+  tmStart() {
+    clearInterval(this.tmTimer);
+    clearTimeout(this.tmTimer);
+    if (this.tmReduce) return;
+    this.tmTimer = setInterval(() => {
+      if (this.tmPaused) return;
+      this.setState(st => ({ tm: ((st.tm || 0) + 1) % 4 }));
+    }, 7000);
+  }
+
+  paintShots() {
+    const active = this.state.feature;
+    const prev = this.prevFeature == null ? active : this.prevFeature;
+    const dir = active >= prev ? 1 : -1;
+    this.prevFeature = active;
+    if (this.pinBar) this.pinBar.style.width = ((active + 1) * 20) + '%';
+    Array.from(document.querySelectorAll('[data-shot]')).forEach(el => {
+      const i = Number(el.getAttribute('data-shot'));
+      const on = i === active;
+      const away = i > active ? 1 : -1;
+      el.style.transformOrigin = 'center center';
+      el.style.willChange = 'transform, opacity, filter';
+      el.style.pointerEvents = 'none';
+      el.style.transition = 'transform 620ms cubic-bezier(.22,.9,.24,1), opacity 260ms ease';
+      el.style.opacity = on ? '1' : '0.999';
+      el.style.transform = on ? 'translate3d(0,0,0)' : 'translate3d(' + (away * 106) + '%,0,0)';
+      el.style.filter = 'none';
+    });
+    Array.from(document.querySelectorAll('[data-feat-body]')).forEach(el => {
+      const on = Number(el.getAttribute('data-feat-body')) === active;
+      el.style.transition = 'max-height 460ms cubic-bezier(.16,.84,.24,1), opacity 300ms ease, margin-top 460ms cubic-bezier(.16,.84,.24,1)';
+      el.style.maxHeight = on ? (el.scrollHeight + 8) + 'px' : '0px';
+      el.style.opacity = on ? '1' : '0';
+      el.style.marginTop = on ? '0px' : '-5px';
+    });
+    Array.from(document.querySelectorAll('[data-feat-row]')).forEach(el => {
+      const i = Number(el.getAttribute('data-feat-row'));
+      el.style.transition = 'transform 420ms cubic-bezier(.16,.84,.24,1), opacity 300ms ease, background 260ms ease';
+      el.style.transform = i === active ? 'translateX(6px)' : 'translateX(0)';
+      el.style.opacity = i === active ? '1' : '.62';
+    });
+    void dir;
+  }
+
+  componentDidMount() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.tmReduce = reduce;
+    this.paintTestimonials();
+    this.bindTestimonialHover();
+    this.tmStart();
+    const heroEls = Array.from(document.querySelectorAll('[data-hero-el]'));
+    const pills = Array.from(document.querySelectorAll('[data-pill]'));
+
+    if (!reduce) {
+      heroEls.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 620ms cubic-bezier(.2,.6,.2,1), transform 620ms cubic-bezier(.2,.6,.2,1)';
+      });
+      pills.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(12px) scale(.92)';
+        el.style.transition = 'opacity 460ms cubic-bezier(.2,.6,.2,1), transform 460ms cubic-bezier(.2,.6,.2,1)';
+      });
+      setTimeout(() => {
+        heroEls.forEach((el, i) => setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          if (this.applyTilt) this.applyTilt();
+        }, i * 130));
+        pills.forEach((el, i) => setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        }, 460 + i * 95));
+      }, 30);
+
+      const els = Array.from(document.querySelectorAll('[data-reveal], [data-stagger] > *'));
+      els.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = 'opacity 340ms cubic-bezier(.2,.6,.2,1), transform 340ms cubic-bezier(.2,.6,.2,1)';
+      });
+      Array.from(document.querySelectorAll('[data-stagger] > *')).forEach((el, i) => {
+        const d = (i % 5) * 80;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 460ms cubic-bezier(.2,.6,.2,1) ' + d + 'ms, transform 460ms cubic-bezier(.2,.6,.2,1) ' + d + 'ms';
+      });
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this.io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -10% 0px' });
+      els.forEach(el => this.io.observe(el));
+    }
+
+    this.onScroll = () => {
+      const d = document.documentElement;
+      const max = Math.max(1, d.scrollHeight - d.clientHeight);
+      if (this.bar) this.bar.style.width = ((d.scrollTop / max) * 100).toFixed(2) + '%';
+      if (this.head) this.head.style.height = d.scrollTop > 8 ? '64px' : '80px';
+    };
+    this.wheelAcc = 0;
+    this.tilt = { mx: 0, my: 0, sp: 0 };
+    this.applyTilt = () => {
+      const scene = document.querySelector('[data-hero-scene]');
+      if (!scene) return;
+      const t = this.tilt;
+      const open = 1 - t.sp;
+      const ms = t.time || 0;
+      const fl = (period, phase, amp) => Math.sin(ms / period + phase) * amp;
+      const rY = -15 * open;
+      const rX = 7 * open;
+      const win = scene.querySelector('[data-hero-el="2"]');
+      const ph = scene.querySelector('[data-hero-el="3"]');
+      if (win) win.style.transform = 'rotateY(' + rY.toFixed(2) + 'deg) rotateX(' + rX.toFixed(2) + 'deg) translate3d(0,' + (t.sp * -34 + fl(3400, 0, 3.5)).toFixed(1) + 'px,' + (-70 * open).toFixed(1) + 'px)';
+      if (ph) ph.style.transform = 'rotateY(' + (rY * 0.55 + 9 * open).toFixed(2) + 'deg) rotateX(' + (rX * 0.6).toFixed(2) + 'deg) translate3d(0,' + (t.sp * 46 - 10 + fl(2900, 1.2, 5)).toFixed(1) + 'px,' + (58 * open).toFixed(1) + 'px)';
+      Array.from(scene.querySelectorAll('[data-hero-chip]')).forEach((el, i) => {
+        const d = (i % 2 === 0 ? 1 : -1);
+        el.style.transform = 'translate3d(' + fl(4200, i * 1.7 + 0.4, 2.5).toFixed(1) + 'px,' + (t.sp * -22 * d + fl(2600, i * 1.3, 4.5)).toFixed(1) + 'px,' + (90 - i * 8) + 'px) rotate(' + fl(5200, i * 2.1, 0.5).toFixed(2) + 'deg)';
+      });
+    };
+    this.onHeroScroll = () => {
+      const scene = document.querySelector('[data-hero-scene]');
+      if (!scene) return;
+      const r = scene.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (window.innerHeight * 0.6 - r.top) / (r.height + window.innerHeight * 0.4)));
+      this.tilt.sp = p;
+      this.applyTilt();
+    };
+    this.onHeroMove = ev => {
+      const scene = document.querySelector('[data-hero-scene]');
+      if (!scene) return;
+      const r = scene.getBoundingClientRect();
+      this.tilt.mx = Math.max(-1, Math.min(1, ((ev.clientX - r.left) / r.width - 0.5) * 2));
+      this.tilt.my = Math.max(-1, Math.min(1, ((ev.clientY - r.top) / r.height - 0.5) * 2));
+      this.applyTilt();
+    };
+    if (!reduce) {
+      const sc = document.querySelector('[data-hero-scene]');
+      if (sc) {
+        [sc.querySelector('[data-hero-el="2"]'), sc.querySelector('[data-hero-el="3"]')].forEach(el => {
+          if (el) { el.style.transition = 'none'; el.style.willChange = 'transform'; }
+        });
+        Array.from(sc.querySelectorAll('[data-hero-chip]')).forEach(el => {
+          el.style.transition = 'box-shadow 200ms ease';
+          el.style.willChange = 'transform';
+        });
+      }
+      const loop = now => {
+        this.tilt.time = now;
+        this.applyTilt();
+        this.heroRaf = requestAnimationFrame(loop);
+      };
+      this.heroRaf = requestAnimationFrame(loop);
+      window.addEventListener('scroll', this.onHeroScroll, { passive: true });
+      this.onHeroScroll();
+    }
+
+    this.fitShot = () => {
+      const wrap = this.shotWrap;
+      if (!wrap) return;
+      const inner = wrap.firstElementChild;
+      const k = Math.max(0.6, Math.min(1, (window.innerHeight - 330) / 470));
+      wrap.style.height = Math.round(470 * k) + 'px';
+      if (inner) {
+        inner.style.width = (100 / k) + '%';
+        inner.style.transform = 'scale(' + k.toFixed(4) + ')';
+      }
+    };
+    window.addEventListener('resize', this.fitShot);
+    this.fitShot();
+
+    this.onWheel = e => {
+      const pin = document.querySelector('[data-pin]');
+      if (!pin) return;
+      const vh = window.innerHeight;
+      const r = pin.getBoundingClientRect();
+      const engaged = r.top <= vh * 0.5 && r.bottom >= vh * 0.5;
+      if (!engaged) { this.wheelAcc = 0; this.released = false; this.releasedDir = 0; return; }
+      const dir = e.deltaY > 0 ? 1 : (e.deltaY < 0 ? -1 : 0);
+      if (dir <= 0) { this.wheelAcc = 0; return; }
+      if (this.released && this.releasedDir === dir) return;
+      this.released = false;
+
+      if (r.top > 2) {
+        e.preventDefault();
+        if (!this.snapping) {
+          this.snapping = true;
+          this.setState({ feature: dir > 0 ? 0 : 4 });
+          const from = window.scrollY;
+          const to = pin.offsetTop;
+          const t0 = performance.now();
+          const step = now => {
+            const p = Math.min(1, (now - t0) / 340);
+            const e2 = 1 - Math.pow(1 - p, 3);
+            window.scrollTo(0, from + (to - from) * e2);
+            if (p < 1) requestAnimationFrame(step);
+            else { this.snapping = false; this.lastStep = Date.now(); }
+          };
+          requestAnimationFrame(step);
+        }
+        return;
+      }
+
+      const fi = this.state.feature;
+      if ((dir > 0 && fi >= 4) || (dir < 0 && fi <= 0)) {
+        if (Date.now() - (this.lastStep || 0) < 950) { e.preventDefault(); return; }
+        this.released = true;
+        this.releasedDir = dir;
+        this.wheelAcc = 0;
+        return;
+      }
+      e.preventDefault();
+      if (this.wheelLock) return;
+      this.wheelAcc += Math.abs(e.deltaY);
+      if (this.wheelAcc < 70) return;
+      this.wheelAcc = 0;
+      this.wheelLock = true;
+      setTimeout(() => { this.wheelLock = false; }, 480);
+      this.lastStep = Date.now();
+      this.setState({ feature: Math.min(4, Math.max(0, fi + dir)) });
+    };
+    window.addEventListener('wheel', this.onWheel, { passive: false });
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+    this.paintShots();
+  }
+
+  componentDidUpdate() { this.paintShots(); this.paintTestimonials(); }
+
+  componentWillUnmount() {
+    clearInterval(this.tmTimer);
+    clearTimeout(this.tmTimer);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('wheel', this.onWheel);
+    window.removeEventListener('resize', this.fitShot);
+    if (this.heroRaf) cancelAnimationFrame(this.heroRaf);
+    window.removeEventListener('scroll', this.onHeroScroll);
+    window.removeEventListener('mousemove', this.onHeroMove);
+    if (this.io) this.io.disconnect();
+  }
+
+  chipStyle(on) {
+    return on
+      ? { border: 'var(--accent-signal)', bg: 'rgba(240,102,44,.16)', color: '#ffffff' }
+      : { border: 'rgba(255,255,255,.22)', bg: 'transparent', color: 'rgba(255,255,255,.72)' };
+  }
+
+  renderVals() {
+    const m = this.state.members;
+    const big = m >= 420;
+    const tier = m <= 50 ? 'Réseau en création' : m <= 120 ? 'Réseau installé' : m <= 250 ? 'Réseau structuré' : 'Grand réseau';
+    const mods = [];
+    if (this.state.pay) mods.push('Paiements en ligne');
+    if (this.state.bank) mods.push('Banque connectée');
+    if (this.state.site) mods.push('Site internet public');
+    const recoBase = big
+      ? 'Au-delà de 400 membres, nous construisons la configuration avec vous : antennes, rôles, reprise de données.'
+      : 'Le socle couvre les membres, les adhésions, les événements et l\u2019application.';
+    const recoModsLabel = mods.length
+      ? (big ? 'Modules retenus :' : 'Vous y ajoutez :')
+      : (big ? 'Aucun module ajouté pour l\u2019instant.' : 'Sans module ajouté, c\u2019est déjà tout ce qui précède.');
+    const recoMods = mods.map((name, i) => ({ name: name, sep: i === mods.length - 1 ? '.' : ', ' }));
+    const p = this.chipStyle(this.state.pay);
+    const b = this.chipStyle(this.state.bank);
+    const s = this.chipStyle(this.state.site);
+    const basics = (this.state.basics || []).slice();
+    const bChips = [0,1,2,3].map(n => {
+      const st = this.chipStyle(basics.indexOf(n) >= 0);
+      return { border: st.border, bg: st.bg, color: st.color, toggle: () => this.setState(prev => {
+        const cur = (prev.basics || []).slice();
+        const k = cur.indexOf(n);
+        if (k >= 0) cur.splice(k, 1); else cur.push(n);
+        return { basics: cur };
+      }) };
+    });
+    const FEATS = [
+      ['01', 'Adhésions et cotisations', 'Chaque membre, chaque échéance, chaque règlement au même endroit. Les relances partent sans que personne n\u2019y pense.', 'Gestion des adhésions'],
+      ['02', 'Annuaire des membres', 'Contacts actifs, entreprises, fonctions au bureau. Le fichier que tout le monde ose enfin ouvrir.', 'Contacts — membres'],
+      ['03', 'Événements', 'De l\u2019invitation au pointage, avec le budget de l\u2019événement suivi jusqu\u2019à son bilan.', 'Fiche événement — présence'],
+      ['04', 'Actualités et newsletter', 'Une actualité écrite une fois part dans l\u2019application, dans la newsletter et sur le site public.', 'Nouvelle actualité'],
+      ['05', 'Finances', 'Solde consolidé, mouvements du mois, comptes bancaires rapprochés. Le trésorier arrête le tableur.', 'Finances — tableau de bord']
+    ];
+    const fi = this.state.feature;
+    const features = FEATS.map((f, i) => ({
+      num: f[0], title: f[1], body: f[2], idx: i,
+      bar: i === fi ? 'var(--accent-signal)' : 'rgba(255,255,255,.14)',
+      bg: i === fi ? 'rgba(255,255,255,.08)' : 'transparent',
+      pick: () => this.setState({ feature: i })
+    }));
+    return {
+      features: features,
+      shotLabel: FEATS[fi][3],
+      featCounter: '0' + (fi + 1) + ' / 05',
+      pinBarRef: el => { this.pinBar = el; },
+      shotWrapRef: el => { this.shotWrap = el; if (el && this.fitShot) this.fitShot(); },
+      showConstat: this.props.showConstat ?? true,
+      showConfigurateur: this.props.showConfigurateur ?? true,
+      tmPause: () => {
+        this.tmHover = true;
+        if (this.tmPaused) return;
+        this.tmPaused = true;
+        clearInterval(this.tmTimer);
+        this.tmLeft = 7000;
+        const el = document.querySelector('[data-tm-fill]');
+        if (el) {
+          const track = el.parentElement.getBoundingClientRect().width || 1;
+          const w = el.getBoundingClientRect().width;
+          this.tmLeft = Math.max(300, 7000 * (1 - w / track));
+          el.style.transition = 'none';
+          el.style.width = w + 'px';
+        }
+      },
+      tmNext: () => {
+        this.setState(st => ({ tm: ((st.tm || 0) + 1) % 4 }));
+        if (this.tmHover) { this.tmPaused = true; this.tmLeft = 7000; clearInterval(this.tmTimer); clearTimeout(this.tmTimer); return; }
+        this.tmPaused = false;
+        this.tmStart();
+      },
+      tmResume: () => {
+        this.tmHover = false;
+        if (!this.tmPaused) return;
+        this.tmPaused = false;
+        const left = this.tmLeft || 7000;
+        const el = document.querySelector('[data-tm-fill]');
+        if (el) { el.style.transition = 'width ' + left + 'ms linear'; el.style.width = '100%'; }
+        clearInterval(this.tmTimer);
+        if (this.tmReduce) return;
+        this.tmTimer = setTimeout(() => {
+          this.setState(st => ({ tm: ((st.tm || 0) + 1) % 4 }));
+          this.tmStart();
+        }, left);
+      },
+      logoHeight: 26,
+      iLang: 16,
+      toggleLang: () => { if (window.KopilotI18n) window.KopilotI18n.toggle(); },
+      logoSmall: 20,
+      showMission: this.props.showMission ?? true,
+      showPartenaires: this.props.showPartenaires ?? true,
+      i10: 10, i11: 11, i12: 12, i13: 13, i14: 14, i15: 15, i16: 16, i18: 18, i20: 20, i24: 24,
+      crop16: { width: 140, left: -26, top: -35 },
+      members: m,
+      membersLabel: big ? '400 +' : String(m),
+      recoPrefix: big ? '' : 'Socle Kopilot — ',
+      recoTier: big ? 'Configuration sur mesure' : tier,
+      recoBase: recoBase,
+      recoModsLabel: recoModsLabel,
+      recoMods: recoMods,
+      onMembers: e => this.setState({ members: Number(e.target.value) }),
+      togglePay: () => this.setState(st => ({ pay: !st.pay })),
+      toggleBank: () => this.setState(st => ({ bank: !st.bank })),
+      toggleSite: () => this.setState(st => ({ site: !st.site })),
+      payBorder: p.border, payBg: p.bg, payColor: p.color,
+      bankBorder: b.border, bankBg: b.bg, bankColor: b.color,
+      siteBorder: s.border, siteBg: s.bg, siteColor: s.color,
+      b0: bChips[0], b1: bChips[1], b2: bChips[2], b3: bChips[3],
+      barRef: el => { this.bar = el; },
+      headRef: el => { this.head = el; },
+      modalOpen: !!this.state.modal,
+      formStage: !!this.state.modal && !this.state.sent,
+      sentStage: !!this.state.modal && !!this.state.sent,
+      openDemo: () => this.setState({ modal: true, sent: false }),
+      submitForm: () => this.setState({ sent: true }),
+      closeModal: () => this.setState({ modal: false, sent: false }),
+      stop: e => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>
